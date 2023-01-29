@@ -11,6 +11,7 @@ module.exports = {
     parser: '@babel/eslint-parser'
   },
   rules: {
+    'no-shadow': 'off',
     'vue/html-self-closing': ['error', {
       html: {
         void: 'never',
