@@ -9,38 +9,38 @@
         </template>
         <ul class="list-group list-unstyled">
           <li class="mb-3">
-            <span class="font-weight-bold">acpi:</span> {{ hypervisor.acpi }}
+            <span class="font-weight-bold">acpi:</span> {{ acpi }}
           </li>
           <li class="mb-3">
-            <span class="font-weight-bold">cpu type:</span> {{ hypervisor.cpu_type }}
+            <span class="font-weight-bold">cpu type:</span> {{ cpu_type }}
           </li>
           <li class="mb-3">
-            <span class="font-weight-bold">disk type:</span> {{ hypervisor.disk_type }}
+            <span class="font-weight-bold">disk type:</span> {{ disk_type }}
           </li>
           <li class="mb-3">
-            <span class="font-weight-bold">kernel path:</span> {{ hypervisor.kernel_type }}
+            <span class="font-weight-bold">kernel path:</span> {{ kernel_type }}
           </li>
           <li class="mb-3">
-            <span class="font-weight-bold">kvm extra:</span> {{ hypervisor.kvm_extra }}
+            <span class="font-weight-bold">kvm extra:</span> {{ kvm_extra }}
           </li>
           <li class="mb-3">
-            <span class="font-weight-bold">kvm flag:</span> {{ hypervisor.kvm_flag }}
+            <span class="font-weight-bold">kvm flag:</span> {{ kvm_flag }}
           </li>
           <li class="mb-3">
-            <span class="font-weight-bold">machine version:</span> {{ hypervisor.machine_version }}
+            <span class="font-weight-bold">machine version:</span> {{ machine_version }}
           </li>
           <li class="mb-3">
-            <span class="font-weight-bold">use guest agent:</span> {{ hypervisor.use_guest_agent }}
+            <span class="font-weight-bold">use guest agent:</span> {{ use_guest_agent }}
           </li>
           <li class="mb-3">
-            <span class="font-weight-bold">use localtime:</span> {{ hypervisor.use_localtime }}
+            <span class="font-weight-bold">use localtime:</span> {{ use_localtime }}
           </li>
           <li class="mb-3">
-            <span class="font-weight-bold">vhost net:</span> {{ hypervisor.vhost_net }}
+            <span class="font-weight-bold">vhost net:</span> {{ vhost_net }}
           </li>
           <li class="mb-3">
             <span class="font-weight-bold">virtio net queues:</span>
-            {{ hypervisor.virtio_net_queues }}
+            {{ virtio_net_queues }}
           </li>
         </ul>
       </b-card>
@@ -50,7 +50,7 @@
 
 <script>
 import PageSection from '@/components/Global/PageSection.vue';
-import axios from 'axios';
+// import axios from 'axios';
 
 export default {
   name: 'ClusterCardsHypervisor',
@@ -60,18 +60,29 @@ export default {
   data() {
     return {
       cardName: 'Hypervisor',
-      hypervisor: []
+      hypervisor: [],
+      acpi: 'true',
+      cpu_type: 'null',
+      disk_type: 'paravirtual',
+      kernel_type: 'null',
+      kvm_extra: '-device virtio-rng-pci,max-bytes=1024,period=1000 -global isa-fdc.fdtypeA=none',
+      kvm_flag: 'null',
+      machine_version: 'null',
+      use_guest_agent: 'false',
+      use_localtime: 'false',
+      vhost_net: 'true',
+      virtio_net_queues: '1'
     };
-  },
-  created() {
-    axios.get('https://10.30.5.219:5080/2/info')
-      .then(responce => {
-        this.hypervisor = responce.data.hvparams.kvm;
-      })
-      .catch(e => {
-        this.errors.push(e);
-      });
   }
+  // created() {
+  //   axios.get('https://10.30.5.219:5080/2/info')
+  //     .then(responce => {
+  //       this.hypervisor = responce.data.hvparams.kvm;
+  //     })
+  //     .catch(e => {
+  //       this.errors.push(e);
+  //     });
+  // }
 };
 </script>
 

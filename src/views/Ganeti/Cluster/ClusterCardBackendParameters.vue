@@ -9,19 +9,19 @@
         </template>
         <ul class="list-group list-unstyled">
           <li class="mb-3">
-            <span class="font-weight-bold">minmem:</span> {{ backend.minmem }}
+            <span class="font-weight-bold">minmem:</span> {{ minmem }}
           </li>
           <li class="mb-3">
-            <span class="font-weight-bold">maxmem:</span> {{ backend.maxmem }}
+            <span class="font-weight-bold">maxmem:</span> {{ maxmem }}
           </li>
           <li class="mb-3">
-            <span class="font-weight-bold">vcpus:</span> {{ backend.vcpus }}
+            <span class="font-weight-bold">vcpus:</span> {{ vcpus }}
           </li>
           <li class="mb-3">
-            <span class="font-weight-bold">auto balance:</span> {{ backend.auto_balance }}
+            <span class="font-weight-bold">auto balance:</span> {{ auto_balance }}
           </li>
           <li class="mb-3">
-            <span class="font-weight-bold">always failover:</span> {{ backend.always_failover }}
+            <span class="font-weight-bold">always failover:</span> {{ always_failover }}
           </li>
         </ul>
       </b-card>
@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+// import axios from 'axios';
 import PageSection from '@/components/Global/PageSection.vue';
 
 export default {
@@ -41,18 +41,23 @@ export default {
   data() {
     return {
       cardName: 'Backend parameters',
-      backend: []
+      backend: [],
+      minmem: '2048',
+      maxmem: '2048',
+      vcpus: '4',
+      auto_balance: 'true',
+      always_failover: 'false'
     };
-  },
-  created() {
-    axios.get('https://10.30.5.219:5080/2/info')
-      .then(responce => {
-        this.backend = responce.data.beparams.default;
-      })
-      .catch(e => {
-        this.errors.push(e);
-      });
   }
+  // created() {
+  //   axios.get('https://10.30.5.219:5080/2/info')
+  //     .then(responce => {
+  //       this.backend = responce.data.beparams.default;
+  //     })
+  //     .catch(e => {
+  //       this.errors.push(e);
+  //     });
+  // }
 };
 </script>
 
