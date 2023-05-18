@@ -1,33 +1,38 @@
 <template>
   <b-container fluid="xl">
     <page-title />
-    <page-section class="mb-1">
-      <b-card-group deck>
-        <dashboard-groups />
-        <dashboard-nodes />
-        <dashboard-instances />
-      </b-card-group>
-      <b-card-group deck>
-        <dashboard-gluster />
-        <dashboard-jobs />
-        <dashboard-networks />
-      </b-card-group>
-    </page-section>
-    <page-section class="mb-1">
-      <b-card-group deck>
-        <dashboard-cpu />
-      </b-card-group>
-    </page-section>
-    <page-section class="mb-1">
-      <b-card-group deck>
-        <dashboard-memory />
-      </b-card-group>
-    </page-section>
-    <page-section class="mb-1">
-      <b-card-group deck>
-        <dashboard-storage />
-      </b-card-group>
-    </page-section>
+    <div>
+      <page-section class="mb-1">
+        <b-card-group deck>
+          <dashboard-groups :groups-api="groupsApi" />
+          <dashboard-nodes :nodes-api="nodesApi" />
+          <dashboard-instances :instances-api="instancesApi" />
+        </b-card-group>
+        <b-card-group deck>
+          <dashboard-gluster />
+          <dashboard-jobs
+            class="scroll"
+            :jobs-api="jobsApi"
+          />
+          <dashboard-networks />
+        </b-card-group>
+      </page-section>
+      <page-section class="mb-1">
+        <b-card-group deck>
+          <dashboard-cpu />
+        </b-card-group>
+      </page-section>
+      <page-section class="mb-1">
+        <b-card-group deck>
+          <dashboard-memory />
+        </b-card-group>
+      </page-section>
+      <page-section class="mb-1">
+        <b-card-group deck>
+          <dashboard-storage />
+        </b-card-group>
+      </page-section>
+    </div>
   </b-container>
 </template>
 
@@ -60,10 +65,19 @@ export default {
     DashboardStorage
   },
   data() {
-    return {};
+    return {
+      instancesApi: '/instance',
+      nodesApi: '/nodes',
+      groupsApi: '/groups',
+      jobsApi: '/jobs'
+    };
   }
 };
 </script>
 
 <style lang="scss" scoped>
+.scroll {
+  max-height: 266px;
+  overflow-y: auto;
+}
 </style>

@@ -1,28 +1,37 @@
 <template>
-  <dashboard-card :title="('Groups')">
-    <b-row
-      class="mt-3"
-      v-for="data in uri"
-      :key="data.id"
-    >
-      <b-col sm="6">
-        <dl>
-          <dt>{{ groupName }}</dt>
-          <dd>{{ data.name }}</dd>
-        </dl>
-      </b-col>
-      <b-col sm="6">
-        <dl>
-          <dt>{{ groupUri }}</dt>
-          <dd>{{ data.uri }}</dd>
-        </dl>
-      </b-col>
-    </b-row>
+  <dashboard-card title="Groups">
+    <div v-if="isLoading">
+      Loading...
+    </div>
+    <div v-if="error">
+      Something bad happened
+    </div>
+    <div v-if="groups">
+      <b-row
+        class="mt-3"
+      >
+        <b-col sm="6">
+          <dl>
+            <dt>name</dt>
+            <dd
+              v-for="group in groups"
+              :key="group.index"
+            >
+              {{ group.name }}
+            </dd>
+          </dl>
+        </b-col>
+        <b-col sm="6">
+          <dl />
+        </b-col>
+      </b-row>
+    </div>
   </dashboard-card>
 </template>
 
 <script>
-import axios from 'axios';
+import { actionTypes } from '@/store/modules/groups';
+import { mapState } from 'vuex';
 import DashboardCard from './DashboardCard.vue';
 
 export default {
@@ -30,24 +39,21 @@ export default {
   components: {
     DashboardCard
   },
-  data() {
-    return {
-      groupName: 'name',
-      groupUri: 'uri',
-      uri: [],
-      errors: []
-    };
+  props: {
+    groupsApi: {
+      type: String,
+      required: true
+    }
   },
-  created() {
-    axios({
-      method: 'GET',
-      url: 'http://clustergnt43.zvz.lan:5080',
-      data: {
-        login: 'user',
-        password: 'xxxyz'
-      }
-      // eslint-disable-next-line no-console
-    }).then(data => console.log(data.data.SessionId, data.data.ErrorMessage));
+  computed: {
+    ...mapState({
+      isLoading: state => state.groups.isLoading,
+      groups: state => state.groups.data,
+      error: state => state.groups.error
+    })
+  },
+  mounted() {
+    this.$store.dispatch(actionTypes.getGroups, { apiUrl: this.groupsApi });
   }
 };
 </script>
