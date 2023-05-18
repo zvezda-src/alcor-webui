@@ -50,7 +50,7 @@ export default {
     };
   }
   // created() {
-  //   axios.get('https://10.30.5.219:5080/2/info')
+  //   axios.get('http://10.110.3.230:8008/v1/info')
   //     .then(responce => {
   //       this.backend = responce.data.beparams.default;
   //     })
