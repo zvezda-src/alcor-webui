@@ -53,7 +53,7 @@ import PageSection from '@/components/Global/PageSection.vue';
 // import axios from 'axios';
 
 export default {
-  name: 'ClusterCardsHypervisor',
+  name: 'ClusterCardHypervisor',
   components: {
     PageSection
   },
