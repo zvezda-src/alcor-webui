@@ -1,15 +1,58 @@
 <template>
   <b-container fluid="xl">
     <page-title />
-    <b-row>
-      <b-col xl="12">
-        <template v-if="getClusterInfo">
-          <card-info :get-cluster-info="getClusterInfo" />
-        </template>
-        <card-hypervisor />
-        <card-backend />
-      </b-col>
-    </b-row>
+    <div v-if="isLoading">
+      Loading...
+    </div>
+    <div v-if="error">
+      Error
+    </div>
+    <div v-if="cluster">
+      <b-row>
+        <b-col xl="12">
+          <div class="text-right">
+            <b-button
+              type="submit"
+              variant="primary"
+              :disabled="isLoading"
+            >
+              Save
+            </b-button>
+          </div>
+          <b-card no-body>
+            <b-tabs
+              pills
+              card
+            >
+              <b-tab
+                title="Cluster"
+                active
+              >
+                <card-info :cluster="cluster" />
+              </b-tab>
+              <b-tab
+                title="Hypervisor"
+              >
+                <card-hypervisor :cluster="cluster" />
+              </b-tab>
+              <b-tab title="Backend">
+                <card-backend :cluster="cluster" />
+              </b-tab>
+              <b-tab
+                title="Disk params"
+              >
+                <card-disk-params :cluster="cluster" />
+              </b-tab>
+              <b-tab
+                title="Node params"
+              >
+                <card-node-params :cluster="cluster" />
+              </b-tab>
+            </b-tabs>
+          </b-card>
+        </b-col>
+      </b-row>
+    </div>
   </b-container>
 </template>
 
@@ -20,6 +63,8 @@ import PageTitle from '@/components/Global/PageTitle.vue';
 import CardInfo from '@/views/Ganeti/Cluster/ClusterCardInfo.vue';
 import CardHypervisor from '@/views/Ganeti/Cluster/ClusterCardHypervisor.vue';
 import CardBackend from '@/views/Ganeti/Cluster/ClusterCardBackendParameters.vue';
+import CardDiskParams from '@/views/Ganeti/Cluster/ClusterCardDiskParams.vue';
+import CardNodeParams from '@/views/Ganeti/Cluster/ClusterCardNodeParams.vue';
 
 export default {
   name: 'ClusterApp',
@@ -27,28 +72,19 @@ export default {
     PageTitle,
     CardInfo,
     CardHypervisor,
-    CardBackend
+    CardBackend,
+    CardDiskParams,
+    CardNodeParams
   },
   computed: {
     ...mapState({
       isLoading: state => state.cluster.isLoading,
+      cluster: state => state.cluster.data,
       error: state => state.cluster.error
-    }),
-    getClusterInfo() {
-      return this.$store.state.cluster.data;
-    }
+    })
   },
   mounted() {
     this.$store.dispatch(actionTypes.getCluster);
   }
-  // data() {
-  //   return {
-  //     apiUrl: '/info'
-  //   };
-  // }
 };
 </script>
-
-<style scoped>
-
-</style>

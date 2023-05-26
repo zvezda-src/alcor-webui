@@ -1,16 +1,11 @@
 <template>
   <page-section>
     <b-card>
-      <template #header>
-        <p class="font-weight-bold m-0 text-center">
-          {{ cardName }}
-        </p>
-      </template>
       <b-form>
         <b-form-group
           label-cols="4"
           label-cols-lg="2"
-          label="Name:"
+          label="name:"
           label-for="input-name"
           label-class="font-weight-bold"
         >
@@ -23,7 +18,7 @@
         <b-form-group
           label-cols="4"
           label-cols-lg="2"
-          label="Master:"
+          label="master:"
           label-for="input-master"
           label-class="font-weight-bold"
         >
@@ -36,7 +31,7 @@
         <b-form-group
           label-cols="4"
           label-cols-lg="2"
-          label="Cluster version:"
+          label="cluster version:"
           label-for="input-software-version"
           label-class="font-weight-bold"
         >
@@ -49,7 +44,7 @@
         <b-form-group
           label-cols="4"
           label-cols-lg="2"
-          label="Protocol version:"
+          label="protocol version:"
           label-for="input-protocol-version"
           label-class="font-weight-bold"
         >
@@ -62,7 +57,7 @@
         <b-form-group
           label-cols="4"
           label-cols-lg="2"
-          label="Config version:"
+          label="config version:"
           label-for="input-config-version"
           label-class="font-weight-bold"
         >
@@ -75,7 +70,7 @@
         <b-form-group
           label-cols="4"
           label-cols-lg="2"
-          label="Max running jobs:"
+          label="max running jobs:"
           label-for="input-running-jobs"
           label-class="font-weight-bold"
         >
@@ -89,7 +84,7 @@
         <b-form-group
           label-cols="4"
           label-cols-lg="2"
-          label="Max tracked jobs:"
+          label="max tracked jobs:"
           label-for="input-tracked-jobs"
           label-class="font-weight-bold"
         >
@@ -103,7 +98,7 @@
         <b-form-group
           label-cols="4"
           label-cols-lg="2"
-          label="MAC prefix:"
+          label="mac prefix:"
           label-for="input-mac"
           label-class="font-weight-bold"
         >
@@ -116,7 +111,7 @@
         <b-form-group
           label-cols="4"
           label-cols-lg="2"
-          label="Master netmask:"
+          label="master netmask:"
           label-for="input-netmask"
           label-class="font-weight-bold"
         >
@@ -128,13 +123,6 @@
           />
         </b-form-group>
       </b-form>
-      <b-button
-        class="mt-3"
-        type="submit"
-        variant="primary"
-      >
-        Сохранить
-      </b-button>
     </b-card>
   </page-section>
 </template>
@@ -148,21 +136,17 @@ export default {
     PageSection
   },
   props: {
-    getClusterInfo: {
+    cluster: {
       type: Object,
       required: true
     }
   },
-  data() {
-    return {
-      cardName: 'Cluster'
-    };
-  },
   computed: {
     getClusterInfoData() {
-      return this.getClusterInfo;
+      return this.cluster;
     }
   }
+
 };
 </script>
 

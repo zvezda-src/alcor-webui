@@ -2,35 +2,79 @@
   <div>
     <page-section>
       <b-card>
-        <template #header>
-          <p class="font-weight-bold m-0 text-center">
-            {{ cardName }}
-          </p>
-        </template>
-        <ul class="list-group list-unstyled">
-          <li class="mb-3">
-            <span class="font-weight-bold">minmem:</span> {{ minmem }}
-          </li>
-          <li class="mb-3">
-            <span class="font-weight-bold">maxmem:</span> {{ maxmem }}
-          </li>
-          <li class="mb-3">
-            <span class="font-weight-bold">vcpus:</span> {{ vcpus }}
-          </li>
-          <li class="mb-3">
-            <span class="font-weight-bold">auto balance:</span> {{ auto_balance }}
-          </li>
-          <li class="mb-3">
-            <span class="font-weight-bold">always failover:</span> {{ always_failover }}
-          </li>
-        </ul>
+        <b-form>
+          <b-form-group
+            label-cols="4"
+            label-cols-lg="2"
+            label="minmem:"
+            label-for="input-minmem"
+            label-class="font-weight-bold"
+          >
+            <b-form-input
+              v-model="clusterBackend.minmem"
+              type="text"
+              id="input-minmem"
+            />
+          </b-form-group>
+          <b-form-group
+            label-cols="4"
+            label-cols-lg="2"
+            label="maxmem:"
+            label-for="input-maxmem"
+            label-class="font-weight-bold"
+          >
+            <b-form-input
+              v-model="clusterBackend.maxmem"
+              type="text"
+              id="input-maxmem"
+            />
+          </b-form-group>
+          <b-form-group
+            label-cols="4"
+            label-cols-lg="2"
+            label="vcpus:"
+            label-for="input-vcpus"
+            label-class="font-weight-bold"
+          >
+            <b-form-input
+              v-model="clusterBackend.vcpus"
+              type="text"
+              id="input-vcpus"
+            />
+          </b-form-group>
+          <b-form-group
+            label-cols="4"
+            label-cols-lg="2"
+            label="auto balance:"
+            label-for="input-autobalance"
+            label-class="font-weight-bold"
+          >
+            <b-form-input
+              v-model="clusterBackend.auto_balance"
+              type="text"
+              id="input-autobalance"
+            />
+          </b-form-group>
+          <b-form-group
+            label-cols="4"
+            label-cols-lg="2"
+            label="always failover:"
+            label-for="input-alwaysfailover"
+            label-class="font-weight-bold"
+          >
+            <b-form-input
+              v-model="clusterBackend.always_failover"
+              type="text"
+              id="input-alwaysfailover"
+            />
+          </b-form-group>
+        </b-form>
       </b-card>
     </page-section>
   </div>
 </template>
 
 <script>
-// import axios from 'axios';
 import PageSection from '@/components/Global/PageSection.vue';
 
 export default {
@@ -38,26 +82,17 @@ export default {
   components: {
     PageSection
   },
-  data() {
-    return {
-      cardName: 'Backend parameters',
-      backend: [],
-      minmem: '2048',
-      maxmem: '2048',
-      vcpus: '4',
-      auto_balance: 'true',
-      always_failover: 'false'
-    };
+  props: {
+    cluster: {
+      type: Object,
+      required: true
+    }
+  },
+  computed: {
+    clusterBackend() {
+      return this.cluster.beparams.default;
+    }
   }
-  // created() {
-  //   axios.get('http://10.110.3.230:8008/v1/info')
-  //     .then(responce => {
-  //       this.backend = responce.data.beparams.default;
-  //     })
-  //     .catch(e => {
-  //       this.errors.push(e);
-  //     });
-  // }
 };
 </script>
 

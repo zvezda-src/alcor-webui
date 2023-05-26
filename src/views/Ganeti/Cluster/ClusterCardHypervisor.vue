@@ -1,88 +1,214 @@
 <template>
-  <div>
-    <page-section>
-      <b-card>
-        <template #header>
-          <p class="font-weight-bold m-0 text-center">
-            {{ cardName }}
-          </p>
-        </template>
-        <ul class="list-group list-unstyled">
-          <li class="mb-3">
-            <span class="font-weight-bold">acpi:</span> {{ acpi }}
-          </li>
-          <li class="mb-3">
-            <span class="font-weight-bold">cpu type:</span> {{ cpu_type }}
-          </li>
-          <li class="mb-3">
-            <span class="font-weight-bold">disk type:</span> {{ disk_type }}
-          </li>
-          <li class="mb-3">
-            <span class="font-weight-bold">kernel path:</span> {{ kernel_type }}
-          </li>
-          <li class="mb-3">
-            <span class="font-weight-bold">kvm extra:</span> {{ kvm_extra }}
-          </li>
-          <li class="mb-3">
-            <span class="font-weight-bold">kvm flag:</span> {{ kvm_flag }}
-          </li>
-          <li class="mb-3">
-            <span class="font-weight-bold">machine version:</span> {{ machine_version }}
-          </li>
-          <li class="mb-3">
-            <span class="font-weight-bold">use guest agent:</span> {{ use_guest_agent }}
-          </li>
-          <li class="mb-3">
-            <span class="font-weight-bold">use localtime:</span> {{ use_localtime }}
-          </li>
-          <li class="mb-3">
-            <span class="font-weight-bold">vhost net:</span> {{ vhost_net }}
-          </li>
-          <li class="mb-3">
-            <span class="font-weight-bold">virtio net queues:</span>
-            {{ virtio_net_queues }}
-          </li>
-        </ul>
-      </b-card>
-    </page-section>
-  </div>
+  <page-section>
+    <b-card>
+      <b-form>
+        <b-form-group
+          label-cols="4"
+          label-cols-lg="2"
+          label="acpi:"
+          label-for="input-acpi"
+          label-class="font-weight-bold"
+        >
+          <b-form-input
+            v-model="clusterHypervisor.acpi"
+            type="text"
+            id="input-acpi"
+          />
+        </b-form-group>
+        <b-form-group
+          label-cols="4"
+          label-cols-lg="2"
+          label="boot order:"
+          label-for="input-bootorder"
+          label-class="font-weight-bold"
+        >
+          <b-form-input
+            v-model="clusterHypervisor.boot_order"
+            type="text"
+            id="input-bootorder"
+          />
+        </b-form-group>
+        <b-form-group
+          label-cols="4"
+          label-cols-lg="2"
+          label="cdrom2 image path:"
+          label-for="input-cdrom2imagepath"
+          label-class="font-weight-bold"
+        >
+          <b-form-input
+            v-model="clusterHypervisor.cdrom2_image_path"
+            type="text"
+            id="input-cdrom2imagepath"
+          />
+        </b-form-group>
+        <b-form-group
+          label-cols="4"
+          label-cols-lg="2"
+          label="cpu cores:"
+          label-for="input-cpucores"
+          label-class="font-weight-bold"
+        >
+          <b-form-input
+            v-model="clusterHypervisor.cpu_cores"
+            type="text"
+            id="input-cpucores"
+          />
+        </b-form-group>
+        <b-form-group
+          label-cols="4"
+          label-cols-lg="2"
+          label="cpu mask:"
+          label-for="input-cpumask"
+          label-class="font-weight-bold"
+        >
+          <b-form-input
+            v-model="clusterHypervisor.cpu_mask"
+            type="text"
+            id="input-cpumask"
+          />
+        </b-form-group>
+        <b-form-group
+          label-cols="4"
+          label-cols-lg="2"
+          label="cpu sockets:"
+          label-for="input-cpusockets"
+          label-class="font-weight-bold"
+        >
+          <b-form-input
+            v-model="clusterHypervisor.cpu_sockets"
+            type="text"
+            id="input-cpusockets"
+          />
+        </b-form-group>
+        <b-form-group
+          label-cols="4"
+          label-cols-lg="2"
+          label="cpu threads:"
+          label-for="input-cputhreads"
+          label-class="font-weight-bold"
+        >
+          <b-form-input
+            v-model="clusterHypervisor.cpu_threads"
+            type="text"
+            id="input-cputhreads"
+          />
+        </b-form-group>
+        <b-form-group
+          label-cols="4"
+          label-cols-lg="2"
+          label="cpu type:"
+          label-for="input-cputype"
+          label-class="font-weight-bold"
+        >
+          <b-form-input
+            v-model="clusterHypervisor.cpu_type"
+            type="text"
+            id="input-cputype"
+          />
+        </b-form-group>
+        <b-form-group
+          label-cols="4"
+          label-cols-lg="2"
+          label="disk type:"
+          label-for="input-disktype"
+          label-class="font-weight-bold"
+        >
+          <b-form-input
+            v-model="clusterHypervisor.disk_type"
+            type="text"
+            id="input-disktype"
+          />
+        </b-form-group>
+        <b-form-group
+          label-cols="4"
+          label-cols-lg="2"
+          label="initrd path:"
+          label-for="input-initrdpath"
+          label-class="font-weight-bold"
+        >
+          <b-form-input
+            v-model="clusterHypervisor.initrd_path"
+            type="text"
+            id="input-initrdpath"
+          />
+        </b-form-group>
+        <b-form-group
+          label-cols="4"
+          label-cols-lg="2"
+          label="kernel args:"
+          label-for="input-kernelargs"
+          label-class="font-weight-bold"
+        >
+          <b-form-input
+            v-model="clusterHypervisor.kernel_args"
+            type="text"
+            id="input-kernelargs"
+          />
+        </b-form-group>
+        <b-form-group
+          label-cols="4"
+          label-cols-lg="2"
+          label="kernel path:"
+          label-for="input-kernelpath"
+          label-class="font-weight-bold"
+        >
+          <b-form-input
+            v-model="clusterHypervisor.kernel_path"
+            type="text"
+            id="input-kernelpath"
+          />
+        </b-form-group>
+        <b-form-group
+          label-cols="4"
+          label-cols-lg="2"
+          label="kvm extra:"
+          label-for="input-kvmextra"
+          label-class="font-weight-bold"
+        >
+          <b-form-input
+            v-model="clusterHypervisor.kvm_extra"
+            type="text"
+            id="input-kvmextra"
+          />
+        </b-form-group>
+        <b-form-group
+          label-cols="4"
+          label-cols-lg="2"
+          label="machine version:"
+          label-for="input-machineversion"
+          label-class="font-weight-bold"
+        >
+          <b-form-input
+            v-model="clusterHypervisor.machine_version"
+            type="text"
+            id="input-machineversion"
+          />
+        </b-form-group>
+      </b-form>
+    </b-card>
+  </page-section>
 </template>
 
 <script>
 import PageSection from '@/components/Global/PageSection.vue';
-// import axios from 'axios';
 
 export default {
   name: 'ClusterCardHypervisor',
   components: {
     PageSection
   },
-  data() {
-    return {
-      cardName: 'Hypervisor',
-      hypervisor: [],
-      acpi: 'true',
-      cpu_type: 'null',
-      disk_type: 'paravirtual',
-      kernel_type: 'null',
-      kvm_extra: '-device virtio-rng-pci,max-bytes=1024,period=1000 -global isa-fdc.fdtypeA=none',
-      kvm_flag: 'null',
-      machine_version: 'null',
-      use_guest_agent: 'false',
-      use_localtime: 'false',
-      vhost_net: 'true',
-      virtio_net_queues: '1'
-    };
+  props: {
+    cluster: {
+      type: Object,
+      required: true
+    }
+  },
+  computed: {
+    clusterHypervisor() {
+      return this.cluster.hvparams.kvm;
+    }
   }
-  // created() {
-  //   axios.get('https://10.30.5.219:5080/2/info')
-  //     .then(responce => {
-  //       this.hypervisor = responce.data.hvparams.kvm;
-  //     })
-  //     .catch(e => {
-  //       this.errors.push(e);
-  //     });
-  // }
+
 };
 </script>
 
