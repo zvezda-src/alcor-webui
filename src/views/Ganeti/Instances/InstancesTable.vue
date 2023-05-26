@@ -85,6 +85,14 @@
               >
                 reboot
               </b-button>
+              <b-button
+                v-b-modal.modal-migrate-instances
+                variant="danger"
+                size="sm"
+                class="mr-2 mt-2"
+              >
+                migrate
+              </b-button>
             </b-button-group>
           </div>
           <b-row>
