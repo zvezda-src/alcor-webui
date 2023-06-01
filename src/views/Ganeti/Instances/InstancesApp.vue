@@ -8,7 +8,7 @@
     <instances-add-modal />
     <instances-modify-modal />
     <instances-rename-modal />
-    <instances-shutdown-modal />
+    <instances-shut-down-modal />
     <instances-grow-modal />
     <instances-reboot-modal />
   </b-container>
@@ -22,7 +22,7 @@ import InstancesButtonsPanel from '@/views/Ganeti/Instances/InstancesButtonsPane
 import InstancesAddModal from '@/views/Ganeti/Instances/InstancesAddModal.vue';
 import InstancesModifyModal from '@/views/Ganeti/Instances/InstancesModifyModal.vue';
 import InstancesRenameModal from '@/views/Ganeti/Instances/InstancesRenameModal.vue';
-import InstancesShutdownModal from '@/views/Ganeti/Instances/InstancesShutdownModal.vue';
+import InstancesShutDownModal from '@/views/Ganeti/Instances/InstancesShutDownModal.vue';
 import InstancesGrowModal from '@/views/Ganeti/Instances/InstancesGrowModal.vue';
 import InstancesRebootModal from '@/views/Ganeti/Instances/InstancesRebootModal.vue';
 
@@ -36,7 +36,7 @@ export default {
     InstancesAddModal,
     InstancesModifyModal,
     InstancesRenameModal,
-    InstancesShutdownModal,
+    InstancesShutDownModal,
     InstancesGrowModal,
     InstancesRebootModal
 

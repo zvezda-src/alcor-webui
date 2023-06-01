@@ -10,7 +10,7 @@
     >
       <b-form
         ref="form"
-        @submit.stop.prevent="shutdownInstances"
+        @submit.stop.prevent="shutDownInstances"
       >
         <b-row>
           <b-col>
@@ -45,7 +45,7 @@
 import axios from '@/api/axios';
 
 export default {
-  name: 'InstancesShutdownModal',
+  name: 'InstancesShutDownModal',
   data() {
     return {
       form: {
@@ -60,7 +60,7 @@ export default {
       // Prevent modal from closing
       bvModalEvent.preventDefault();
       // Trigger submit handler
-      this.shutdownInstances();
+      this.shutDownInstances();
     },
     shutdownInstances() {
       const dataInstances = this.form;
