@@ -62,7 +62,7 @@ export default {
       // Trigger submit handler
       this.shutDownInstances();
     },
-    shutdownInstances() {
+    shutDownInstances() {
       const dataInstances = this.form;
       // eslint-disable-next-line
           console.log(JSON.stringify(dataInstances));

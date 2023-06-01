@@ -2,6 +2,8 @@ import axios from '@/api/axios';
 
 const getInstances = apiUrl => axios.get(apiUrl);
 
+const addInstances = apiUrl => axios.post(apiUrl);
+
 const deleteInstances = (apiUrl, name) => axios.delete(
   `${apiUrl}/delete/${name}`,
   { data: name }
@@ -23,6 +25,7 @@ const shutDownInstances = apiUrl => axios.put(apiUrl);
 
 export default {
   getInstances,
+  addInstances,
   deleteInstances,
   startUpInstances,
   modifyInstances,

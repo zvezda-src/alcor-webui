@@ -11,6 +11,7 @@
     <instances-shut-down-modal />
     <instances-grow-modal />
     <instances-reboot-modal />
+    <instances-mirgate-modal />
   </b-container>
 </template>
 
@@ -25,6 +26,7 @@ import InstancesRenameModal from '@/views/Ganeti/Instances/InstancesRenameModal.
 import InstancesShutDownModal from '@/views/Ganeti/Instances/InstancesShutDownModal.vue';
 import InstancesGrowModal from '@/views/Ganeti/Instances/InstancesGrowModal.vue';
 import InstancesRebootModal from '@/views/Ganeti/Instances/InstancesRebootModal.vue';
+import InstancesMirgateModal from '@/views/Ganeti/Instances/InstancesMirgateModal.vue';
 
 export default {
   name: 'InstancesApp',
@@ -38,7 +40,8 @@ export default {
     InstancesRenameModal,
     InstancesShutDownModal,
     InstancesGrowModal,
-    InstancesRebootModal
+    InstancesRebootModal,
+    InstancesMirgateModal
 
   },
   data() {
