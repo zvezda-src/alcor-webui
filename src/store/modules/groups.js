@@ -7,13 +7,18 @@ const state = {
 };
 
 export const mutationTypes = {
-  getGroupsStart: '[nodes] Get groups start',
-  getGroupsSuccess: '[nodes] Get groups success',
-  getGroupsFailure: '[nodes] Get groups failure'
+  getGroupsStart: '[groups] Get groups start',
+  getGroupsSuccess: '[groups] Get groups success',
+  getGroupsFailure: '[groups] Get groups failure',
+
+  addGroupsStart: '[groups] Add groups start',
+  addGroupsSuccess: '[groups] Add groups success',
+  addGroupsFailure: '[groups] Add groups failure'
 };
 
 export const actionTypes = {
-  getGroups: '[nodes] Get groups'
+  getGroups: '[groups] Get groups',
+  addGroups: '[groups] Add groups'
 };
 
 const mutations = {
@@ -26,6 +31,18 @@ const mutations = {
     state.data = payload;
   },
   [mutationTypes.getGroupsFailure](state) {
+    state.isLoading = false;
+  },
+
+  [mutationTypes.addGroupsStart](state) {
+    state.isLoading = true;
+    state.data = null;
+  },
+  [mutationTypes.addGroupsSuccess](state, payload) {
+    state.isLoading = false;
+    state.data = payload;
+  },
+  [mutationTypes.addGroupsFailure](state) {
     state.isLoading = false;
   }
 };
@@ -41,6 +58,19 @@ const actions = {
         })
         .catch(() => {
           context.commit(mutationTypes.getGroupsFailure);
+        });
+    });
+  },
+  [actionTypes.addGroups](context, { apiUrl }) {
+    return new Promise(resolve => {
+      context.commit(mutationTypes.addGroupsStart);
+      groupsApi.addGroups(apiUrl)
+        .then(responce => {
+          context.commit(mutationTypes.addGroupsStart, responce.data);
+          resolve(responce.data);
+        })
+        .catch(() => {
+          context.commit(mutationTypes.addGroupsFailure);
         });
     });
   }
