@@ -20,6 +20,7 @@ const mutations = {
   [mutationTypes.getJobsStart](state) {
     state.isLoading = true;
     state.data = null;
+    state.error = false;
   },
   [mutationTypes.getJobsSuccess](state, payload) {
     state.isLoading = false;
@@ -27,6 +28,7 @@ const mutations = {
   },
   [mutationTypes.getJobsFailure](state) {
     state.isLoading = false;
+    state.error = true;
   }
 };
 
@@ -40,7 +42,7 @@ const actions = {
           resolve(responce.data);
         })
         .catch(() => {
-          context.commit(mutationTypes.getFailure);
+          context.commit(mutationTypes.getJobsFailure);
         });
     });
   }

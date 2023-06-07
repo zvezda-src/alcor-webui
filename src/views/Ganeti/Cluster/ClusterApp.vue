@@ -5,7 +5,7 @@
       Loading...
     </div>
     <div v-if="error">
-      Error
+      Api not available
     </div>
     <div v-if="cluster">
       <b-row>

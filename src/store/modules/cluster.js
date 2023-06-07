@@ -25,6 +25,7 @@ const mutations = {
   [mutationTypes.getClusterStart](state) {
     state.isLoading = true;
     state.data = null;
+    state.error = false;
   },
   [mutationTypes.getClusterSuccess](state, payload) {
     state.isLoading = false;
@@ -32,6 +33,7 @@ const mutations = {
   },
   [mutationTypes.getClusterFailure](state) {
     state.isLoading = false;
+    state.error = true;
   },
 
   [mutationTypes.modifyClusterStart](state) {

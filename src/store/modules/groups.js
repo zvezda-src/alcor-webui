@@ -25,6 +25,7 @@ const mutations = {
   [mutationTypes.getGroupsStart](state) {
     state.isLoading = true;
     state.data = null;
+    state.error = false;
   },
   [mutationTypes.getGroupsSuccess](state, payload) {
     state.isLoading = false;
@@ -32,6 +33,7 @@ const mutations = {
   },
   [mutationTypes.getGroupsFailure](state) {
     state.isLoading = false;
+    state.error = true;
   },
 
   [mutationTypes.addGroupsStart](state) {

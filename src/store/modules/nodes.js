@@ -35,6 +35,7 @@ const mutations = {
   [mutationTypes.getNodesStart](state) {
     state.isLoading = true;
     state.data = null;
+    state.error = false;
   },
   [mutationTypes.getNodesSuccess](state, payload) {
     state.isLoading = false;
@@ -42,6 +43,7 @@ const mutations = {
   },
   [mutationTypes.getNodesFailure](state) {
     state.isLoading = false;
+    state.error = true;
   },
 
   [mutationTypes.addNodesSuccess](state) {

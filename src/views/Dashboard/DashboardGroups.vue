@@ -4,7 +4,7 @@
       Loading...
     </div>
     <div v-if="error">
-      Something bad happened
+      Api not available
     </div>
     <div v-if="groups">
       <b-row
