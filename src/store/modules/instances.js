@@ -65,11 +65,11 @@ const mutations = {
   [mutationTypes.getInstancesStart](state) {
     state.isLoading = true;
     state.data = null;
+    state.error = null;
   },
   [mutationTypes.getInstancesSuccess](state, payload) {
     state.isLoading = false;
     state.data = payload;
-    state.error = false;
   },
   [mutationTypes.getInstancesFailure](state) {
     state.isLoading = false;
