@@ -7,7 +7,7 @@
       :items="jobs"
       :fields="fields"
       show-empty
-      fixed="false"
+      :fixed="fixed"
       :busy.sync="isLoading"
       empty-text="No items available"
     />
@@ -32,6 +32,7 @@ export default {
   },
   data() {
     return {
+      fixed: true,
       fields: [
         {
           key: 'id',
