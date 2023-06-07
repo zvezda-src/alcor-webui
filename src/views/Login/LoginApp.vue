@@ -15,7 +15,7 @@
     </b-form-group>
     <div class="login-form__section mb-3">
       <b-form-group
-        label-for="passrowd"
+        label-for="password"
         label="Пароль"
       >
         <b-form-input
@@ -38,6 +38,9 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+import { actionTypes } from '@/store/modules/auth';
+
 export default {
   name: 'LoginApp',
   data() {
@@ -47,16 +50,23 @@ export default {
     };
   },
   computed: {
-    isSubmitting() {
-      return this.$store.state.auth.isSubmitting;
-    }
+    ...mapState({
+      isSubmitting: state => state.auth.isSubmitting,
+      validationErrors: state => state.auth.validationErrors
+    })
   },
   methods: {
     onSubmit() {
       // eslint-disable-next-line no-console
       console.log('submitted form');
-      this.$store.commit('loginStart');
-      this.$router.push({ name: 'dashboard' });
+      this.$store
+        .dispatch(actionTypes.login, {
+          username: this.username,
+          password: this.password
+        })
+        .then(() => {
+          this.$router.push({ name: 'dashboard' });
+        });
     }
   }
 };

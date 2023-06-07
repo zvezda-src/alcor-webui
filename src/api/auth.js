@@ -2,6 +2,12 @@ import axios from '@/api/axios';
 
 const register = credentials => axios.post('/users', { user: credentials });
 
+const login = credentials => axios.post('/login', { user: credentials });
+
+const getCurrentUser = () => axios.get('/user');
+
 export default {
-  register
+  register,
+  login,
+  getCurrentUser
 };
