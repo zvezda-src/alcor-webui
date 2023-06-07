@@ -184,6 +184,136 @@
             id="input-machineversion"
           />
         </b-form-group>
+        <b-form-group
+          label-cols="4"
+          label-cols-lg="2"
+          label="spice bind:"
+          label-for="input-spicebind"
+          label-class="font-weight-bold"
+        >
+          <b-form-input
+            v-model="clusterHypervisor.spice_bind"
+            type="text"
+            id="input-spicebind"
+          />
+        </b-form-group>
+        <b-form-group
+          label-cols="4"
+          label-cols-lg="2"
+          label="spice image:"
+          label-for="input-spiceimagecompression"
+          label-class="font-weight-bold"
+        >
+          <b-form-input
+            v-model="clusterHypervisor.spice_image_compression"
+            type="text"
+            id="input-spiceimagecompression"
+          />
+        </b-form-group>
+        <b-form-group
+          label-cols="4"
+          label-cols-lg="2"
+          label="spice jpeg wan:"
+          label-for="input-spicejpegwancompression"
+          label-class="font-weight-bold"
+        >
+          <b-form-input
+            v-model="clusterHypervisor.spice_jpeg_wan_compression"
+            type="text"
+            id="input-spicejpegwancompression"
+          />
+        </b-form-group>
+        <b-form-group
+          label-cols="4"
+          label-cols-lg="2"
+          label="spice playback:"
+          label-for="input-spiceplaybackcompression"
+          label-class="font-weight-bold"
+        >
+          <b-form-input
+            v-model="clusterHypervisor.spice_playback_compression"
+            type="text"
+            id="input-spiceplaybackcompression"
+          />
+        </b-form-group>
+        <b-form-group
+          label-cols="4"
+          label-cols-lg="2"
+          label="spice streaming:"
+          label-for="input-spicestreamingvideo"
+          label-class="font-weight-bold"
+        >
+          <b-form-input
+            v-model="clusterHypervisor.spice_streaming_video"
+            type="text"
+            id="input-spicestreamingvideo"
+          />
+        </b-form-group>
+        <b-form-group
+          label-cols="4"
+          label-cols-lg="2"
+          label="spice tls ciphers:"
+          label-for="input-spicetlsciphers"
+          label-class="font-weight-bold"
+        >
+          <b-form-input
+            v-model="clusterHypervisor.spice_tls_ciphers"
+            type="text"
+            id="input-spicetlsciphers"
+          />
+        </b-form-group>
+        <b-form-group
+          label-cols="4"
+          label-cols-lg="2"
+          label="spice use tls:"
+          label-for="input-spiceusetls"
+          label-class="font-weight-bold"
+        >
+          <b-form-input
+            v-model="clusterHypervisor.spice_use_tls"
+            type="text"
+            id="input-spiceusetls"
+          />
+        </b-form-group>
+        <b-form-group
+          label-cols="4"
+          label-cols-lg="2"
+          label="spice use tls:"
+          label-for="input-spiceusetls"
+          label-class="font-weight-bold"
+        >
+          <b-form-input
+            v-model="clusterHypervisor.spice_use_tls"
+            type="text"
+            id="input-spiceusetls"
+          />
+        </b-form-group>
+        <b-form-group
+          label-cols="4"
+          label-cols-lg="2"
+          label="spice use vdagent:"
+          label-for="input-spiceusevdagent"
+          label-class="font-weight-bold"
+        >
+          <b-form-input
+            v-model="clusterHypervisor.spice_use_vdagent"
+            type="text"
+            id="input-spiceusevdagent"
+          />
+        </b-form-group>
+        <b-form-group
+          label-cols="4"
+          label-cols-lg="2"
+          label="spice zlib glz wan:"
+          label-for="input-spicezlibglzwancompression"
+          label-class="font-weight-bold"
+        >
+          <b-form-input
+            v-model="clusterHypervisor.spice_zlib_glz_wan_compression"
+            type="text"
+            id="input-spicezlibglzwancompression"
+          />
+        </b-form-group>
       </b-form>
     </b-card>
   </page-section>
