@@ -13,12 +13,17 @@ export const mutationTypes = {
 
   addGroupsStart: '[groups] Add groups start',
   addGroupsSuccess: '[groups] Add groups success',
-  addGroupsFailure: '[groups] Add groups failure'
+  addGroupsFailure: '[groups] Add groups failure',
+
+  deleteGroupsStart: '[groups] Delete groups start',
+  deleteGroupsSuccess: '[groups] Delete groups success',
+  deleteGroupsFailure: '[groups] Delete groups failure'
 };
 
 export const actionTypes = {
   getGroups: '[groups] Get groups',
-  addGroups: '[groups] Add groups'
+  addGroups: '[groups] Add groups',
+  deleteGroups: '[groups] Delete groups'
 };
 
 const mutations = {
@@ -45,6 +50,18 @@ const mutations = {
     state.data = payload;
   },
   [mutationTypes.addGroupsFailure](state) {
+    state.isLoading = false;
+  },
+
+  [mutationTypes.deleteGroupsStart](state) {
+    state.isLoading = true;
+    state.data = null;
+  },
+  [mutationTypes.deleteGroupsSuccess](state, payload) {
+    state.isLoading = false;
+    state.data = payload;
+  },
+  [mutationTypes.deleteGroupsFailure](state) {
     state.isLoading = false;
   }
 };
@@ -73,6 +90,19 @@ const actions = {
         })
         .catch(() => {
           context.commit(mutationTypes.addGroupsFailure);
+        });
+    });
+  },
+  [actionTypes.deleteGroups](context, { apiUrl }) {
+    return new Promise(resolve => {
+      context.commit(mutationTypes.deleteGroupsStart);
+      groupsApi.deleteGroups(apiUrl)
+        .then(responce => {
+          context.commit(mutationTypes.deleteGroupsStart, responce.data);
+          resolve(responce.data);
+        })
+        .catch(() => {
+          context.commit(mutationTypes.deleteGroupsFailure);
         });
     });
   }
