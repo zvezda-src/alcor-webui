@@ -5,11 +5,11 @@
 <script>
 export default {
   name: 'ErrorMessage',
-  prorps: {
+  props: {
     message: {
       type: String,
       required: false,
-      default: 'Something bad error'
+      default: 'Api not available'
     }
   }
 };

@@ -1,11 +1,7 @@
 <template>
   <dashboard-card title="Nodes">
-    <div v-if="isLoading">
-      Loading...
-    </div>
-    <div v-if="error">
-      Api not available
-    </div>
+    <api-loading v-if="isLoading" />
+    <error-message v-if="error" />
     <div
       v-if="nodes"
     >
@@ -34,12 +30,16 @@
 <script>
 import { actionTypes } from '@/store/modules/nodes';
 import { mapState } from 'vuex';
+import ErrorMessage from '@/components/Global/ErrorMessage.vue';
+import ApiLoading from '@/components/Global/ApiLoading.vue';
 import DashboardCard from './DashboardCard.vue';
 
 export default {
   name: 'DashboardNodes',
   components: {
-    DashboardCard
+    DashboardCard,
+    ApiLoading,
+    ErrorMessage
   },
   props: {
     nodesApi: {

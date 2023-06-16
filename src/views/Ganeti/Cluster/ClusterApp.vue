@@ -1,8 +1,10 @@
 <template>
   <b-container fluid="xl">
     <page-title />
-    <app-loading v-if="isLoading" />
-    <error-message v-if="error" />
+    <api-loading v-if="isLoading" />
+    <error-message
+      v-if="error"
+    />
     <div v-if="cluster">
       <b-row>
         <b-col xl="12">
@@ -61,7 +63,7 @@ import CardHypervisor from '@/views/Ganeti/Cluster/ClusterCardHypervisor.vue';
 import CardBackend from '@/views/Ganeti/Cluster/ClusterCardBackendParameters.vue';
 import CardDiskParams from '@/views/Ganeti/Cluster/ClusterCardDiskParams.vue';
 import CardNodeParams from '@/views/Ganeti/Cluster/ClusterCardNodeParams.vue';
-import AppLoading from '@/components/Global/AppLoading.vue';
+import ApiLoading from '@/components/Global/ApiLoading.vue';
 import ErrorMessage from '@/components/Global/ErrorMessage.vue';
 
 export default {
@@ -73,7 +75,7 @@ export default {
     CardBackend,
     CardDiskParams,
     CardNodeParams,
-    AppLoading,
+    ApiLoading,
     ErrorMessage
   },
   computed: {

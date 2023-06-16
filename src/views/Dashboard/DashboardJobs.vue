@@ -1,11 +1,7 @@
 <template>
   <dashboard-card title="Jobs">
-    <div v-if="isLoading">
-      Loading...
-    </div>
-    <div v-if="error">
-      Api not available
-    </div>
+    <api-loading v-if="isLoading" />
+    <error-message v-if="error" />
     <div v-if="jobs">
       <b-row class="mt-3">
         <b-col sm="6">
@@ -38,12 +34,16 @@
 <script>
 import { actionTypes } from '@/store/modules/jobs';
 import { mapState } from 'vuex';
+import ApiLoading from '@/components/Global/ApiLoading.vue';
+import ErrorMessage from '@/components/Global/ErrorMessage.vue';
 import DashboardCard from './DashboardCard.vue';
 
 export default {
   name: 'DashboardJobs',
   components: {
-    DashboardCard
+    DashboardCard,
+    ApiLoading,
+    ErrorMessage
   },
   props: {
     jobsApi: {
