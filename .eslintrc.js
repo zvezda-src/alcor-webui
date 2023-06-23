@@ -127,7 +127,7 @@ module.exports = {
     'no-unused-expressions': 'error',
     'no-param-reassign': 'off',
     'prefer-destructuring': ['error', {
-      array: true,
+      array: false,
       object: true
     }, {
       enforceForRenamedProperties: false

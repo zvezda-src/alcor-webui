@@ -12,5 +12,11 @@ module.exports = defineConfig({
   },
   productionSourceMap: false,
   transpileDependencies: true,
-  publicPath: ''
+  publicPath: '',
+  pluginOptions: {
+    i18n: {
+      localeDir: 'locales',
+      enableInSFC: true
+    }
+  }
 });
