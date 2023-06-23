@@ -4,8 +4,19 @@
     class="login-form"
   >
     <b-form-group
+      label-for="language"
+      label="Language"
+    >
+      <b-form-select
+        id="language"
+        v-model="selected"
+        :options="languages"
+        data-test-id="login-select-language"
+      />
+    </b-form-group>
+    <b-form-group
       label-for="username"
-      label="Имя пользователя"
+      label="Urername"
     >
       <b-form-input
         id="username"
@@ -16,7 +27,7 @@
     <div class="login-form__section mb-3">
       <b-form-group
         label-for="password"
-        label="Пароль"
+        label="Password"
       >
         <b-form-input
           id="password"
@@ -32,7 +43,7 @@
       data-id="login-button-submit"
       :disabled="isSubmitting"
     >
-      Войти
+      Log in
     </b-button>
   </b-form>
 </template>
@@ -46,7 +57,18 @@ export default {
   data() {
     return {
       username: 'user',
-      password: 'xxxyz'
+      password: 'xxxyz',
+      selected: 'en-US',
+      languages: [
+        {
+          value: 'en-US',
+          text: 'English'
+        },
+        {
+          value: 'ru-RU',
+          text: 'Русский'
+        }
+      ]
     };
   },
   computed: {
