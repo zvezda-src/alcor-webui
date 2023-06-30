@@ -92,77 +92,77 @@ export default {
       navigationItems: [
         {
           id: 'dashboard',
-          label: 'Dashboard',
+          label: this.$t('appNavigation.dashboard'),
           route: '/main',
           icon: 'IconDashboard'
         },
         {
           id: 'ganeti',
-          label: 'Ganeti',
+          label: this.$t('appNavigation.ganeti'),
           icon: 'IconGaneti',
           children: [
             {
               id: 'cluster',
-              label: 'Cluster',
+              label: this.$t('appNavigation.cluster'),
               route: '/ganeti/cluster'
             },
             {
               id: 'groups',
-              label: 'Groups',
+              label: this.$t('appNavigation.groups'),
               route: '/ganeti/groups'
             },
             {
               id: 'nodes',
-              label: 'Nodes',
+              label: this.$t('appNavigation.nodes'),
               route: '/ganeti/nodes'
             },
             {
               id: 'instances',
-              label: 'Instances',
+              label: this.$t('appNavigation.instances'),
               route: '/ganeti/instances'
             },
             {
               id: 'jobs',
-              label: 'Jobs',
+              label: this.$t('appNavigation.jobs'),
               route: '/ganeti/jobs'
             }
           ]
         },
         {
           id: 'gluster',
-          label: 'Gluster',
+          label: this.$t('appNavigation.gluster'),
           icon: 'IconGluster',
           children: [
             {
               id: 'peer-status',
-              label: 'Peer status',
+              label: this.$t('appNavigation.peerStatus'),
               route: '/gluster/peer-status'
             },
             {
               id: 'bricks-status',
-              label: 'Bricks status',
+              label: this.$t('appNavigation.bricksStatus'),
               route: '/gluster/bricks-status'
             },
             {
               id: 'volumes',
-              label: 'Volumes',
+              label: this.$t('appNavigation.volumes'),
               route: '/gluster/volumes'
             }
           ]
         },
         {
           id: 'openflow',
-          label: 'OVS / openflow',
+          label: this.$t('appNavigation.ovsOpenFlow'),
           icon: 'IconOpenflow',
           children: [
             {
               id: 'switches',
-              label: 'Switches',
+              label: this.$t('appNavigation.switches'),
               route: '/openflow/switches'
             },
             {
               id: 'networks',
-              label: 'Networks',
+              label: this.$t('appNavigation.networks'),
               route: '/openflow/networks'
             }
           ]

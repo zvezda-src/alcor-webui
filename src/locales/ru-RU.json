@@ -1,1 +1,40 @@
-{}
+{
+  "pageLogin": {
+    "language": "Язык",
+    "logIn": "Войти",
+    "password": "Пароль",
+    "username": "Имя пользователя"
+  },
+  "appNavigation": {
+    "dashboard": "@:appPageTitle.dashboard",
+    "ganeti": "@:appPageTitle.ganeti",
+    "cluster": "@:appPageTitle.cluster",
+    "groups": "@:appPageTitle.groups",
+    "nodes": "@:appPageTitle.nodes",
+    "instances": "@:appPageTitle.instances",
+    "jobs": "@:appPageTitle.jobs",
+    "gluster": "@:appPageTitle.gluster",
+    "peerStatus": "@:appPageTitle.peerStatus",
+    "bricksStatus": "@:appPageTitle.bricksStatus",
+    "volumes": "@:appPageTitle.volumes",
+    "ovsOpenFlow": "@:appPageTitle.ovsOpenFlow",
+    "switches": "@:appPageTitle.switches",
+    "networks": "@:appPageTitle.networks"
+  },
+  "appPageTitle": {
+    "dashboard": "",
+    "ganeti": "",
+    "cluster": "",
+    "groups": "",
+    "nodes": "",
+    "instances": "",
+    "jobs": "",
+    "gluster": "",
+    "peerStatus": "",
+    "bricksStatus": "",
+    "volumes": "",
+    "ovsOpenFlow": "",
+    "switches": "",
+    "networks": ""
+ }
+}

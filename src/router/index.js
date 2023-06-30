@@ -14,6 +14,7 @@ import BricksStatus from '@/views/Gluster/BricksStatus/BricksStatus.vue';
 import Volumes from '@/views/Gluster/Volumes/VolumesApp.vue';
 import Switches from '@/views/Openflow/Switches/SwitchesApp.vue';
 import Networks from '@/views/Openflow/Networks/NetworksApp.vue';
+import i18n from '@/i18n';
 
 Vue.use(VueRouter);
 
@@ -37,7 +38,7 @@ const routes = [
         path: '/main',
         name: 'dashboard',
         meta: {
-          title: 'Dashboard'
+          title: i18n.t('appPageTitle.dashboard')
         },
         component: Dashboard
       },
@@ -45,7 +46,7 @@ const routes = [
         path: '/ganeti/cluster',
         name: 'cluster',
         meta: {
-          title: 'Cluster'
+          title: i18n.t('appPageTitle.cluster')
         },
         component: Cluster
       },
@@ -53,7 +54,7 @@ const routes = [
         path: '/ganeti/groups',
         name: 'groups',
         meta: {
-          title: 'Groups'
+          title: i18n.t('appPageTitle.groups')
         },
         component: Groups
       },
@@ -61,7 +62,7 @@ const routes = [
         path: '/ganeti/nodes',
         name: 'nodes',
         meta: {
-          title: 'Nodes'
+          title: i18n.t('appPageTitle.nodes')
         },
         component: Nodes
       },
@@ -69,7 +70,7 @@ const routes = [
         path: '/ganeti/instances',
         name: 'instances',
         meta: {
-          title: 'Instances'
+          title: i18n.t('appPageTitle.instances')
         },
         component: Instances
       },
@@ -77,7 +78,7 @@ const routes = [
         path: '/ganeti/jobs',
         name: 'jobs',
         meta: {
-          title: 'Jobs'
+          title: i18n.t('appPageTitle.jobs')
         },
         component: Jobs
       },
@@ -85,7 +86,7 @@ const routes = [
         path: '/gluster/peer-status',
         name: 'peer-status',
         meta: {
-          title: 'Peer status'
+          title: i18n.t('appPageTitle.peerStatus')
         },
         component: PeerStatus
       },
@@ -93,7 +94,7 @@ const routes = [
         path: '/gluster/bricks-status',
         name: 'bricks-status',
         meta: {
-          title: 'Bricks status'
+          title: i18n.t('appPageTitle.bricksStatus')
         },
         component: BricksStatus
       },
@@ -101,7 +102,7 @@ const routes = [
         path: '/gluster/volumes',
         name: 'volumes',
         meta: {
-          title: 'Volumes'
+          title: i18n.t('appPageTitle.volumes')
         },
         component: Volumes
       },
@@ -109,7 +110,7 @@ const routes = [
         path: '/openflow/switches',
         name: 'switches',
         meta: {
-          title: 'Switches'
+          title: i18n.t('appPageTitle.switches')
         },
         component: Switches
       },
@@ -117,7 +118,7 @@ const routes = [
         path: '/openflow/networks',
         name: 'networks',
         meta: {
-          title: 'Networks'
+          title: i18n.t('appPageTitle.networks')
         },
         component: Networks
       }

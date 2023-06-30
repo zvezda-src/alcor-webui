@@ -278,19 +278,6 @@
         <b-form-group
           label-cols="4"
           label-cols-lg="2"
-          label="spice use tls:"
-          label-for="input-spiceusetls"
-          label-class="font-weight-bold"
-        >
-          <b-form-input
-            v-model="clusterHypervisor.spice_use_tls"
-            type="text"
-            id="input-spiceusetls"
-          />
-        </b-form-group>
-        <b-form-group
-          label-cols="4"
-          label-cols-lg="2"
           label="spice use vdagent:"
           label-for="input-spiceusevdagent"
           label-class="font-weight-bold"

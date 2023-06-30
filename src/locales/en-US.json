@@ -1,1 +1,41 @@
-{}
+{
+  "pageLogin": {
+    "language": "Language",
+    "logIn": "Log in",
+    "password": "Password",
+    "username": "Username"
+  },
+  "appNavigation": {
+    "dashboard": "@:appPageTitle.dashboard",
+    "ganeti": "@:appPageTitle.ganeti",
+    "cluster": "@:appPageTitle.cluster",
+    "groups": "@:appPageTitle.groups",
+    "nodes": "@:appPageTitle.nodes",
+    "instances": "@:appPageTitle.instances",
+    "jobs": "@:appPageTitle.jobs",
+    "gluster": "@:appPageTitle.gluster",
+    "peerStatus": "@:appPageTitle.peerStatus",
+    "bricksStatus": "@:appPageTitle.bricksStatus",
+    "volumes": "@:appPageTitle.volumes",
+    "ovsOpenFlow": "@:appPageTitle.ovsOpenFlow",
+    "switches": "@:appPageTitle.switches",
+    "networks": "@:appPageTitle.networks"
+  },
+  "appPageTitle": {
+    "dashboard": "Dashboard",
+    "ganeti": "Ganeti",
+    "cluster": "Cluster",
+    "groups": "Groups",
+    "nodes": "Nodes",
+    "instances": "instances",
+    "jobs": "Jobs",
+    "gluster": "Gluster",
+    "peerStatus": "Peer status",
+    "bricksStatus": "Bricks status",
+    "volumes": "Volumes",
+    "ovsOpenFlow": "OVS / openflow",
+    "switches": "Switches",
+    "networks": "Networks"
+
+  }
+}

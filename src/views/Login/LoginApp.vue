@@ -1,22 +1,22 @@
 <template>
   <b-form
-    @submit.prevent="onSubmit"
+    @submit.prevent="login"
     class="login-form"
   >
     <b-form-group
       label-for="language"
-      label="Language"
+      :label="$t('pageLogin.language')"
     >
       <b-form-select
         id="language"
-        v-model="selected"
+        v-model="$i18n.locale"
         :options="languages"
         data-test-id="login-select-language"
       />
     </b-form-group>
     <b-form-group
       label-for="username"
-      label="Urername"
+      :label="$t('pageLogin.username')"
     >
       <b-form-input
         id="username"
@@ -27,7 +27,7 @@
     <div class="login-form__section mb-3">
       <b-form-group
         label-for="password"
-        label="Password"
+        :label="$t('pageLogin.password')"
       >
         <b-form-input
           id="password"
@@ -43,7 +43,7 @@
       data-id="login-button-submit"
       :disabled="isSubmitting"
     >
-      Log in
+      {{ $t('pageLogin.logIn') }}
     </b-button>
   </b-form>
 </template>
@@ -58,7 +58,6 @@ export default {
     return {
       username: 'user',
       password: 'xxxyz',
-      selected: 'en-US',
       languages: [
         {
           value: 'en-US',
@@ -78,7 +77,7 @@ export default {
     })
   },
   methods: {
-    onSubmit() {
+    login() {
       // eslint-disable-next-line no-console
       console.log('submitted form');
       this.$store
