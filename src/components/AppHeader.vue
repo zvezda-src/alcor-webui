@@ -78,6 +78,7 @@
               </b-dropdown-item>
               <b-dropdown-item
                 data-test-id="appHeader-link-logout"
+                @click="logout"
               >
                 Выход
               </b-dropdown-item>
@@ -106,6 +107,11 @@ export default {
       isNavigationOpen: false,
       userName: 'user'
     };
+  },
+  methods: {
+    logout() {
+      this.$router.push({ name: 'login' });
+    }
   }
 };
 </script>
