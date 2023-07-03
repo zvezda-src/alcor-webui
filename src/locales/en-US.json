@@ -37,5 +37,19 @@
     "switches": "Switches",
     "networks": "Networks"
 
+  },
+  "pageDashboard": {
+    "cardGroups": "groups",
+    "cardNodes": "nodes",
+    "cardInstances": "instances",
+    "cardGlusterVolumes": "gluster volumes",
+    "cardJobs": "jobs",
+    "cardNetworks": "networks",
+    "cardCpu": "CPU",
+    "cardMemory": "Memory",
+    "cardStorage": "Storage",
+    "cardName": "name",
+    "cardStatus": "status",
+    "cardId": "id"
   }
 }

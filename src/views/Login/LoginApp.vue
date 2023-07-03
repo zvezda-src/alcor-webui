@@ -51,6 +51,7 @@
 <script>
 import { mapState } from 'vuex';
 import { actionTypes } from '@/store/modules/auth';
+import i18n from '@/i18n';
 
 export default {
   name: 'LoginApp',
@@ -89,6 +90,8 @@ export default {
           // this.$router.push({ name: 'dashboard' });
         });
       this.$router.push({ name: 'dashboard' });
+      localStorage.setItem('storedLanguage', i18n.locale);
+      this.$store.commit('setLanguagePreference', i18n.locale);
     }
   }
 };

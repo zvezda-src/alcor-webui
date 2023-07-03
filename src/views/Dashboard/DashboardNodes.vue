@@ -1,5 +1,5 @@
 <template>
-  <dashboard-card title="Nodes">
+  <dashboard-card :title="$t('pageDashboard.cardNodes')">
     <api-loading v-if="isLoading" />
     <error-message v-if="error" />
     <div
@@ -10,7 +10,7 @@
       >
         <b-col sm="6">
           <dl>
-            <dt>name</dt>
+            <dt>{{ $t('pageDashboard.cardName') }}</dt>
             <dd
               v-for="node in nodes"
               :key="node.index"

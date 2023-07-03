@@ -16,10 +16,10 @@ export default {
       default: ''
     }
   },
-  data() {
-    return {
-      title: this.$route.meta.title
-    };
+  computed: {
+    title() {
+      return this.$route.meta.title;
+    }
   }
 };
 </script>

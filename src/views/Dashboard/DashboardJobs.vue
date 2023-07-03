@@ -1,12 +1,12 @@
 <template>
-  <dashboard-card title="Jobs">
+  <dashboard-card :title="$t('pageDashboard.cardJobs')">
     <api-loading v-if="isLoading" />
     <error-message v-if="error" />
     <div v-if="jobs">
       <b-row class="mt-3">
         <b-col sm="6">
           <dl>
-            <dt>id</dt>
+            <dt>{{ $t('pageDashboard.cardId') }}</dt>
             <dd
               v-for="jobId in jobs"
               :key="jobId.index"
@@ -17,7 +17,7 @@
         </b-col>
         <b-col sm="6">
           <dl>
-            <dt>status</dt>
+            <dt>{{ $t('pageDashboard.cardStatus') }}</dt>
             <dd
               v-for="jobStatus in jobs"
               :key="jobStatus.index"

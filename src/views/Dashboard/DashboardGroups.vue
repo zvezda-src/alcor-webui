@@ -1,5 +1,5 @@
 <template>
-  <dashboard-card title="Groups">
+  <dashboard-card :title="$t('pageDashboard.cardGroups')">
     <api-loading v-if="isLoading" />
     <error-message v-if="error" />
     <div v-if="groups">
@@ -8,7 +8,7 @@
       >
         <b-col sm="6">
           <dl>
-            <dt>name</dt>
+            <dt>{{ $t('pageDashboard.cardName') }}</dt>
             <dd
               v-for="group in groups"
               :key="group.index"

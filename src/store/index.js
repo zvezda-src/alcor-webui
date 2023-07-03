@@ -8,6 +8,7 @@ import nodes from '@/store/modules/nodes';
 import groups from '@/store/modules/groups';
 import jobs from '@/store/modules/jobs';
 import cluster from '@/store/modules/cluster';
+import locales from '@/store/modules/locales';
 
 Vue.use(Vuex);
 
@@ -27,6 +28,7 @@ export default new Vuex.Store({
     nodes,
     groups,
     jobs,
-    cluster
+    cluster,
+    locales
   }
 });

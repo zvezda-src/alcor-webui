@@ -36,5 +36,19 @@
     "ovsOpenFlow": "",
     "switches": "",
     "networks": ""
- }
+ },
+ "pageDashboard": {
+	"cardGroups": "",
+	"cardNodes": "",
+	"cardInstances": "",
+	"cardGlusterVolumes": "",
+	"cardJobs": "",
+	"cardNetworks": "",
+	"cardCpu": "",
+	"cardMemory": "",
+	"cardStorage": "",
+	"cardName": "",
+	"cardStatus": "",
+	"cardId": ""
+}
 }

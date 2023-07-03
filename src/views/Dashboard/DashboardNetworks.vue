@@ -1,5 +1,5 @@
 <template>
-  <dashboard-card :title="('Networks')">
+  <dashboard-card :title="$t('pageDashboard.cardNetworks')">
     <b-row class="mt-3">
       <b-col sm="6">
         <dl>

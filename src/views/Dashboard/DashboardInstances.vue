@@ -1,5 +1,5 @@
 <template>
-  <dashboard-card title="Instances">
+  <dashboard-card :title="$t('pageDashboard.cardInstances')">
     <api-loading v-if="isLoading" />
     <error-message v-if="error" />
     <div v-if="instances">
@@ -8,7 +8,7 @@
       >
         <b-col sm="6">
           <dl>
-            <dt>name</dt>
+            <dt>{{ $t('pageDashboard.cardName') }}</dt>
             <dd
               v-for="instanceName in instances"
               :key="instanceName.index"
@@ -19,7 +19,7 @@
         </b-col>
         <b-col sm="6">
           <dl>
-            <dt>status</dt>
+            <dt>{{ $t('pageDashboard.cardStatus') }}</dt>
             <dd
               v-for="instanceStatus in instances"
               :key="instanceStatus.index"

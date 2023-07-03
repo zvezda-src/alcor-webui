@@ -1,5 +1,5 @@
 <template>
-  <dashboard-card :title="('Storage')" />
+  <dashboard-card :title="$t('pageDashboard.cardStorage')" />
 </template>
 
 <script>
