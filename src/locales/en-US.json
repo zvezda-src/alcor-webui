@@ -1,4 +1,23 @@
 {
+  "global": {
+    "action": {
+      "add": "Add",
+      "cancel": "Cancel",
+      "save": "Save",
+      "delete": "Delete",
+      "startUp": "Startup",
+      "modify": "Modify",
+      "rename": "Rename",
+      "grow": "Grow",
+      "shutDown": "Shutdown",
+      "reboot": "Reboot",
+      "migrate": "Migrate",
+      "evacuate": "Evacuate"
+    },
+    "table": {
+      "actions": "Actions"
+    }
+  },
   "pageLogin": {
     "language": "Language",
     "logIn": "Log in",
@@ -27,7 +46,7 @@
     "cluster": "Cluster",
     "groups": "Groups",
     "nodes": "Nodes",
-    "instances": "instances",
+    "instances": "Instances",
     "jobs": "Jobs",
     "gluster": "Gluster",
     "peerStatus": "Peer status",
@@ -36,6 +55,10 @@
     "ovsOpenFlow": "OVS / openflow",
     "switches": "Switches",
     "networks": "Networks"
+  },
+  "appHeader": {
+    "logOut": "Log out",
+    "profileSettings": "Setting"
 
   },
   "pageDashboard": {
@@ -51,5 +74,163 @@
     "cardName": "name",
     "cardStatus": "status",
     "cardId": "id"
+  },
+  "pageCluster": {
+    "cluster": "cluster",
+    "hypervisor": "hypervisor",
+    "backend": "backend",
+    "diskParams": "disk params",
+    "nodeParams": "node params",
+    "formCluster": {
+      "name": "name:",
+      "master": "master:",
+      "clusterVersion": "cluster version:",
+      "protocolVersion": "protocol version:",
+      "configVersion": "config version:",
+      "maxRunningJobs": "max running jobs:",
+      "maxTrackedJobs": "max tracked jobs:",
+      "macPrefix": "mac prefix:",
+      "masterNetmask": "master netmask:"
+    },
+    "formHypervisor": {
+      "acpi": "acpi:",
+      "bootOrder": "boot order:",
+      "cdromImagePath": "cdrom2 image path:",
+      "cpuCores": "cpu cores:",
+      "cpuMask": "cpu mask:",
+      "cpuSockets": "cpu sockets:",
+      "cpuThreads": "cpu threads:",
+      "cpuType": "cpu type:",
+      "diskType": "disk type:",
+      "initrdPath": "initrd path:",
+      "kernelArgs": "kernel args:",
+      "kernelPath": "kernel path:",
+      "kvmExtra": "kvm extra:",
+      "machineVersion": "machine version:",
+      "spiceBind": "spice bind:",
+      "spiceImage": "spice image:",
+      "spiceJpeg": "spice jpeg wan:",
+      "spicePlayback": "spice playback:",
+      "spiceStreaming": "spice streaming:",
+      "spiceTlsSciphers": "spice tls sciphers:",
+      "spiceUseTls": "spice use tls:",
+      "spice use vdagent": "spice use vdagent:",
+      "spiceZlibGlz": "spice zlib glz wan:"
+    },
+    "formBackend": {
+      "minMem": "minmem:",
+      "maxMem": "maxmem:",
+      "vcpus": "vcpus:",
+      "autoBalance": "auto balance:",
+      "alwaysFailover": "always failover:"
+    },
+    "formDiskParams": {
+      "access": "access:",
+      "host": "host:",
+      "port": "port:",
+      "volume": "volume:"
+    },
+    "formNodeParams": {
+      "cpuSpeed": "cpu speed:",
+      "exclusiveStorage": "exclusive storage:",
+      "oobProgram": "oob program:",
+      "ovs": "ovs:",
+      "ovsLink": "ovsLink:",
+      "ovsName": "ovsName:",
+      "spindleCount": "spindle count:",
+      "sshPort": "ssh port:"
+    }
+  },
+  "pageGroups": {
+    "modal": {
+      "name": "name:",
+      "addTitle": "Add new group"
+    },
+    "table": {
+      "name": "Name",
+      "serialNo": "Serial No",
+      "nodeCnt": "Node cnt",
+      "allocPolicy": "Alloc policy",
+      "cpuSpeed": "Cpu speed",
+      "cTime": "Ctime",
+      "nodeList": "Node List",
+      "ovs": "Ovs",
+      "mTime": "Mtime"
+
+    }
+  },
+  "pageInstances": {
+    "addModal": {
+      "title": "Add new Instances",
+      "name": "Name:",
+      "placeholderName": "Enter name",
+      "node": "Node:",
+      "placeholderNodes": "Select one",
+      "diskSize": "Disk size:",
+      "placeholderDiskSize": "Enter disk size",
+      "maxMem": "Maxmem:",
+      "placeholderMaxMem": "Enter maxmem",
+      "minMem": "Minmem:",
+      "placeholderMinMem": "Enter minmem",
+      "vcpus": "Vcpus:",
+      "placeholderVcpus": "Enter vcpus",
+      "ignoreIpolicy": "Ignore ipolicy:",
+      "bootOrder": "Boot order:",
+      "placeholderBootOrder": "Enter boot order",
+      "cdromImagePath": "Cdrom image path:",
+      "placeholderCdromImagePath": "Enter cdrom image path",
+      "cdromDiskType": "Cdrom disk type:",
+      "placeholderCdromDiskType": "Enter cdrom disk type",
+      "vncBindAddress": "Vnc bind address:",
+      "placeholderVncBindAddress": "Enter vnc bind address",
+      "ipCheck": "Ip check:",
+      "nameCheck": "Name check:",
+      "noInstall": "No install:"
+    },
+    "table": {
+      "name": "Name",
+      "adminState": "Admin state",
+      "status": "Status",
+      "os": "OS",
+      "pNode": "Pnode",
+      "diskTemplate": "Disk template",
+      "vcpus": "Vcpus",
+      "alwaysFailover": "Always failover",
+      "nicMacs": "Nic.macs",
+      "cTime": "Ctime",
+      "diskUsages": "Disk usages",
+      "maxMem": "Maxmem",
+      "minMem": "Minmem",
+      "diskType": "Disk type",
+      "nicType": "Nic type",
+      "mTime": "Mtime"
+    }
+  },
+  "pageJobs": {
+    "table": {
+      "id": "Id",
+      "status": "Status",
+      "methods": "Methods"
+    }
+  },
+  "pageNodes": {
+    "addModal": {
+      "title": "Add node"
+    },
+    "table": {
+      "name": "Name",
+      "offline": "Offline",
+      "masterCandidate": "Master candidate",
+      "mFree": "Mfree",
+      "mNode": "Mnode",
+      "cNodes": "Cnodes",
+      "cNos": "Cnos",
+      "cTotal": "Ctotal",
+      "masterCapable": "Master capable",
+      "vmCapable": "Vm capable",
+      "mTime": "Mtime",
+      "mTotal": "Mtotal",
+      "cpuSpeed": "Cpu speed"
+    }
   }
 }

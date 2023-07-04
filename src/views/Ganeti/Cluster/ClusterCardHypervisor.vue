@@ -5,7 +5,7 @@
         <b-form-group
           label-cols="4"
           label-cols-lg="2"
-          label="acpi:"
+          :label="$t('pageCluster.formHypervisor.acpi')"
           label-for="input-acpi"
           label-class="font-weight-bold"
         >
@@ -18,7 +18,7 @@
         <b-form-group
           label-cols="4"
           label-cols-lg="2"
-          label="boot order:"
+          :label="$t('pageCluster.formHypervisor.bootOrder')"
           label-for="input-bootorder"
           label-class="font-weight-bold"
         >
@@ -31,7 +31,7 @@
         <b-form-group
           label-cols="4"
           label-cols-lg="2"
-          label="cdrom2 image path:"
+          :label="$t('pageCluster.formHypervisor.cdromImagePath')"
           label-for="input-cdrom2imagepath"
           label-class="font-weight-bold"
         >
@@ -44,7 +44,7 @@
         <b-form-group
           label-cols="4"
           label-cols-lg="2"
-          label="cpu cores:"
+          :label="$t('pageCluster.formHypervisor.cpuCores')"
           label-for="input-cpucores"
           label-class="font-weight-bold"
         >
@@ -57,7 +57,7 @@
         <b-form-group
           label-cols="4"
           label-cols-lg="2"
-          label="cpu mask:"
+          :label="$t('pageCluster.formHypervisor.cpuMask')"
           label-for="input-cpumask"
           label-class="font-weight-bold"
         >
@@ -70,7 +70,7 @@
         <b-form-group
           label-cols="4"
           label-cols-lg="2"
-          label="cpu sockets:"
+          :label="$t('pageCluster.formHypervisor.cpuSockets')"
           label-for="input-cpusockets"
           label-class="font-weight-bold"
         >
@@ -83,7 +83,7 @@
         <b-form-group
           label-cols="4"
           label-cols-lg="2"
-          label="cpu threads:"
+          :label="$t('pageCluster.formHypervisor.cpuThreads')"
           label-for="input-cputhreads"
           label-class="font-weight-bold"
         >
@@ -96,7 +96,7 @@
         <b-form-group
           label-cols="4"
           label-cols-lg="2"
-          label="cpu type:"
+          :label="$t('pageCluster.formHypervisor.cpuType')"
           label-for="input-cputype"
           label-class="font-weight-bold"
         >
@@ -109,7 +109,7 @@
         <b-form-group
           label-cols="4"
           label-cols-lg="2"
-          label="disk type:"
+          :label="$t('pageCluster.formHypervisor.diskType')"
           label-for="input-disktype"
           label-class="font-weight-bold"
         >
@@ -122,7 +122,7 @@
         <b-form-group
           label-cols="4"
           label-cols-lg="2"
-          label="initrd path:"
+          :label="$t('pageCluster.formHypervisor.initrdPath')"
           label-for="input-initrdpath"
           label-class="font-weight-bold"
         >
@@ -135,7 +135,7 @@
         <b-form-group
           label-cols="4"
           label-cols-lg="2"
-          label="kernel args:"
+          :label="$t('pageCluster.formHypervisor.kernelArgs')"
           label-for="input-kernelargs"
           label-class="font-weight-bold"
         >
@@ -148,7 +148,7 @@
         <b-form-group
           label-cols="4"
           label-cols-lg="2"
-          label="kernel path:"
+          :label="$t('pageCluster.formHypervisor.kernelPath')"
           label-for="input-kernelpath"
           label-class="font-weight-bold"
         >
@@ -161,7 +161,7 @@
         <b-form-group
           label-cols="4"
           label-cols-lg="2"
-          label="kvm extra:"
+          :label="$t('pageCluster.formHypervisor.kvmExtra')"
           label-for="input-kvmextra"
           label-class="font-weight-bold"
         >
@@ -174,7 +174,7 @@
         <b-form-group
           label-cols="4"
           label-cols-lg="2"
-          label="machine version:"
+          :label="$t('pageCluster.formHypervisor.machineVersion')"
           label-for="input-machineversion"
           label-class="font-weight-bold"
         >
@@ -187,7 +187,7 @@
         <b-form-group
           label-cols="4"
           label-cols-lg="2"
-          label="spice bind:"
+          :label="$t('pageCluster.formHypervisor.spiceBind')"
           label-for="input-spicebind"
           label-class="font-weight-bold"
         >
@@ -200,59 +200,59 @@
         <b-form-group
           label-cols="4"
           label-cols-lg="2"
-          label="spice image:"
-          label-for="input-spiceimagecompression"
+          :label="$t('pageCluster.formHypervisor.spiceImage')"
+          label-for="input-spiceimage"
           label-class="font-weight-bold"
         >
           <b-form-input
             v-model="clusterHypervisor.spice_image_compression"
             type="text"
-            id="input-spiceimagecompression"
+            id="input-spiceimage"
           />
         </b-form-group>
         <b-form-group
           label-cols="4"
           label-cols-lg="2"
-          label="spice jpeg wan:"
-          label-for="input-spicejpegwancompression"
+          :label="$t('pageCluster.formHypervisor.spiceJpeg')"
+          label-for="input-spicejpegwan"
           label-class="font-weight-bold"
         >
           <b-form-input
             v-model="clusterHypervisor.spice_jpeg_wan_compression"
             type="text"
-            id="input-spicejpegwancompression"
+            id="input-spicejpegwan"
           />
         </b-form-group>
         <b-form-group
           label-cols="4"
           label-cols-lg="2"
-          label="spice playback:"
-          label-for="input-spiceplaybackcompression"
+          :label="$t('pageCluster.formHypervisor.spicePlayback')"
+          label-for="input-spiceplayback"
           label-class="font-weight-bold"
         >
           <b-form-input
             v-model="clusterHypervisor.spice_playback_compression"
             type="text"
-            id="input-spiceplaybackcompression"
+            id="input-spiceplayback"
           />
         </b-form-group>
         <b-form-group
           label-cols="4"
           label-cols-lg="2"
-          label="spice streaming:"
-          label-for="input-spicestreamingvideo"
+          :label="$t('pageCluster.formHypervisor.spiceStreaming')"
+          label-for="input-spicestreaming"
           label-class="font-weight-bold"
         >
           <b-form-input
             v-model="clusterHypervisor.spice_streaming_video"
             type="text"
-            id="input-spicestreamingvideo"
+            id="input-spicestreaming"
           />
         </b-form-group>
         <b-form-group
           label-cols="4"
           label-cols-lg="2"
-          label="spice tls ciphers:"
+          :label="$t('pageCluster.formHypervisor.spiceTlsSciphers')"
           label-for="input-spicetlsciphers"
           label-class="font-weight-bold"
         >
@@ -265,7 +265,7 @@
         <b-form-group
           label-cols="4"
           label-cols-lg="2"
-          label="spice use tls:"
+          :label="$t('pageCluster.formHypervisor.spiceUseTls')"
           label-for="input-spiceusetls"
           label-class="font-weight-bold"
         >
@@ -278,7 +278,7 @@
         <b-form-group
           label-cols="4"
           label-cols-lg="2"
-          label="spice use vdagent:"
+          :label="$t('pageCluster.formHypervisor.spiceUseVdagent')"
           label-for="input-spiceusevdagent"
           label-class="font-weight-bold"
         >
@@ -291,14 +291,14 @@
         <b-form-group
           label-cols="4"
           label-cols-lg="2"
-          label="spice zlib glz wan:"
-          label-for="input-spicezlibglzwancompression"
+          :label="$t('pageCluster.formHypervisor.spiceZlibGlz')"
+          label-for="input-spicezlibglzwan"
           label-class="font-weight-bold"
         >
           <b-form-input
             v-model="clusterHypervisor.spice_zlib_glz_wan_compression"
             type="text"
-            id="input-spicezlibglzwancompression"
+            id="input-spicezlibglzwan"
           />
         </b-form-group>
       </b-form>

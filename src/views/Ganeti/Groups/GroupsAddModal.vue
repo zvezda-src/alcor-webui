@@ -4,9 +4,9 @@
       id="modal-add-groups"
       ref="modal"
       size="lg"
-      title="Add new groups"
-      ok-title="Save"
-      cancel-title="Cancel"
+      :title="$t('pageGroups.modal.addTitle')"
+      :ok-title="$t('global.action.save')"
+      :cancel-title="$t('global.action.cancel')"
       button-size="sm"
       @show="resetModal"
       @hidden="resetModal"
@@ -19,7 +19,7 @@
         <b-row>
           <b-col sm="6">
             <b-form-group
-              label="name:"
+              :label="$t('pageGroups.modal.name')"
               label-for="name-input"
               invalid-feedback="Name is required"
             >

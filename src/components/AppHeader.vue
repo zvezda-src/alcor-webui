@@ -74,13 +74,13 @@
                 to=""
                 data-test-id="appHeader-link-profile"
               >
-                Настройки
+                {{ $t('appHeader.profileSettings') }}
               </b-dropdown-item>
               <b-dropdown-item
                 data-test-id="appHeader-link-logout"
                 @click="logout"
               >
-                Выход
+                {{ $t('appHeader.logOut') }}
               </b-dropdown-item>
             </b-dropdown>
           </li>

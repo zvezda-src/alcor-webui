@@ -1,7 +1,26 @@
 {
+  "global": {
+    "action": {
+      "add": "Добавить",
+      "cancel": "Отмена",
+      "save": "Сохранить",
+      "delete": "Удалить",
+      "startUp": "",
+      "modify": "",
+      "rename": "",
+      "grow": "",
+      "shutDown": "",
+      "reboot": "",
+      "migrate": "",
+      "evacuate": ""
+    },
+    "table": {
+      "actions": "Действия"
+    }
+  },
   "pageLogin": {
     "language": "Язык",
-    "logIn": "Войти",
+    "logIn": "Вход",
     "password": "Пароль",
     "username": "Имя пользователя"
   },
@@ -36,19 +55,182 @@
     "ovsOpenFlow": "",
     "switches": "",
     "networks": ""
- },
- "pageDashboard": {
-	"cardGroups": "",
-	"cardNodes": "",
-	"cardInstances": "",
-	"cardGlusterVolumes": "",
-	"cardJobs": "",
-	"cardNetworks": "",
-	"cardCpu": "",
-	"cardMemory": "",
-	"cardStorage": "",
-	"cardName": "",
-	"cardStatus": "",
-	"cardId": ""
-}
+  },
+  "appHeader": {
+    "logOut": "Выход",
+    "profileSettings": "Настройки"
+
+  },
+  "pageDashboard": {
+    "cardGroups": "",
+    "cardNodes": "",
+    "cardInstances": "",
+    "cardGlusterVolumes": "",
+    "cardJobs": "",
+    "cardNetworks": "",
+    "cardCpu": "",
+    "cardMemory": "",
+    "cardStorage": "",
+    "cardName": "",
+    "cardStatus": "",
+    "cardId": ""
+  },
+  "pageCluster": {
+    "cluster": "",
+    "hypervisor": "",
+    "backend": "",
+    "diskParams": "",
+    "nodeParams": "",
+    "formCluster": {
+      "name": "",
+      "master": "",
+      "clusterVersion": "",
+      "protocolVersion": "",
+      "configVersion": "",
+      "maxRunningJobs": "",
+      "maxTrackedJobs": "",
+      "macPrefix": "",
+      "masterNetmask": ""
+    },
+    "formHypervisor": {
+      "acpi": "",
+      "bootOrder": "",
+      "cdromImagePath": "",
+      "cpuCores": "",
+      "cpuMask": "",
+      "cpuSockets": "",
+      "cpuThreads": "",
+      "cpuType": "",
+      "diskType": "",
+      "initrdPath": "",
+      "kernelArgs": "",
+      "kernelPath": "",
+      "kvmExtra": "",
+      "machineVersion": "",
+      "spiceBind": "",
+      "spiceImage": "",
+      "spiceJpeg": "",
+      "spicePlayback": "",
+      "spiceStreaming": "",
+      "spiceTlsSciphers": "",
+      "spiceUseTls": "",
+      "spice use vdagent": "",
+      "spiceZlibGlz": ""
+    },
+    "formBackend": {
+      "minMem": "",
+      "maxMem": "",
+      "vcpus": "",
+      "autoBalance": "",
+      "alwaysFailover": ""
+    },
+    "formDiskParams": {
+      "access": "",
+      "host": "",
+      "port": "",
+      "volume": ""
+    },
+    "formNodeParams": {
+      "cpuSpeed": "",
+      "exclusiveStorage": "",
+      "oobProgram": "",
+      "ovs": "",
+      "ovsLink": "",
+      "ovsName": "",
+      "spindleCount": "",
+      "sshPort": ""
+    }
+  },
+  "pageGroups": {
+    "modal": {
+      "name": "",
+      "addTitle": ""
+    },
+    "table": {
+      "name": "",
+      "serialNo": "",
+      "nodeCnt": "",
+      "allocPolicy": "",
+      "cpuSpeed": "",
+      "cTime": "",
+      "nodeList": "",
+      "ovs": "",
+      "mTime": ""
+
+    }
+  },
+  "pageInstances": {
+    "addModal": {
+      "title": "",
+      "name": "",
+      "placeholderName": "",
+      "node": "",
+      "placeholderNodes": "",
+      "diskSize": "",
+      "placeholderDiskSize": "",
+      "maxMem": "",
+      "placeholderMaxMem": "",
+      "minMem": "",
+      "placeholderMinMem": "",
+      "vcpus": "",
+      "placeholderVcpus": "",
+      "ignoreIpolicy": "",
+      "bootOrder": "",
+      "placeholderBootOrder": "",
+      "cdromImagePath": "",
+      "placeholderCdromImagePath": "",
+      "cdromDiskType": "",
+      "placeholderCdromDiskType": "",
+      "vncBindAddress": "",
+      "placeholderVncBindAddress": "",
+      "ipCheck": "",
+      "nameCheck": "",
+      "noInstall": ""
+    },
+    "table": {
+      "name": "",
+      "adminState": "",
+      "status": "",
+      "os": "",
+      "pNode": "",
+      "diskTemplate": "",
+      "vcpus": "",
+      "alwaysFailover": "",
+      "nicMacs": "",
+      "cTime": "",
+      "diskUsages": "",
+      "maxMem": "",
+      "minMem": "",
+      "diskType": "",
+      "nicType": "",
+      "mTime": ""
+    }
+  },
+  "pageJobs": {
+    "table": {
+      "id": "",
+      "status": "",
+      "methods": ""
+    }
+  },
+  "pageNodes": {
+    "addModal": {
+      "title": ""
+    },
+    "table": {
+      "name": "",
+      "offline": "",
+      "masterCandidate": "",
+      "mFree": "",
+      "mNode": "",
+      "cNodes": "",
+      "cNos": "",
+      "cTotal": "",
+      "masterCapable": "",
+      "vmCapable": "",
+      "mTime": "",
+      "mTotal": "",
+      "cpuSpeed": ""
+    }
+  }
 }

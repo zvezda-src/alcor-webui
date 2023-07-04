@@ -27,7 +27,7 @@
           size="sm"
           class="mr-2 mt-2"
         >
-          migrate
+          {{ $t('global.action.migrate') }}
         </b-button>
         <b-button
           v-b-modal.modal-modify-nodes
@@ -35,7 +35,7 @@
           size="sm"
           class="mr-2 mt-2"
         >
-          modify
+          {{ $t('global.action.modify') }}
         </b-button>
         <b-button
           v-b-modal.modal-evacuate-nodes
@@ -43,7 +43,7 @@
           size="sm"
           class="mr-2 mt-2"
         >
-          evacuate
+          {{ $t('global.action.evacuate') }}
         </b-button>
       </template>
 
@@ -56,19 +56,19 @@
               xl="6"
             >
               <dl>
-                <dt>Name:</dt>
+                <dt>{{ $t('pageNodes.table.name') }}:</dt>
                 <dd>{{ item.name }}</dd>
-                <dt>Offline:</dt>
+                <dt>{{ $t('pageNodes.table.offline') }}:</dt>
                 <dd>{{ item.offline }}</dd>
-                <dt>Master candidate:</dt>
+                <dt>{{ $t('pageNodes.table.masterCandidate') }}:</dt>
                 <dd>{{ item.master_candidate }}</dd>
-                <dt>Cnodes:</dt>
+                <dt>{{ $t('pageNodes.table.cNodes') }}:</dt>
                 <dd>{{ item.cnodes }}</dd>
-                <dt>Cnos:</dt>
+                <dt>{{ $t('pageNodes.table.cNos') }}:</dt>
                 <dd>{{ item.cnos }}</dd>
-                <dt>Ctotal:</dt>
+                <dt>{{ $t('pageNodes.table.cTotal') }}:</dt>
                 <dd>{{ item.ctotal }}</dd>
-                <dt>Master candidate:</dt>
+                <dt>{{ $t('pageNodes.table.masterCandidate') }}:</dt>
                 <dd>{{ item.master_candidate }}</dd>
               </dl>
             </b-col>
@@ -78,19 +78,19 @@
               xl="6"
             >
               <dl>
-                <dt>Master capable:</dt>
+                <dt>{{ $t('pageNodes.table.masterCapable') }}:</dt>
                 <dd>{{ item.master_capable }}</dd>
-                <dt>Vm capable:</dt>
+                <dt>{{ $t('pageNodes.table.vmCapable') }}:</dt>
                 <dd>{{ item.vm_capable }}</dd>
-                <dt>Mfree:</dt>
+                <dt>{{ $t('pageNodes.table.mFree') }}:</dt>
                 <dd>{{ item.mfree }}</dd>
-                <dt>Mnode:</dt>
+                <dt>{{ $t('pageNodes.table.mNode') }}:</dt>
                 <dd>{{ item.mnode }}</dd>
-                <dt>Mtime:</dt>
+                <dt>{{ $t('pageNodes.table.mTime') }}:</dt>
                 <dd>{{ item.mtime }}</dd>
-                <dt>Mtotal:</dt>
+                <dt>{{ $t('pageNodes.table.mTotal') }}:</dt>
                 <dd>{{ item.mtotal }}</dd>
-                <dt>Cpu speed:</dt>
+                <dt>{{ $t('pageNodes.table.cpuSpeed') }}:</dt>
                 <dd>{{ item.ndparams.cpu_speed }}</dd>
               </dl>
             </b-col>
@@ -129,28 +129,28 @@ export default {
         },
         {
           key: 'name',
-          label: 'Name',
+          label: this.$t('pageNodes.table.name'),
           sortable: true
         },
         {
           key: 'offline',
-          label: 'Offline'
+          label: this.$t('pageNodes.table.offline')
         },
         {
           key: 'master_candidate',
-          label: 'Master candidate'
+          label: this.$t('pageNodes.table.masterCandidate')
         },
         {
           key: 'mfree',
-          label: 'Mfree'
+          label: this.$t('pageNodes.table.mFree')
         },
         {
           key: 'mnode',
-          label: 'Mnode'
+          label: this.$t('pageNodes.table.mNode')
         },
         {
           key: 'actions',
-          label: 'Actions',
+          label: this.$t('global.table.actions'),
           tdClass: 'text-center'
         }
       ],

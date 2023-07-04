@@ -28,7 +28,7 @@
           class="mr-2"
           @click="deleteGroups(row.item.name)"
         >
-          delete
+          {{ $t('global.action.delete') }}
         </b-button>
       </template>
 
@@ -41,13 +41,13 @@
               xl="6"
             >
               <dl>
-                <dt>Name:</dt>
+                <dt>{{ $t('pageGroups.table.name') }}:</dt>
                 <dd>{{ item.name }}</dd>
-                <dt>Alloc policy:</dt>
+                <dt>{{ $t('pageGroups.table.allocPolicy') }}:</dt>
                 <dd>{{ item.alloc_policy }}</dd>
-                <dt>Node cnt:</dt>
+                <dt>{{ $t('pageGroups.table.nodeCnt') }}:</dt>
                 <dd>{{ item.node_cnt }}</dd>
-                <dt>Node list:</dt>
+                <dt>{{ $t('pageGroups.table.nodeList') }}:</dt>
                 <dd>{{ item.node_list }}</dd>
               </dl>
             </b-col>
@@ -57,13 +57,13 @@
               xl="6"
             >
               <dl>
-                <dt>Ovs:</dt>
+                <dt>{{ $t('pageGroups.table.ovs') }}:</dt>
                 <dd>{{ item.ndparams.ovs }}</dd>
-                <dt>Cpu Speed:</dt>
+                <dt>{{ $t('pageGroups.table.cpuSpeed') }}:</dt>
                 <dd>{{ item.ndparams.cpu_speed }}</dd>
-                <dt>Ctime:</dt>
+                <dt>{{ $t('pageGroups.table.cTime') }}:</dt>
                 <dd>{{ item.ctime }}</dd>
-                <dt>Mtime:</dt>
+                <dt>{{ $t('pageGroups.table.mTime') }}:</dt>
                 <dd>{{ item.mtime }}</dd>
               </dl>
             </b-col>
@@ -103,32 +103,32 @@ export default {
         },
         {
           key: 'name',
-          label: 'Name',
+          label: this.$t('pageGroups.table.name'),
           sortable: true
         },
         {
           key: 'serial_no',
-          label: 'Serial no'
+          label: this.$t('pageGroups.table.serialNo')
         },
         {
           key: 'node_cnt',
-          label: 'Node cnt'
+          label: this.$t('pageGroups.table.nodeCnt')
         },
         {
           key: 'alloc_policy',
-          label: 'Alloc policy'
+          label: this.$t('pageGroups.table.allocPolicy')
         },
         {
           key: 'ndparams.cpu_speed',
-          label: 'CPU speed'
+          label: this.$t('pageGroups.table.cpuSpeed')
         },
         {
           key: 'ctime',
-          label: 'Ctime'
+          label: this.$t('pageGroups.table.cTime')
         },
         {
           key: 'actions',
-          label: 'Actions',
+          label: this.$t('global.table.actions'),
           tdClass: 'text-center'
         }
       ],

@@ -36,16 +36,16 @@ export default {
       fields: [
         {
           key: 'id',
-          label: 'Id',
+          label: this.$t('pageJobs.table.id'),
           sortable: true
         },
         {
           key: 'status',
-          label: 'Status'
+          label: this.$t('pageJobs.table.status')
         },
         {
           key: 'summary[0]',
-          label: 'Methods'
+          label: this.$t('pageJobs.table.methods')
         }
       ]
     };

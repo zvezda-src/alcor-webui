@@ -28,7 +28,7 @@
           class="mr-2 mt-2"
           @click="deleteInstances(row.item.name)"
         >
-          delete
+          {{ $t('global.action.delete') }}
         </b-button>
         <b-button
           variant="success"
@@ -36,7 +36,7 @@
           class="mr-2 mt-2"
           @click="startUpInstances(row.item.name)"
         >
-          startup
+          {{ $t('global.action.startUp') }}
         </b-button>
       </template>
 
@@ -51,7 +51,7 @@
                 class="mr-2 mt-2"
                 variant="warning"
               >
-                Modify
+                {{ $t('global.action.modify') }}
               </b-button>
               <b-button
                 v-b-modal.modal-rename-instances
@@ -59,7 +59,7 @@
                 size="sm"
                 class="mr-2 mt-2"
               >
-                rename
+                {{ $t('global.action.rename') }}
               </b-button>
               <b-button
                 v-b-modal.modal-grow-instances
@@ -67,7 +67,7 @@
                 size="sm"
                 class="mr-2 mt-2"
               >
-                grow
+                {{ $t('global.action.grow') }}
               </b-button>
               <b-button
                 v-b-modal.modal-shutdown-instances
@@ -75,7 +75,7 @@
                 size="sm"
                 class="mr-2 mt-2"
               >
-                shutdown
+                {{ $t('global.action.shutDown') }}
               </b-button>
               <b-button
                 v-b-modal.modal-reboot-instances
@@ -83,7 +83,7 @@
                 size="sm"
                 class="mr-2 mt-2"
               >
-                reboot
+                {{ $t('global.action.reboot') }}
               </b-button>
               <b-button
                 v-b-modal.modal-migrate-instances
@@ -91,7 +91,7 @@
                 size="sm"
                 class="mr-2 mt-2"
               >
-                migrate
+                {{ $t('global.action.migrate') }}
               </b-button>
             </b-button-group>
           </div>
@@ -102,21 +102,21 @@
               xl="6"
             >
               <dl>
-                <dt>Name:</dt>
+                <dt>{{ $t('pageInstances.table.name') }}:</dt>
                 <dd>{{ item.name }}</dd>
-                <dt>Admin state:</dt>
+                <dt>{{ $t('pageInstances.table.adminState') }}:</dt>
                 <dd>{{ item.admin_state }}</dd>
-                <dt>OS:</dt>
+                <dt>{{ $t('pageInstances.table.os') }}:</dt>
                 <dd>{{ item.os }}</dd>
-                <dt>Pnode:</dt>
+                <dt>{{ $t('pageInstances.table.pNode') }}:</dt>
                 <dd>{{ item.pnode }}</dd>
-                <dt>Disk template:</dt>
+                <dt>{{ $t('pageInstances.table.diskTemplate') }}:</dt>
                 <dd>{{ item.disk_template }}</dd>
-                <dt>Vcpus:</dt>
+                <dt>{{ $t('pageInstances.table.vcpus') }}:</dt>
                 <dd>{{ item.beparams.vcpus }}</dd>
-                <dt>Always failover:</dt>
+                <dt>{{ $t('pageInstances.table.alwaysFailover') }}:</dt>
                 <dd>{{ item.beparams.always_failover }}</dd>
-                <dt>Nic.macs:</dt>
+                <dt>{{ $t('pageInstances.table.nicMacs') }}:</dt>
                 <dd>{{ item.beparams.auto_balance }}</dd>
               </dl>
             </b-col>
@@ -126,21 +126,21 @@
               xl="6"
             >
               <dl>
-                <dt>Ctime:</dt>
+                <dt>{{ $t('pageInstances.table.cTime') }}:</dt>
                 <dd>{{ item.ctime }}</dd>
-                <dt>Disk usages:</dt>
+                <dt>{{ $t('pageInstances.table.diskUsages') }}:</dt>
                 <dd>{{ item.disk_usage }}</dd>
-                <dt>Maxmem:</dt>
+                <dt>{{ $t('pageInstances.table.maxMem') }}:</dt>
                 <dd>{{ item.beparams.maxmem }}</dd>
-                <dt>Maxmem:</dt>
-                <dd>{{ item.beparams.maxmem }}</dd>
-                <dt>Disk type:</dt>
+                <dt>{{ $t('pageInstances.table.minMem') }}:</dt>
+                <dd>{{ item.beparams.minmem }}</dd>
+                <dt>{{ $t('pageInstances.table.diskType') }}:</dt>
                 <dd>{{ item.hvparams.disk_type }}</dd>
-                <dt>Status:</dt>
+                <dt>{{ $t('pageInstances.table.status') }}:</dt>
                 <dd>{{ item.status }}</dd>
-                <dt>Nic type:</dt>
+                <dt>{{ $t('pageInstances.table.nicType') }}:</dt>
                 <dd>{{ item.hvparams.nic_type }}</dd>
-                <dt>Mtime:</dt>
+                <dt>{{ $t('pageInstances.table.mTime') }}:</dt>
                 <dd>{{ item.mtime }}</dd>
               </dl>
             </b-col>
@@ -180,32 +180,32 @@ export default {
         },
         {
           key: 'name',
-          label: 'Name',
+          label: this.$t('pageInstances.table.name'),
           sortable: true
         },
         {
           key: 'admin_state',
-          label: 'Admin state'
+          label: this.$t('pageInstances.table.adminState')
         },
         {
           key: 'status',
-          label: 'Status'
+          label: this.$t('pageInstances.table.status')
         },
         {
           key: 'os',
-          label: 'OS'
+          label: this.$t('pageInstances.table.os')
         },
         {
           key: 'pnode',
-          label: 'Pnode'
+          label: this.$t('pageInstances.table.pNode')
         },
         {
           key: 'disk_template',
-          label: 'Disk template'
+          label: this.$t('pageInstances.table.diskTemplate')
         },
         {
           key: 'actions',
-          label: 'Actions',
+          label: this.$t('global.table.actions'),
           tdClass: 'text-center'
         }
       ],

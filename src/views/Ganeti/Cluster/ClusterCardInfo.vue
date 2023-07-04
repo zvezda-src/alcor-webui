@@ -5,7 +5,7 @@
         <b-form-group
           label-cols="4"
           label-cols-lg="2"
-          label="name:"
+          :label="$t('pageCluster.formCluster.name')"
           label-for="input-name"
           label-class="font-weight-bold"
         >
@@ -18,7 +18,7 @@
         <b-form-group
           label-cols="4"
           label-cols-lg="2"
-          label="master:"
+          :label="$t('pageCluster.formCluster.master')"
           label-for="input-master"
           label-class="font-weight-bold"
         >
@@ -31,7 +31,7 @@
         <b-form-group
           label-cols="4"
           label-cols-lg="2"
-          label="cluster version:"
+          :label="$t('pageCluster.formCluster.clusterVersion')"
           label-for="input-software-version"
           label-class="font-weight-bold"
         >
@@ -44,7 +44,7 @@
         <b-form-group
           label-cols="4"
           label-cols-lg="2"
-          label="protocol version:"
+          :label="$t('pageCluster.formCluster.protocolVersion')"
           label-for="input-protocol-version"
           label-class="font-weight-bold"
         >
@@ -57,7 +57,7 @@
         <b-form-group
           label-cols="4"
           label-cols-lg="2"
-          label="config version:"
+          :label="$t('pageCluster.formCluster.configVersion')"
           label-for="input-config-version"
           label-class="font-weight-bold"
         >
@@ -70,7 +70,7 @@
         <b-form-group
           label-cols="4"
           label-cols-lg="2"
-          label="max running jobs:"
+          :label="$t('pageCluster.formCluster.maxRunningJobs')"
           label-for="input-running-jobs"
           label-class="font-weight-bold"
         >
@@ -84,7 +84,7 @@
         <b-form-group
           label-cols="4"
           label-cols-lg="2"
-          label="max tracked jobs:"
+          :label="$t('pageCluster.formCluster.maxTrackedJobs')"
           label-for="input-tracked-jobs"
           label-class="font-weight-bold"
         >
@@ -98,7 +98,7 @@
         <b-form-group
           label-cols="4"
           label-cols-lg="2"
-          label="mac prefix:"
+          :label="$t('pageCluster.formCluster.macPrefix')"
           label-for="input-mac"
           label-class="font-weight-bold"
         >
@@ -111,7 +111,7 @@
         <b-form-group
           label-cols="4"
           label-cols-lg="2"
-          label="master netmask:"
+          :label="$t('pageCluster.formCluster.masterNetmask')"
           label-for="input-netmask"
           label-class="font-weight-bold"
         >

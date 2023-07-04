@@ -7,7 +7,7 @@
         variant="primary"
       >
         <icon-add />
-        Add
+        {{ $t('global.action.add') }}
       </b-button>
     </b-button-group>
   </div>

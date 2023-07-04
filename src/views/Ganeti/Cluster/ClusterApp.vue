@@ -14,7 +14,7 @@
               variant="primary"
               :disabled="isLoading"
             >
-              Save
+              {{ $t('global.action.save') }}
             </b-button>
           </div>
           <b-card no-body>
@@ -23,26 +23,28 @@
               card
             >
               <b-tab
-                title="Cluster"
+                :title="$t('pageCluster.cluster')"
                 active
               >
                 <card-info :cluster="cluster" />
               </b-tab>
               <b-tab
-                title="Hypervisor"
+                :title="$t('pageCluster.hypervisor')"
               >
                 <card-hypervisor :cluster="cluster" />
               </b-tab>
-              <b-tab title="Backend">
+              <b-tab
+                :title="$t('pageCluster.backend')"
+              >
                 <card-backend :cluster="cluster" />
               </b-tab>
               <b-tab
-                title="Disk params"
+                :title="$t('pageCluster.diskParams')"
               >
                 <card-disk-params :cluster="cluster" />
               </b-tab>
               <b-tab
-                title="Node params"
+                :title="$t('pageCluster.nodeParams')"
               >
                 <card-node-params :cluster="cluster" />
               </b-tab>

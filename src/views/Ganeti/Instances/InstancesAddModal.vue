@@ -4,9 +4,9 @@
       id="modal-add-instances"
       ref="modal"
       size="lg"
-      title="Add new Instances"
-      ok-title="Save"
-      cancel-title="Cancel"
+      :title="$t('pageInstances.addModal.title')"
+      :ok-title="$t('global.action.save')"
+      :cancel-title="$t('global.action.cancel')"
       button-size="sm"
       @show="resetModal"
       @hidden="resetModal"
@@ -19,7 +19,7 @@
         <b-row>
           <b-col sm="6">
             <b-form-group
-              label="Name:"
+              :label="$t('pageInstances.addModal.name')"
               label-for="name-input"
               invalid-feedback="Name is required"
               :state="Namestate"
@@ -27,13 +27,13 @@
               <b-form-input
                 id="name-input"
                 v-model="form.instance_name"
-                placeholder="Enter name"
+                :placeholder="$t('pageInstances.addModal.placeholderName')"
                 :state="Namestate"
                 required
               />
             </b-form-group>
             <b-form-group
-              label="Node:"
+              :label="$t('pageInstances.addModal.node')"
               label-for="node-input"
               invalid-feedback="Node is required"
               :state="Nodestate"
@@ -46,7 +46,7 @@
               />
             </b-form-group>
             <b-form-group
-              label="Disk size:"
+              :label="$t('pageInstances.addModal.diskSize')"
               label-for="disk-input"
               invalid-feedback="Disk is required"
               :state="Diskstate"
@@ -54,13 +54,13 @@
               <b-form-input
                 id="disk-input"
                 v-model="form.disks.size"
-                placeholder="Enter disk size"
+                :placeholder="$t('pageInstances.addModal.placeholderDiskSize')"
                 :state="Diskstate"
                 required
               />
             </b-form-group>
             <b-form-group
-              label="Maxmem:"
+              :label="$t('pageInstances.addModal.maxMem')"
               label-for="maxmem-input"
               invalid-feedback="Maxmem is required"
               :state="Maxstate"
@@ -68,14 +68,14 @@
               <b-form-input
                 id="maxmem-input"
                 v-model="form.maxmem"
-                placeholder="Enter maxmem"
+                :placeholder="$t('pageInstances.addModal.placeholderMaxMem')"
                 type="number"
                 :state="Maxstate"
                 required
               />
             </b-form-group>
             <b-form-group
-              label="Minmem:"
+              :label="$t('pageInstances.addModal.minMem')"
               label-for="minmem-input"
               invalid-feedback="Minmem is required"
               :state="Minstate"
@@ -83,14 +83,14 @@
               <b-form-input
                 id="minmem-input"
                 v-model="form.minmem"
-                placeholder="Enter minmem"
+                :placeholder="$t('pageInstances.addModal.placeholderMinMem')"
                 type="number"
                 :state="Minstate"
                 required
               />
             </b-form-group>
             <b-form-group
-              label="Vcpus:"
+              :label="$t('pageInstances.addModal.vcpus')"
               label-for="vcpus-input"
               invalid-feedback="Vcpus is required"
               :state="Vcpusstate"
@@ -98,14 +98,14 @@
               <b-form-input
                 id="vcpus-input"
                 v-model="form.vcpus"
-                placeholder="Enter vcpus"
+                :placeholder="$t('pageInstances.addModal.placeholderVcpus')"
                 type="number"
                 :state="Vcpusstate"
                 required
               />
             </b-form-group>
             <b-form-group
-              label="Ignore ipolicy:"
+              :label="$t('pageInstances.addModal.ignoreIpolicy')"
               label-for="ignore_ipolicy"
             >
               <b-form-select
@@ -116,51 +116,51 @@
           </b-col>
           <b-col sm="6">
             <b-form-group
-              label="Boot order:"
+              :label="$t('pageInstances.addModal.bootOrder')"
               label-for="bootorder-input"
               invalid-feedback="Boot order is required"
             >
               <b-form-input
                 id="bootorder-input"
                 v-model="form.bootorder"
-                placeholder="Enter bootorder input"
+                :placeholder="$t('pageInstances.addModal.placeholderBootOrder')"
               />
             </b-form-group>
             <b-form-group
-              label="Cdrom image path:"
+              :label="$t('pageInstances.addModal.cdromImagePath')"
               label-for="cdromimagepath-input"
               invalid-feedback="Cdrom image path is required"
             >
               <b-form-input
                 id="cdromimagepath-input"
                 v-model="form.cdromimagepath"
-                placeholder="Enter cdrom image path"
+                :placeholder="$t('pageInstances.addModal.placeholderCdromImagePath')"
               />
             </b-form-group>
             <b-form-group
-              label="Cdrom disk type:"
+              :label="$t('pageInstances.addModal.cdromDiskType')"
               label-for="cdromdisktype-input"
               invalid-feedback="Cdrom disk type is required"
             >
               <b-form-input
                 id="cdromdisktype-input"
                 v-model="form.cdromdisktype"
-                placeholder="Enter cdromdisktype input"
+                :placeholder="$t('pageInstances.addModal.placeholderCdromDiskType')"
               />
             </b-form-group>
             <b-form-group
-              label="Vnc bind address:"
+              :label="$t('pageInstances.addModal.vncBindAddress')"
               label-for="vncbindaddress-input"
               invalid-feedback="Vnc bind address is required"
             >
               <b-form-input
                 id="vncbindaddress-input"
                 v-model="form.vncbindaddress"
-                placeholder="Enter vncbindaddress input"
+                :placeholder="$t('pageInstances.addModal.placeholderVncBindAddress')"
               />
             </b-form-group>
             <b-form-group
-              label="Ip check:"
+              :label="$t('pageInstances.addModal.ipCheck')"
               label-for="ip_check"
             >
               <b-form-select
@@ -169,7 +169,7 @@
               />
             </b-form-group>
             <b-form-group
-              label="Name check"
+              :label="$t('pageInstances.addModal.nameCheck')"
               label-for="name_check"
             >
               <b-form-select
@@ -178,7 +178,7 @@
               />
             </b-form-group>
             <b-form-group
-              label="No install"
+              :label="$t('pageInstances.addModal.noInstall')"
               label-for="no_install"
             >
               <b-form-select
@@ -220,7 +220,7 @@ export default {
         nics: [{ mode: 'bridged', link: 'vmbr0' }]
       },
       nodes: [
-        { text: 'Select One', value: null },
+        { text: this.$t('pageInstances.addModal.placeholderNodes'), value: null },
         'cl43gnt0',
         'cl43gnt1',
         'cl43gnt2',

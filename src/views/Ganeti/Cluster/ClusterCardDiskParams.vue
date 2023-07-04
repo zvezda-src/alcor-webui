@@ -5,7 +5,7 @@
         <b-form-group
           label-cols="4"
           label-cols-lg="2"
-          label="access:"
+          :label="$t('pageCluster.formDiskParams.access')"
           label-for="input-access"
           label-class="font-weight-bold"
         >
@@ -18,7 +18,7 @@
         <b-form-group
           label-cols="4"
           label-cols-lg="2"
-          label="host:"
+          :label="$t('pageCluster.formDiskParams.host')"
           label-for="input-host"
           label-class="font-weight-bold"
         >
@@ -31,7 +31,7 @@
         <b-form-group
           label-cols="4"
           label-cols-lg="2"
-          label="port:"
+          :label="$t('pageCluster.formDiskParams.port')"
           label-for="input-port"
           label-class="font-weight-bold"
         >
@@ -44,7 +44,7 @@
         <b-form-group
           label-cols="4"
           label-cols-lg="2"
-          label="volume:"
+          :label="$t('pageCluster.formDiskParams.volume')"
           label-for="input-volume"
           label-class="font-weight-bold"
         >

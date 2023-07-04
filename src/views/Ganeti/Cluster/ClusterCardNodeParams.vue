@@ -5,7 +5,7 @@
         <b-form-group
           label-cols="4"
           label-cols-lg="2"
-          label="cpu speed:"
+          :label="$t('pageCluster.formNodeParams.cpuSpeed')"
           label-for="input-cpuspeed"
           label-class="font-weight-bold"
         >
@@ -18,7 +18,7 @@
         <b-form-group
           label-cols="4"
           label-cols-lg="2"
-          label="exclusive storage:"
+          :label="$t('pageCluster.formNodeParams.exclusiveStorage')"
           label-for="input-exclusivestorage"
           label-class="font-weight-bold"
         >
@@ -31,7 +31,7 @@
         <b-form-group
           label-cols="4"
           label-cols-lg="2"
-          label="oob program:"
+          :label="$t('pageCluster.formNodeParams.oobProgram')"
           label-for="input-oobprogram"
           label-class="font-weight-bold"
         >
@@ -44,7 +44,7 @@
         <b-form-group
           label-cols="4"
           label-cols-lg="2"
-          label="ovs:"
+          :label="$t('pageCluster.formNodeParams.ovs')"
           label-for="input-ovs"
           label-class="font-weight-bold"
         >
@@ -57,7 +57,7 @@
         <b-form-group
           label-cols="4"
           label-cols-lg="2"
-          label="ovs link:"
+          :label="$t('pageCluster.formNodeParams.ovsLink')"
           label-for="input-ovslink"
           label-class="font-weight-bold"
         >
@@ -70,7 +70,7 @@
         <b-form-group
           label-cols="4"
           label-cols-lg="2"
-          label="ovs name:"
+          :label="$t('pageCluster.formNodeParams.ovsName')"
           label-for="input-ovsname"
           label-class="font-weight-bold"
         >
@@ -83,7 +83,7 @@
         <b-form-group
           label-cols="4"
           label-cols-lg="2"
-          label="spindle count:"
+          :label="$t('pageCluster.formNodeParams.spindleCount')"
           label-for="input-spindlecount"
           label-class="font-weight-bold"
         >
@@ -96,7 +96,7 @@
         <b-form-group
           label-cols="4"
           label-cols-lg="2"
-          label="ssh port:"
+          :label="$t('pageCluster.formNodeParams.sshPort')"
           label-for="input-sshport"
           label-class="font-weight-bold"
         >

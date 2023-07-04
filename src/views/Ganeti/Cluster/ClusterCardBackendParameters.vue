@@ -6,7 +6,7 @@
           <b-form-group
             label-cols="4"
             label-cols-lg="2"
-            label="minmem:"
+            :label="$t('pageCluster.formBackend.minMem')"
             label-for="input-minmem"
             label-class="font-weight-bold"
           >
@@ -19,7 +19,7 @@
           <b-form-group
             label-cols="4"
             label-cols-lg="2"
-            label="maxmem:"
+            :label="$t('pageCluster.formBackend.maxMem')"
             label-for="input-maxmem"
             label-class="font-weight-bold"
           >
@@ -32,7 +32,7 @@
           <b-form-group
             label-cols="4"
             label-cols-lg="2"
-            label="vcpus:"
+            :label="$t('pageCluster.formBackend.vcpus')"
             label-for="input-vcpus"
             label-class="font-weight-bold"
           >
@@ -45,7 +45,7 @@
           <b-form-group
             label-cols="4"
             label-cols-lg="2"
-            label="auto balance:"
+            :label="$t('pageCluster.formBackend.autoBalance')"
             label-for="input-autobalance"
             label-class="font-weight-bold"
           >
@@ -58,7 +58,7 @@
           <b-form-group
             label-cols="4"
             label-cols-lg="2"
-            label="always failover:"
+            :label="$t('pageCluster.formBackend.alwaysFailover')"
             label-for="input-alwaysfailover"
             label-class="font-weight-bold"
           >
