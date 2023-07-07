@@ -3,10 +3,13 @@
     <page-title />
     <page-section>
       <instances-buttons-panel />
-      <instances-table :api-url="apiUrl" />
+      <instances-table
+        :api-url="apiUrl"
+        :on-data="onData"
+      />
     </page-section>
     <instances-add-modal />
-    <instances-modify-modal />
+    <instances-modify-modal :modifydata="instanceData" />
     <instances-rename-modal />
     <instances-shut-down-modal />
     <instances-grow-modal />
@@ -46,8 +49,15 @@ export default {
   },
   data() {
     return {
-      apiUrl: '/instance'
+      apiUrl: '/instance',
+      instanceData: {}
     };
+  },
+  methods: {
+    onDataInstances(data) {
+      // eslint-disable-next-line
+      this.instanceData = data.item
+    }
   }
 };
 </script>

@@ -32,14 +32,14 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from '@/api/axios';
 
 export default {
   name: 'InstancesGrowModal',
   data() {
     return {
       form: {
-        instance_name: 'alcor',
+        instance_name: '',
         amount: ''
       }
     };
@@ -56,7 +56,7 @@ export default {
       // eslint-disable-next-line
           console.log(JSON.stringify(dataInstances));
 
-      axios.post('http://10.110.3.230:8008/v1/instance/alcor/disk/0/grow', dataInstances)
+      axios.post('instance/alcor/disk/0/grow', dataInstances)
         .then(response => {
           // eslint-disable-next-line
               console.log(response.data);
@@ -70,7 +70,3 @@ export default {
   }
 };
 </script>
-
-    <style>
-
-    </style>

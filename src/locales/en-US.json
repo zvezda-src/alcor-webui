@@ -114,7 +114,7 @@
       "spiceStreaming": "spice streaming:",
       "spiceTlsSciphers": "spice tls sciphers:",
       "spiceUseTls": "spice use tls:",
-      "spice use vdagent": "spice use vdagent:",
+      "spiceUseVdagent": "spice use vdagent:",
       "spiceZlibGlz": "spice zlib glz wan:"
     },
     "formBackend": {

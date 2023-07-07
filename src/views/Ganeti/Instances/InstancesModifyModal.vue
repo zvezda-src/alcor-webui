@@ -10,43 +10,44 @@
     >
       <b-form
         ref="form"
-        @submit.stop.prevent="modifyInstances"
+        @submit.prevent="handleSubmitModifyInstances"
       >
-        <b-row>
-          <b-col sm="6">
-            <b-form-group
-              label="Maxmem:"
-              label-for="maxmem-input"
-            >
-              <b-form-input
-                id="maxmem-input"
-                v-model="form.maxmem"
-                type="number"
-              />
-            </b-form-group>
-            <b-form-group
-              label="Minmem:"
-              label-for="Minmem-input"
-            >
-              <b-form-input
-                id="minmem-input"
-                v-model="form.minmem"
-                type="number"
-              />
-            </b-form-group>
-            <b-form-group
-              label="Vcpus:"
-              label-for="vcpus-input"
-            >
-              <b-form-input
-                id="vcpus-input"
-                v-model="form.vcpus"
-                type="number"
-              />
-            </b-form-group>
-          </b-col>
-          <b-col sm="6">
-            <!-- <b-form-group
+        <b-container>
+          <b-row>
+            <b-col sm="6">
+              <b-form-group
+                label="Maxmem:"
+                label-for="maxmem-input"
+              >
+                <b-form-input
+                  id="maxmem-input"
+                  v-model="form.maxmem"
+                  type="number"
+                />
+              </b-form-group>
+              <b-form-group
+                label="Minmem:"
+                label-for="Minmem-input"
+              >
+                <b-form-input
+                  id="minmem-input"
+                  v-model="form.minmem"
+                  type="number"
+                />
+              </b-form-group>
+              <b-form-group
+                label="Vcpus:"
+                label-for="vcpus-input"
+              >
+                <b-form-input
+                  id="vcpus-input"
+                  v-model="form.vcpus"
+                  type="number"
+                />
+              </b-form-group>
+            </b-col>
+            <b-col sm="6">
+              <!-- <b-form-group
               label="Spindle use:"
               label-for="spindleuse-input"
               type="number"
@@ -56,40 +57,47 @@
                 v-model="form.spindle_use"
               />
             </b-form-group> -->
-            <b-form-group
-              label="Auto balance:"
-              label-for="autobalance-input"
-            >
-              <b-form-input
-                id="autobalance"
-                v-model="form.auto_balance"
-              />
-            </b-form-group>
-            <b-form-group
-              label="Always failover:"
-              label-for="alwaysfailover-input"
-            >
-              <b-form-input
-                id="alwaysfailover-input"
-                v-model="form.always_failover"
-              />
-            </b-form-group>
-          </b-col>
-        </b-row>
+              <b-form-group
+                label="Auto balance:"
+                label-for="autobalance-input"
+              >
+                <b-form-input
+                  id="autobalance"
+                  v-model="form.auto_balance"
+                />
+              </b-form-group>
+              <b-form-group
+                label="Always failover:"
+                label-for="alwaysfailover-input"
+              >
+                <b-form-input
+                  id="alwaysfailover-input"
+                  v-model="form.always_failover"
+                />
+              </b-form-group>
+            </b-col>
+          </b-row>
+        </b-container>
       </b-form>
     </b-modal>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
+import axios from '@/api/axios';
 
 export default {
   name: 'InstancesModifyModal',
+  props: {
+    modifydata: {
+      type: Object,
+      required: true
+    }
+  },
   data() {
     return {
       form: {
-        instance_name: 'nerabotaetni4ego',
+        instance_name: this.modifydata,
         maxmem: '',
         minmem: '',
         vcpus: '',
@@ -104,14 +112,14 @@ export default {
       // Prevent modal from closing
       bvModalEvent.preventDefault();
       // Trigger submit handler
-      this.modifyInstances();
+      this.handleSubmitModifyInstances();
     },
-    modifyInstances() {
+    handleSubmitModifyInstances() {
       const dataInstances = this.form;
       // eslint-disable-next-line
       console.log(JSON.stringify(dataInstances));
 
-      axios.put('http://10.110.3.230:8008/v1/instance/nerabotaetni4ego/modify', dataInstances)
+      axios.put(`instance/${this.modifydata.name}/modify`, dataInstances)
         .then(response => {
           // eslint-disable-next-line
           console.log(response.data);

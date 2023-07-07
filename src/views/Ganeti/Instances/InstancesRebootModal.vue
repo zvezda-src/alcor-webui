@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from '@/api/axios';
 
 export default {
   name: 'InstancesRebootModal',
@@ -61,7 +61,7 @@ export default {
       // eslint-disable-next-line
           console.log(JSON.stringify(dataInstances));
 
-      axios.post('http://10.110.3.230:8008/v1/instance/test2/reboot', dataInstances)
+      axios.post('instance/test2/reboot', dataInstances)
         .then(response => {
           // eslint-disable-next-line
               console.log(response.data);

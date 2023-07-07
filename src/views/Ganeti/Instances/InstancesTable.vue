@@ -5,7 +5,7 @@
       bordered
       head-variant="light"
       :busy.sync="isLoading"
-      :items="instances"
+      :items="items"
       :fields="fields"
       show-empty
       empty-text="No items available"
@@ -27,6 +27,7 @@
           size="sm"
           class="mr-2 mt-2"
           @click="deleteInstances(row.item.name)"
+          :disabled="isLoading"
         >
           {{ $t('global.action.delete') }}
         </b-button>
@@ -35,6 +36,7 @@
           size="sm"
           class="mr-2 mt-2"
           @click="startUpInstances(row.item.name)"
+          :disabled="isLoading"
         >
           {{ $t('global.action.startUp') }}
         </b-button>
@@ -50,6 +52,7 @@
                 size="sm"
                 class="mr-2 mt-2"
                 variant="warning"
+                @click="getModalInfo(item)"
               >
                 {{ $t('global.action.modify') }}
               </b-button>
@@ -58,6 +61,7 @@
                 variant="info"
                 size="sm"
                 class="mr-2 mt-2"
+                @click="getModalInfo(item)"
               >
                 {{ $t('global.action.rename') }}
               </b-button>
@@ -66,6 +70,7 @@
                 variant="info"
                 size="sm"
                 class="mr-2 mt-2"
+                @click="getModalInfo(item)"
               >
                 {{ $t('global.action.grow') }}
               </b-button>
@@ -74,6 +79,7 @@
                 variant="danger"
                 size="sm"
                 class="mr-2 mt-2"
+                @click="getModalInfo(item)"
               >
                 {{ $t('global.action.shutDown') }}
               </b-button>
@@ -82,6 +88,7 @@
                 variant="danger"
                 size="sm"
                 class="mr-2 mt-2"
+                @click="getModalInfo(item)"
               >
                 {{ $t('global.action.reboot') }}
               </b-button>
@@ -90,6 +97,7 @@
                 variant="danger"
                 size="sm"
                 class="mr-2 mt-2"
+                @click="getModalInfo(item)"
               >
                 {{ $t('global.action.migrate') }}
               </b-button>
@@ -168,6 +176,10 @@ export default {
     apiUrl: {
       type: String,
       required: true
+    },
+    onDataInstances: {
+      type: Function,
+      required: true
     }
   },
   data() {
@@ -210,30 +222,54 @@ export default {
         }
       ],
       items: [
-        // {
-        //   name: 'antix-21-template',
-        //   admin_state: 'down',
-        //   os: 'noop',
-        //   pnode: 'cl43gnt1',
-        //   disk_template: 'gluster',
-        //   nic_ips: 'null',
-        //   nic_macs: 'aa:00:00:bb:0b:af',
-        //   nic_modes: 'bridged',
-        //   nic_uuids: '2c5a17c5-f5ab-4c33-a22b-2f2dd82cce0c',
-        //   nic_names: 'null',
-        //   nic_links: 'vmbr0',
-        //   nic_networks: 'null',
-        //   nic_bridges: 'vmbr0',
-        //   network_port: '11000',
-        //   beparams: [{
-        //     vcpus: '1'
-        //   }],
-        //   hvparams: [
-        //     {
-        //       disk_type: 'fff'
-        //     }
-        //   ]
-        // }
+        {
+          name: 'antix-21-template',
+          admin_state: 'down',
+          os: 'noop',
+          pnode: 'cl43gnt1',
+          disk_template: 'gluster',
+          nic_ips: 'null',
+          nic_macs: 'aa:00:00:bb:0b:af',
+          nic_modes: 'bridged',
+          nic_uuids: '2c5a17c5-f5ab-4c33-a22b-2f2dd82cce0c',
+          nic_names: 'null',
+          nic_links: 'vmbr0',
+          nic_networks: 'null',
+          nic_bridges: 'vmbr0',
+          network_port: '11000',
+          beparams: [{
+            vcpus: '1'
+          }],
+          hvparams: [
+            {
+              disk_type: 'fff'
+            }
+          ]
+        },
+        {
+          name: 'test',
+          admin_state: 'down',
+          os: 'noop',
+          pnode: 'cl43gnt1',
+          disk_template: 'gluster',
+          nic_ips: 'null',
+          nic_macs: 'aa:00:00:bb:0b:af',
+          nic_modes: 'bridged',
+          nic_uuids: '2c5a17c5-f5ab-4c33-a22b-2f2dd82cce0c',
+          nic_names: 'null',
+          nic_links: 'vmbr0',
+          nic_networks: 'null',
+          nic_bridges: 'vmbr0',
+          network_port: '11000',
+          beparams: [{
+            vcpus: '2'
+          }],
+          hvparams: [
+            {
+              disk_type: 'fff'
+            }
+          ]
+        }
       ]
     };
   },
@@ -254,10 +290,6 @@ export default {
     deleteInstances(name) {
       this.isBusy = true;
 
-      const instanceName = {
-        instance_name: name
-      };
-
       this.$bvModal.msgBoxConfirm('Please confirm that you want to delete.', {
         title: 'Please Confirm',
         size: 'sm',
@@ -270,15 +302,9 @@ export default {
         centered: true
       })
         .then(value => {
-          // eslint-disable-next-line
-           console.log(instanceName);
-          // eslint-disable-next-line
-          console.log(value);
           if (value === true) {
-            axios.delete(`instance/${name}`, { data: instanceName })
-              .then(responce => {
-              // eslint-disable-next-line
-              console.log(responce);
+            axios.delete(`instance/${name}`, { data: { instance_name: name } })
+              .then(() => {
                 setTimeout(() => {
                   this.fetchInstances();
                 }, 1000);
@@ -288,10 +314,7 @@ export default {
             //   name: 'alcor',
             //   data: this.name
             // })
-              .catch(e => {
-              // eslint-disable-next-line
-              console.log(e);
-              });
+              .catch(() => {});
           } else {
             this.isBusy = false;
           }
@@ -304,27 +327,22 @@ export default {
     startUpInstances(name) {
       this.isBusy = true;
 
-      const instanceName = {
-        instance_name: name
-      };
-
-      axios.put(`instance/${name}/startup`, instanceName)
-        .then(responce => {
-          // eslint-disable-next-line
-          console.log(responce);
+      axios.put(`instance/${name}/startup`, { instance_name: name })
+        .then(() => {
           setTimeout(() => {
-            this.getInstances();
+            this.fetchInstances();
             this.isBusy = false;
           }, 1000);
         })
-        .catch(e => {
-          // eslint-disable-next-line
-          console.log(e);
+        .catch(() => {
           this.isBusy = false;
         });
     },
     toggleRowDetails(row) {
       row.toggleDetails();
+    },
+    getModalInfo(item) {
+      this.onDataInstances({ item });
     }
   }
 };
