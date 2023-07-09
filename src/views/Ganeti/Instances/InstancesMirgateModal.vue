@@ -3,9 +3,9 @@
     <b-modal
       id="modal-migrate-instances"
       ref="modal"
-      title="Migrate Instances"
-      ok-title="Save"
-      cancel-title="Cancel"
+      :title="$t('pageInstances.migrateModal.title')"
+      :ok-title="$t('global.action.save')"
+      :cancel-title="$t('global.action.cancel')"
       @ok="handleOk"
     >
       <b-form
@@ -15,7 +15,7 @@
         <b-row>
           <b-col>
             <b-form-group
-              label="allow failover:"
+              :label="$t('pageInstances.migrateModal.allowFailover')"
               label-for="allowfailover-input"
             >
               <b-form-input
@@ -25,7 +25,7 @@
               />
             </b-form-group>
             <b-form-group
-              label="instance uuid:"
+              :label="$t('pageInstances.migrateModal.instanceUuid')"
               label-for="instanceuuid-input"
             >
               <b-form-input
@@ -35,7 +35,7 @@
               />
             </b-form-group>
             <b-form-group
-              label="mode:"
+              :label="$t('pageInstances.migrateModal.mode')"
               label-for="mode-input"
             >
               <b-form-input
@@ -45,7 +45,7 @@
               />
             </b-form-group>
             <b-form-group
-              label="target node:"
+              :label="$t('pageInstances.migrateModal.targetNode')"
               label-for="target node-input"
             >
               <b-form-input

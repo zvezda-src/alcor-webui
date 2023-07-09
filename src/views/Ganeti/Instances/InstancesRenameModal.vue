@@ -3,9 +3,9 @@
     <b-modal
       id="modal-rename-instances"
       ref="modal"
-      title="Rename Instances"
-      ok-title="Save"
-      cancel-title="Cancel"
+      :title="$t('pageInstances.renameModal.title')"
+      :ok-title="$t('global.action.save')"
+      :cancel-title="$t('global.action.cancel')"
       @ok="handleOk"
     >
       <b-form
@@ -15,7 +15,7 @@
         <b-row>
           <b-col>
             <b-form-group
-              label="New name:"
+              :label="$t('pageInstances.renameModal.newName')"
               label-for="newname-input"
             >
               <b-form-input

@@ -3,9 +3,9 @@
     <b-modal
       id="modal-modify-instances"
       ref="modal"
-      title="Modify Instances"
-      ok-title="Save"
-      cancel-title="Cancel"
+      :title="$t('pageInstances.modifyModal.title')"
+      :ok-title="$t('global.action.save')"
+      :cancel-title="$t('global.action.cancel')"
       @ok="handleOk"
     >
       <b-form
@@ -16,7 +16,7 @@
           <b-row>
             <b-col sm="6">
               <b-form-group
-                label="Maxmem:"
+                :label="$t('pageInstances.modifyModal.maxMem')"
                 label-for="maxmem-input"
               >
                 <b-form-input
@@ -26,7 +26,7 @@
                 />
               </b-form-group>
               <b-form-group
-                label="Minmem:"
+                :label="$t('pageInstances.modifyModal.minMem')"
                 label-for="Minmem-input"
               >
                 <b-form-input
@@ -36,7 +36,7 @@
                 />
               </b-form-group>
               <b-form-group
-                label="Vcpus:"
+                :label="$t('pageInstances.modifyModal.vcpus')"
                 label-for="vcpus-input"
               >
                 <b-form-input
@@ -58,7 +58,7 @@
               />
             </b-form-group> -->
               <b-form-group
-                label="Auto balance:"
+                :label="$t('pageInstances.modifyModal.autoBalance')"
                 label-for="autobalance-input"
               >
                 <b-form-input
@@ -67,7 +67,7 @@
                 />
               </b-form-group>
               <b-form-group
-                label="Always failover:"
+                :label="$t('pageInstances.modifyModal.alwaysFailover')"
                 label-for="alwaysfailover-input"
               >
                 <b-form-input

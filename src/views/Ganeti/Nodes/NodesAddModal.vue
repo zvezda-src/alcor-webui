@@ -3,7 +3,7 @@
     <b-modal
       id="modal-add-nodes"
       ref="modal"
-      size="lg"
+      size="md"
       :title="$t('pageNodes.addModal.title')"
       :ok-title="$t('global.action.save')"
       :cancel-title="$t('global.action.cancel')"
@@ -17,9 +17,9 @@
         @submit.stop.prevent="handleSubmit"
       >
         <b-row>
-          <b-col sm="6">
+          <b-col sm="12">
             <b-form-group
-              label="Name:"
+              :label="$t('pageNodes.addModal.name')"
               label-for="name-input"
               invalid-feedback="Name is required"
               :state="Namestate"
@@ -27,7 +27,7 @@
               <b-form-input
                 id="name-input"
                 v-model="form.node_name"
-                placeholder="Enter name"
+                :placeholder="$t('pageNodes.addModal.placeholderName')"
                 :state="Namestate"
                 required
               />

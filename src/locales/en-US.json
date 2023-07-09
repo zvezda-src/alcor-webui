@@ -12,10 +12,16 @@
       "shutDown": "Shutdown",
       "reboot": "Reboot",
       "migrate": "Migrate",
-      "evacuate": "Evacuate"
+      "evacuate": "Evacuate",
+      "yes": "Yes",
+      "no": "No"
     },
     "table": {
       "actions": "Actions"
+    },
+    "modal": {
+      "deleteTitle": "Please confirm",
+      "deleteConfirm": "Please confirm that you want to delete?"
     }
   },
   "pageLogin": {
@@ -187,6 +193,39 @@
       "nameCheck": "Name check:",
       "noInstall": "No install:"
     },
+    "modifyModal": {
+      "title": "Modify Instances",
+      "maxMem": "maxmem:",
+      "minMem": "minmem:",
+      "vcpus": "vcpus:",
+      "autoBalance": "auto balance:",
+      "alwaysFailover": "always failover:"
+    },
+    "renameModal": {
+      "title": "Rename Instances",
+      "newName": "new name:"
+    },
+    "growModal": {
+      "title": "Grow Instances",
+      "amount": "amount:"
+    },
+    "shutDownModal": {
+      "title": "Shutdown Instances",
+      "force": "force:",
+      "timeOut": "timeout:"
+    },
+    "rebootModal": {
+      "title": "Reboot Instances",
+      "type": "type reboot:",
+      "placeholderType": "Select one"
+    },
+    "migrateModal": {
+      "title": "Migrate Instances",
+      "allowFailover": "allow failover:",
+      "instanceUuid": "instance uuid:",
+      "mode": "mode:",
+      "targetNode": "target node:"
+    },
     "table": {
       "name": "Name",
       "adminState": "Admin state",
@@ -215,7 +254,32 @@
   },
   "pageNodes": {
     "addModal": {
-      "title": "Add node"
+      "title": "Add node",
+      "name": "name node:",
+      "placeholderName": "Enter name"
+    },
+    "evacuateModal": {
+      "title": "Evacuate nodes",
+      "iallocator": "iallocator:",
+      "ignoreSoftErrors": "ignore soft errors:",
+      "mode": "mode:",
+      "nodeUuid": "node uuid:",
+      "remoteNode": "remote node:",
+      "remoteNodeUuid": "remote node uuid:"
+    },
+    "modifyModal": {
+      "title": "Modify nodes",
+      "masterCandidate": "master candidate:",
+      "masterCapable": "master capable:",
+      "cpuSpeed": "cpu speed:",
+      "exclusiveStorage": "exclusive storage:",
+      "oobProgram": "oob program:",
+      "ovs": "ovs:",
+      "ovsLink": "ovs link:",
+      "ovsName": "ovs name:",
+      "spindleCount": "spindle count:",
+      "sshPort": "ssh port:",
+      "vmCapable": "vm capable:"
     },
     "table": {
       "name": "Name",

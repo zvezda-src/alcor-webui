@@ -3,9 +3,9 @@
     <b-modal
       id="modal-reboot-instances"
       ref="modal"
-      title="Reboot Instances"
-      ok-title="Save"
-      cancel-title="Cancel"
+      :title="$t('pageInstances.rebootModal.title')"
+      :ok-title="$t('global.action.save')"
+      :cancel-title="$t('global.action.cancel')"
       @ok="handleOk"
     >
       <b-form
@@ -15,7 +15,7 @@
         <b-row>
           <b-col>
             <b-form-group
-              label="Type:"
+              :label="$t('pageInstances.rebootModal.type')"
               label-for="newname-input"
             >
               <b-form-select
@@ -43,7 +43,7 @@ export default {
         instance_name: 'test2'
       },
       types: [
-        { text: 'Select One', value: null },
+        { text: this.$t('pageInstances.rebootModal.placeholderType'), value: null },
         'soft',
         'hard',
         'full']

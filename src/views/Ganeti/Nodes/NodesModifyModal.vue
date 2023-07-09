@@ -3,9 +3,9 @@
     <b-modal
       id="modal-modify-nodes"
       ref="modal"
-      title="Modify nodes"
-      ok-title="Save"
-      cancel-title="Cancel"
+      :title="$t('pageNodes.modifyModal.title')"
+      :ok-title="$t('global.action.save')"
+      :cancel-title="$t('global.action.cancel')"
       @ok="handleOk"
     >
       <b-form
@@ -15,7 +15,7 @@
         <b-row>
           <b-col sm="6">
             <b-form-group
-              label="master candidate:"
+              :label="$t('pageNodes.modifyModal.masterCandidate')"
               label-for="mastercandidate-input"
             >
               <b-form-input
@@ -24,7 +24,7 @@
               />
             </b-form-group>
             <b-form-group
-              label="master capable:"
+              :label="$t('pageNodes.modifyModal.masterCapable')"
               label-for="mastercapable-input"
             >
               <b-form-input
@@ -33,7 +33,7 @@
               />
             </b-form-group>
             <b-form-group
-              label="cpu speed:"
+              :label="$t('pageNodes.modifyModal.cpuSpeed')"
               label-for="cpuspeed-input"
             >
               <b-form-input
@@ -45,7 +45,7 @@
           </b-col>
           <b-col sm="6">
             <b-form-group
-              label="exclusive storage:"
+              :label="$t('pageNodes.modifyModal.exclusiveStorage')"
               label-for="exclusivestorage-input"
             >
               <b-form-input
@@ -54,7 +54,7 @@
               />
             </b-form-group>
             <b-form-group
-              label="oob program:"
+              :label="$t('pageNodes.modifyModal.oobProgram')"
               label-for="oobprogram-input"
             >
               <b-form-input
@@ -63,7 +63,7 @@
               />
             </b-form-group>
             <b-form-group
-              label="ovs:"
+              :label="$t('pageNodes.modifyModal.ovs')"
               label-for="ovs-input"
             >
               <b-form-input
@@ -72,7 +72,7 @@
               />
             </b-form-group>
             <b-form-group
-              label="ovs link:"
+              :label="$t('pageNodes.modifyModal.ovsLink')"
               label-for="ovslink-input"
             >
               <b-form-input
@@ -81,7 +81,7 @@
               />
             </b-form-group>
             <b-form-group
-              label="ovs name:"
+              :label="$t('pageNodes.modifyModal.ovsName')"
               label-for="ovsname-input"
             >
               <b-form-input
@@ -90,7 +90,7 @@
               />
             </b-form-group>
             <b-form-group
-              label="spindle count:"
+              :label="$t('pageNodes.modifyModal.spindleCount')"
               label-for="spindlecount-input"
             >
               <b-form-input
@@ -99,7 +99,7 @@
               />
             </b-form-group>
             <b-form-group
-              label="ssh_port:"
+              :label="$t('pageNodes.modifyModal.sshPort')"
               label-for="sshport-input"
             >
               <b-form-input
@@ -108,7 +108,7 @@
               />
             </b-form-group>
             <b-form-group
-              label="vm_capable:"
+              :label="$t('pageNodes.modifyModal.vmCapable')"
               label-for="vmcapable-input"
             >
               <b-form-input

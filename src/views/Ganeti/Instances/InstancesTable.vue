@@ -290,13 +290,13 @@ export default {
     deleteInstances(name) {
       this.isBusy = true;
 
-      this.$bvModal.msgBoxConfirm('Please confirm that you want to delete.', {
-        title: 'Please Confirm',
+      this.$bvModal.msgBoxConfirm(this.$t('global.modal.deleteConfirm'), {
+        title: this.$t('global.modal.deleteTitle'),
         size: 'sm',
         buttonSize: 'sm',
         okVariant: 'danger',
-        okTitle: 'YES',
-        cancelTitle: 'NO',
+        okTitle: this.$t('global.action.yes'),
+        cancelTitle: this.$t('global.action.no'),
         footerClass: 'p-2',
         hideHeaderClose: false,
         centered: true

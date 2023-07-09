@@ -187,6 +187,39 @@
       "nameCheck": "",
       "noInstall": ""
     },
+    "modifyModal": {
+      "title": "",
+      "maxMem": "",
+      "minMem": "",
+      "vcpus": "",
+      "autoBalance": "",
+      "alwaysFailover": ""
+    },
+    "renameModal": {
+      "title": "",
+      "newName": ""
+    },
+    "growModal": {
+      "title": "",
+      "amount": ""
+    },
+    "shutDownModal": {
+      "title": "",
+      "force": "",
+      "timeOut": ""
+    },
+    "rebootModal": {
+      "title": "",
+      "type": "",
+      "placeholderType": ""
+    },
+    "migrateModal": {
+      "title": "",
+      "allowFailover": "",
+      "instanceUuid": "",
+      "mode": "",
+      "targetNode": ""
+    },
     "table": {
       "name": "",
       "adminState": "",
@@ -215,7 +248,32 @@
   },
   "pageNodes": {
     "addModal": {
-      "title": ""
+      "title": "",
+      "name": "",
+      "placeholderName": ""
+    },
+    "evacuateModal": {
+      "title": "",
+      "iallocator": "",
+      "ignoreSoftErrors": "",
+      "mode": "",
+      "nodeUuid": "",
+      "remoteNode": "",
+      "remoteNodeUuid": ""
+    },
+    "modifyModal": {
+      "title": "",
+      "masterCandidate": "",
+      "masterCapable": "",
+      "cpuSpeed": "",
+      "exclusiveStorage": "",
+      "oobProgram": "",
+      "ovs": "",
+      "ovsLink": "",
+      "ovsName": "",
+      "spindleCount": "",
+      "sshPort": "",
+      "vmCapable": ""
     },
     "table": {
       "name": "",

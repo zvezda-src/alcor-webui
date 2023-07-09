@@ -3,9 +3,9 @@
     <b-modal
       id="modal-evacuate-nodes"
       ref="modal"
-      title="evacuate nodes"
-      ok-title="Save"
-      cancel-title="Cancel"
+      :title="$t('pageNodes.evacuateModal.title')"
+      :ok-title="$t('global.action.save')"
+      :cancel-title="$t('global.action.cancel')"
       @ok="handleOk"
     >
       <b-form
@@ -15,7 +15,7 @@
         <b-row>
           <b-col sm="6">
             <b-form-group
-              label="iallocator:"
+              :label="$t('pageNodes.evacuateModal.iallocator')"
               label-for="iallocator-input"
             >
               <b-form-input
@@ -24,7 +24,7 @@
               />
             </b-form-group>
             <b-form-group
-              label="ignore_soft_errors:"
+              :label="$t('pageNodes.evacuateModal.ignoreSoftErrors')"
               label-for="ignore_soft_errors-input"
             >
               <b-form-input
@@ -33,7 +33,7 @@
               />
             </b-form-group>
             <b-form-group
-              label="mode:"
+              :label="$t('pageNodes.evacuateModal.mode')"
               label-for="mode-input"
             >
               <b-form-input
@@ -42,7 +42,7 @@
               />
             </b-form-group>
             <b-form-group
-              label="node_uuid:"
+              :label="$t('pageNodes.evacuateModal.nodeUuid')"
               label-for="node_uuid-input"
             >
               <b-form-input
@@ -53,7 +53,7 @@
           </b-col>
           <b-col sm="6">
             <b-form-group
-              label="remote_node:"
+              :label="$t('pageNodes.evacuateModal.remoteNode')"
               label-for="remote_node-input"
             >
               <b-form-input
@@ -62,7 +62,7 @@
               />
             </b-form-group>
             <b-form-group
-              label="remote_node_uuid:"
+              :label="$t('pageNodes.evacuateModal.remoteNodeUuid')"
               label-for="remote_node_uuid-input"
             >
               <b-form-input

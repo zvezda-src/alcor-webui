@@ -3,9 +3,9 @@
     <b-modal
       id="modal-grow-instances"
       ref="modal"
-      title="Grow Instances"
-      ok-title="Save"
-      cancel-title="Cancel"
+      :title="$t('pageInstances.growModal.title')"
+      :ok-title="$t('global.action.save')"
+      :cancel-title="$t('global.action.cancel')"
       @ok="handleOk"
     >
       <b-form
@@ -15,7 +15,7 @@
         <b-row>
           <b-col>
             <b-form-group
-              label="Amount:"
+              :label="$t('pageInstances.growModal.amount')"
               label-for="amount-input"
             >
               <b-form-input

@@ -3,9 +3,9 @@
     <b-modal
       id="modal-shutdown-instances"
       ref="modal"
-      title="Shutdown Instances"
-      ok-title="Save"
-      cancel-title="Cancel"
+      :title="$t('pageInstances.shutDownModal.title')"
+      :ok-title="$t('global.action.save')"
+      :cancel-title="$t('global.action.cancel')"
       @ok="handleOk"
     >
       <b-form
@@ -15,7 +15,7 @@
         <b-row>
           <b-col>
             <b-form-group
-              label="Force:"
+              :label="$t('pageInstances.shutDownModal.force')"
               label-for="force-input"
             >
               <b-form-input
@@ -25,7 +25,7 @@
               />
             </b-form-group>
             <b-form-group
-              label="Timeout:"
+              :label="$t('pageInstances.shutDownModal.timeOut')"
               label-for="timeout-input"
             >
               <b-form-input

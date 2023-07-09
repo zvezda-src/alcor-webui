@@ -3,7 +3,7 @@
     <b-modal
       id="modal-add-groups"
       ref="modal"
-      size="lg"
+      size="md"
       :title="$t('pageGroups.modal.addTitle')"
       :ok-title="$t('global.action.save')"
       :cancel-title="$t('global.action.cancel')"
@@ -17,7 +17,7 @@
         @submit.stop.prevent="handleSubmit"
       >
         <b-row>
-          <b-col sm="6">
+          <b-col sm="12">
             <b-form-group
               :label="$t('pageGroups.modal.name')"
               label-for="name-input"
