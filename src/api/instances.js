@@ -2,26 +2,26 @@ import axios from '@/api/axios';
 
 const getInstances = apiUrl => axios.get(apiUrl);
 
-const addInstances = apiUrl => axios.post(apiUrl);
+const addInstances = (apiUrl, data) => axios.post(apiUrl, data);
 
-const deleteInstances = (apiUrl, name) => axios.delete(
-  `${apiUrl}/delete/${name}`,
-  { data: name }
+const deleteInstances = (apiUrl, instanceName) => axios.delete(
+  `${apiUrl}/${instanceName}`,
+  { data: { instance_name: instanceName } }
 );
 
-const startUpInstances = apiUrl => axios.put(apiUrl);
+const startUpInstances = (apiUrl, instanceName) => axios.put(`${apiUrl}/${instanceName}/startup`);
 
-const modifyInstances = apiUrl => axios.put(apiUrl);
+const modifyInstances = (apiUrl, instanceName, data) => axios.put(`${apiUrl}/${instanceName}/modify`, data);
 
-const renameInstances = apiUrl => axios.put(apiUrl);
+const renameInstances = (apiUrl, instanceName, data) => axios.put(`${apiUrl}/${instanceName}/rename`, data);
 
-const growInstances = apiUrl => axios.post(apiUrl);
+const growInstances = (apiUrl, instanceName, data) => axios.post(`${apiUrl}/${instanceName}/disk/0/grow`, data);
 
-const migrateInstances = apiUrl => axios.put(apiUrl);
+const migrateInstances = (apiUrl, instanceName, data) => axios.put(`${apiUrl}/${instanceName}/migrate`, data);
 
-const rebootInstances = apiUrl => axios.post(apiUrl);
+const rebootInstances = (apiUrl, instanceName, data) => axios.post(`${apiUrl}/${instanceName}/reboot`, data);
 
-const shutDownInstances = apiUrl => axios.put(apiUrl);
+const shutDownInstances = (apiUrl, instanceName, data) => axios.put(`${apiUrl}/${instanceName}/shutdown`, data);
 
 export default {
   getInstances,

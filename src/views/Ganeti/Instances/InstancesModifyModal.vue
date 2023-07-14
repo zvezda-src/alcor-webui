@@ -4,17 +4,14 @@
       id="modal-modify-instances"
       ref="modal"
       :title="$t('pageInstances.modifyModal.title')"
-      :ok-title="$t('global.action.save')"
-      :cancel-title="$t('global.action.cancel')"
-      @ok="handleOk"
     >
       <b-form
-        ref="form"
+        id="form-modify-instances"
         @submit.prevent="handleSubmitModifyInstances"
       >
         <b-container>
           <b-row>
-            <b-col sm="6">
+            <b-col sm="12">
               <b-form-group
                 :label="$t('pageInstances.modifyModal.maxMem')"
                 label-for="maxmem-input"
@@ -27,7 +24,7 @@
               </b-form-group>
               <b-form-group
                 :label="$t('pageInstances.modifyModal.minMem')"
-                label-for="Minmem-input"
+                label-for="minmem-input"
               >
                 <b-form-input
                   id="minmem-input"
@@ -45,90 +42,117 @@
                   type="number"
                 />
               </b-form-group>
-            </b-col>
-            <b-col sm="6">
-              <!-- <b-form-group
-              label="Spindle use:"
-              label-for="spindleuse-input"
-              type="number"
-            >
-              <b-form-input
-                id="spindleuse-input"
-                v-model="form.spindle_use"
-              />
-            </b-form-group> -->
+
               <b-form-group
                 :label="$t('pageInstances.modifyModal.autoBalance')"
                 label-for="autobalance-input"
               >
-                <b-form-input
-                  id="autobalance"
+                <b-form-select
+                  id="autobalance-input"
                   v-model="form.auto_balance"
+                  :options="balanceList"
                 />
               </b-form-group>
               <b-form-group
                 :label="$t('pageInstances.modifyModal.alwaysFailover')"
                 label-for="alwaysfailover-input"
               >
-                <b-form-input
+                <b-form-select
                   id="alwaysfailover-input"
                   v-model="form.always_failover"
+                  :options="alwaysList"
                 />
               </b-form-group>
             </b-col>
           </b-row>
         </b-container>
       </b-form>
+      <template #modal-footer="{ cancel }">
+        <b-button
+          variant="secondary"
+          size="sm"
+          @click="cancel()"
+        >
+          {{ $t('global.action.cancel') }}
+        </b-button>
+        <b-button
+          form="form-modify-instances"
+          type="submit"
+          variant="primary"
+          size="sm"
+          @click="onOk"
+        >
+          {{ $t('global.action.save') }}
+        </b-button>
+      </template>
     </b-modal>
   </div>
 </template>
 
 <script>
-import axios from '@/api/axios';
+import { actionTypes } from '@/store/modules/instances';
 
 export default {
   name: 'InstancesModifyModal',
   props: {
-    modifydata: {
+    modify: {
       type: Object,
+      required: true
+    },
+    apiUrl: {
+      type: String,
+      required: true
+    },
+    instanceName: {
+      type: String,
       required: true
     }
   },
   data() {
     return {
       form: {
-        instance_name: this.modifydata,
         maxmem: '',
         minmem: '',
         vcpus: '',
-        // spindle_use: '',
         auto_balance: '',
         always_failover: ''
-      }
+      },
+      balanceList: [true, false],
+      alwaysList: [true, false]
     };
   },
+  watch: {
+    modify() {
+      this.form.maxmem = this.modify.beparams.maxmem;
+      this.form.minmem = this.modify.beparams.minmem;
+      this.form.vcpus = this.modify.beparams.vcpus;
+      this.form.auto_balance = this.modify.beparams.auto_balance;
+      this.form.always_failover = this.modify.beparams.always_failover;
+    }
+  },
   methods: {
-    handleOk(bvModalEvent) {
-      // Prevent modal from closing
-      bvModalEvent.preventDefault();
-      // Trigger submit handler
-      this.handleSubmitModifyInstances();
+    closeModal() {
+      this.$nextTick(() => {
+        this.$refs.modal.hide();
+      });
     },
     handleSubmitModifyInstances() {
-      const dataInstances = this.form;
-      // eslint-disable-next-line
-      console.log(JSON.stringify(dataInstances));
-
-      axios.put(`instance/${this.modifydata.name}/modify`, dataInstances)
-        .then(response => {
-          // eslint-disable-next-line
-          console.log(response.data);
-          this.$bvModal.hide('modal-modify-instances');
+      this.$store.dispatch(
+        actionTypes.modifyInstances,
+        { apiUrl: this.apiUrl, instanceName: this.instanceName, data: this.form }
+      )
+        .then(() => {
+          this.closeModal();
+          setTimeout(() => {
+            this.$router.go(0);
+          }, 1000);
         })
-        .catch(error => {
-          // eslint-disable-next-line
-          console.log(error);
-        });
+        .catch(() => {});
+    },
+    onOk(bvModalEvent) {
+      // Prevent modal from closing
+      bvModalEvent.preventDefault();
+      this.handleSubmitModifyInstances();
     }
   }
 };

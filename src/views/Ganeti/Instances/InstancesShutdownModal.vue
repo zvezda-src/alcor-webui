@@ -4,13 +4,11 @@
       id="modal-shutdown-instances"
       ref="modal"
       :title="$t('pageInstances.shutDownModal.title')"
-      :ok-title="$t('global.action.save')"
-      :cancel-title="$t('global.action.cancel')"
-      @ok="handleOk"
+      @hidden="resetForm"
     >
       <b-form
-        ref="form"
-        @submit.stop.prevent="shutDownInstances"
+        id="form-shutdown-instances"
+        @submit.prevent="handleSubmitShutDownInstances"
       >
         <b-row>
           <b-col>
@@ -18,9 +16,10 @@
               :label="$t('pageInstances.shutDownModal.force')"
               label-for="force-input"
             >
-              <b-form-input
+              <b-form-select
                 id="force-input"
                 v-model="form.force"
+                :options="forceList"
                 type="text"
               />
             </b-form-group>
@@ -37,50 +36,78 @@
           </b-col>
         </b-row>
       </b-form>
+      <template #modal-footer="{ cancel }">
+        <b-button
+          variant="secondary"
+          size="sm"
+          @click="cancel()"
+        >
+          {{ $t('global.action.cancel') }}
+        </b-button>
+        <b-button
+          form="form-shutdown-instances"
+          type="submit"
+          variant="primary"
+          size="sm"
+          @click="onOk"
+        >
+          {{ $t('global.action.save') }}
+        </b-button>
+      </template>
     </b-modal>
   </div>
 </template>
 
 <script>
-import axios from '@/api/axios';
+import { actionTypes } from '@/store/modules/instances';
 
 export default {
   name: 'InstancesShutDownModal',
+  props: {
+    instanceName: {
+      type: String,
+      required: true
+    },
+    apiUrl: {
+      type: String,
+      required: true
+    }
+  },
   data() {
     return {
       form: {
-        instance_name: '',
-        force: '',
+        force: null,
         timeout: ''
-      }
+      },
+      forceList: [{ text: this.$t('pageInstances.addModal.placeholderNodes'), value: null },
+        true, false]
     };
   },
   methods: {
-    handleOk(bvModalEvent) {
+    closeModal() {
+      this.$nextTick(() => {
+        this.$refs.modal.hide();
+      });
+    },
+    resetForm() {
+      this.form.force = null;
+      this.form.timeout = '';
+    },
+    handleSubmitShutDownInstances() {
+      this.$store.dispatch(
+        actionTypes.shutDownInstances,
+        { apiUrl: this.apiUrl, instanceName: this.instanceName, data: this.form }
+      )
+        .then(() => {
+          this.closeModal();
+        })
+        .catch(() => {});
+    },
+    onOk(bvModalEvent) {
       // Prevent modal from closing
       bvModalEvent.preventDefault();
-      // Trigger submit handler
-      this.shutDownInstances();
-    },
-    shutDownInstances() {
-      const dataInstances = this.form;
-      // eslint-disable-next-line
-          console.log(JSON.stringify(dataInstances));
-
-      axios.put('instance/name/shutdown', dataInstances)
-        .then(response => {
-          // eslint-disable-next-line
-              console.log(response.data);
-          this.$bvModal.hide('modal-shutdown-instances');
-        })
-        .catch(error => {
-          // eslint-disable-next-line
-              console.log(error);
-        });
+      this.handleSubmitShutDownInstances();
     }
   }
 };
 </script>
-
-<style>
-</style>

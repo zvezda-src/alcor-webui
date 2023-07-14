@@ -5,16 +5,40 @@
       <instances-buttons-panel />
       <instances-table
         :api-url="apiUrl"
-        :on-data="onData"
+        :on-data-instances="onDataInstances"
       />
     </page-section>
-    <instances-add-modal />
-    <instances-modify-modal :modifydata="instanceData" />
-    <instances-rename-modal />
-    <instances-shut-down-modal />
-    <instances-grow-modal />
-    <instances-reboot-modal />
-    <instances-mirgate-modal />
+    <instances-add-modal
+      :api-url="apiUrl"
+      :node-url="nodeUrl"
+    />
+    <instances-modify-modal
+      :modify="instanceData"
+      :instance-name="instanceName"
+      :api-url="apiUrl"
+    />
+    <instances-rename-modal
+      :instance-name="instanceName"
+      :api-url="apiUrl"
+    />
+    <instances-shut-down-modal
+      :instance-name="instanceName"
+      :api-url="apiUrl"
+    />
+    <instances-grow-modal
+      :instance-name="instanceName"
+      :api-url="apiUrl"
+    />
+    <instances-reboot-modal
+      :instance-name="instanceName"
+      :api-url="apiUrl"
+    />
+    <instances-mirgate-modal
+      :migrate="instanceData"
+      :instance-name="instanceName"
+      :api-url="apiUrl"
+      :node-url="nodeUrl"
+    />
   </b-container>
 </template>
 
@@ -50,13 +74,16 @@ export default {
   data() {
     return {
       apiUrl: '/instance',
-      instanceData: {}
+      nodeUrl: '/nodes',
+      instanceData: {},
+      instanceName: ''
     };
   },
   methods: {
     onDataInstances(data) {
-      // eslint-disable-next-line
-      this.instanceData = data.item
+      this.instanceData = data.item;
+
+      this.instanceName = data.item.name;
     }
   }
 };

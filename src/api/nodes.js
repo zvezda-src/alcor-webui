@@ -1,6 +1,6 @@
 import axios from '@/api/axios';
 
-const getNodes = () => axios.get('/nodes');
+const getNodes = apiUrl => axios.get(apiUrl);
 
 const addNodes = apiUrl => axios.post(apiUrl);
 

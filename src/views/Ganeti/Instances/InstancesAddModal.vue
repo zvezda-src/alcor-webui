@@ -5,7 +5,7 @@
       ref="modal"
       size="lg"
       :title="$t('pageInstances.addModal.title')"
-      @hidden="resetModal"
+      @hidden="resetForm"
     >
       <b-form
         id="form-add-instances"
@@ -224,11 +224,21 @@
 </template>
 
 <script>
-import axios from '@/api/axios';
-import { actionTypes } from '@/store/modules/nodes';
+import { actionTypes as nodesActionTypes } from '@/store/modules/nodes';
+import { actionTypes as instancesActionTypes } from '@/store/modules/instances';
 
 export default {
   name: 'InstancesAddModal',
+  props: {
+    apiUrl: {
+      type: String,
+      required: true
+    },
+    nodeUrl: {
+      type: String,
+      required: true
+    }
+  },
   data() {
     return {
       form: {
@@ -270,20 +280,15 @@ export default {
     }
   },
   mounted() {
-    this.$store.dispatch(actionTypes.getNodes, { apiUrl: this.apiUrl });
+    this.$store.dispatch(nodesActionTypes.getNodes, { apiUrl: this.nodeUrl });
   },
   methods: {
-    checkFormValidity() {
-      const valid = this.$refs.form.checkValidity();
-      this.Namestate = valid;
-      this.Nodestate = valid;
-      this.Diskstate = valid;
-      this.Maxstate = valid;
-      this.Minstate = valid;
-      this.Vcpusstate = valid;
-      return valid;
+    closeModal() {
+      this.$nextTick(() => {
+        this.$refs.modal.hide();
+      });
     },
-    resetModal() {
+    resetForm() {
       this.form.instance_name = '';
       this.form.pnode = null;
       this.form.disks.size = '';
@@ -298,37 +303,21 @@ export default {
       this.vcpusState = null;
       this.$emit('hidden');
     },
-    handleOk(bvModalEvent) {
+
+    handleSubmitAddInstances() {
+      this.$store.dispatch(instancesActionTypes.addInstances, { apiUrl: this.apiUrl, data: this.form })
+        .then(() => {
+          this.closeModal();
+          setTimeout(() => {
+            this.$router.go(0);
+          }, 1000);
+        })
+        .catch(() => {});
+    },
+    onOk(bvModalEvent) {
       // Prevent modal from closing
       bvModalEvent.preventDefault();
-      // Trigger submit handler
-      this.handleSubmit();
-    },
-    handleSubmit() {
-      if (!this.checkFormValidity()) {
-        return;
-      }
-
-      // Hide the modal manually
-      this.$nextTick(() => {
-        const dataInstances = this.form;
-        // eslint-disable-next-line
-      console.log(JSON.stringify(dataInstances));
-
-        axios.post('/instance', dataInstances)
-          .then(response => {
-          // eslint-disable-next-line
-          console.log(response.data);
-            this.$bvModal.hide('modal-add-instances');
-            setTimeout(() => {
-              this.$router.go(0);
-            }, 1000);
-          })
-          .catch(error => {
-          // eslint-disable-next-line
-          console.log(error);
-          });
-      });
+      this.handleSubmitAddInstances();
     }
   }
 };

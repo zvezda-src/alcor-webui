@@ -41,7 +41,6 @@
       type="submit"
       variant="primary"
       data-id="login-button-submit"
-      :disabled="isSubmitting"
     >
       {{ $t('pageLogin.logIn') }}
     </b-button>
@@ -79,8 +78,6 @@ export default {
   },
   methods: {
     login() {
-      // eslint-disable-next-line no-console
-      console.log('submitted form');
       this.$store
         .dispatch(actionTypes.login, {
           username: this.username,

@@ -5,7 +5,7 @@
       bordered
       head-variant="light"
       :busy.sync="isLoading"
-      :items="items"
+      :items="instances"
       :fields="fields"
       show-empty
       empty-text="No items available"
@@ -160,7 +160,6 @@
 </template>
 
 <script>
-import axios from '@/api/axios';
 import { actionTypes } from '@/store/modules/instances';
 import { mapState } from 'vuex';
 import PageSection from '@/components/Global/PageSection.vue';
@@ -220,57 +219,57 @@ export default {
           label: this.$t('global.table.actions'),
           tdClass: 'text-center'
         }
-      ],
-      items: [
-        {
-          name: 'antix-21-template',
-          admin_state: 'down',
-          os: 'noop',
-          pnode: 'cl43gnt1',
-          disk_template: 'gluster',
-          nic_ips: 'null',
-          nic_macs: 'aa:00:00:bb:0b:af',
-          nic_modes: 'bridged',
-          nic_uuids: '2c5a17c5-f5ab-4c33-a22b-2f2dd82cce0c',
-          nic_names: 'null',
-          nic_links: 'vmbr0',
-          nic_networks: 'null',
-          nic_bridges: 'vmbr0',
-          network_port: '11000',
-          beparams: [{
-            vcpus: '1'
-          }],
-          hvparams: [
-            {
-              disk_type: 'fff'
-            }
-          ]
-        },
-        {
-          name: 'test',
-          admin_state: 'down',
-          os: 'noop',
-          pnode: 'cl43gnt1',
-          disk_template: 'gluster',
-          nic_ips: 'null',
-          nic_macs: 'aa:00:00:bb:0b:af',
-          nic_modes: 'bridged',
-          nic_uuids: '2c5a17c5-f5ab-4c33-a22b-2f2dd82cce0c',
-          nic_names: 'null',
-          nic_links: 'vmbr0',
-          nic_networks: 'null',
-          nic_bridges: 'vmbr0',
-          network_port: '11000',
-          beparams: [{
-            vcpus: '2'
-          }],
-          hvparams: [
-            {
-              disk_type: 'fff'
-            }
-          ]
-        }
       ]
+      // items: [
+      //   {
+      //     name: 'antix-21-template',
+      //     admin_state: 'down',
+      //     os: 'noop',
+      //     pnode: 'cl43gnt1',
+      //     disk_template: 'gluster',
+      //     nic_ips: 'null',
+      //     nic_macs: 'aa:00:00:bb:0b:af',
+      //     nic_modes: 'bridged',
+      //     nic_uuids: '2c5a17c5-f5ab-4c33-a22b-2f2dd82cce0c',
+      //     nic_names: 'null',
+      //     nic_links: 'vmbr0',
+      //     nic_networks: 'null',
+      //     nic_bridges: 'vmbr0',
+      //     network_port: '11000',
+      //     beparams: [{
+      //       vcpus: '1'
+      //     }],
+      //     hvparams: [
+      //       {
+      //         disk_type: 'fff'
+      //       }
+      //     ]
+      //   },
+      //   {
+      //     name: 'test',
+      //     admin_state: 'down',
+      //     os: 'noop',
+      //     pnode: 'cl43gnt1',
+      //     disk_template: 'gluster',
+      //     nic_ips: 'null',
+      //     nic_macs: 'aa:00:00:bb:0b:af',
+      //     nic_modes: 'bridged',
+      //     nic_uuids: '2c5a17c5-f5ab-4c33-a22b-2f2dd82cce0c',
+      //     nic_names: 'null',
+      //     nic_links: 'vmbr0',
+      //     nic_networks: 'null',
+      //     nic_bridges: 'vmbr0',
+      //     network_port: '11000',
+      //     beparams: [{
+      //       vcpus: '2'
+      //     }],
+      //     hvparams: [
+      //       {
+      //         disk_type: 'fff'
+      //       }
+      //     ]
+      //   }
+      // ]
     };
   },
   computed: {
@@ -303,40 +302,30 @@ export default {
       })
         .then(value => {
           if (value === true) {
-            axios.delete(`instance/${name}`, { data: { instance_name: name } })
+            this.$store.dispatch(actionTypes.deleteInstances, {
+              apiUrl: this.apiUrl,
+              instanceName: name
+            })
               .then(() => {
                 setTimeout(() => {
                   this.fetchInstances();
                 }, 1000);
               })
-            // this.$store.dispatch(actionTypes.deleteInstances, {
-            //   apiUrl: this.apiUrl,
-            //   name: 'alcor',
-            //   data: this.name
-            // })
               .catch(() => {});
           } else {
             this.isBusy = false;
           }
         })
-        .catch(err => {
-          // eslint-disable-next-line
-          console.log(err);
-        });
+        .catch(() => {});
     },
     startUpInstances(name) {
-      this.isBusy = true;
-
-      axios.put(`instance/${name}/startup`, { instance_name: name })
+      this.$store.dispatch(actionTypes.startUpInstances, { apiUrl: this.apiUrl, instanceName: name })
         .then(() => {
           setTimeout(() => {
             this.fetchInstances();
-            this.isBusy = false;
           }, 1000);
         })
-        .catch(() => {
-          this.isBusy = false;
-        });
+        .catch(() => {});
     },
     toggleRowDetails(row) {
       row.toggleDetails();
@@ -347,7 +336,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-
-</style>

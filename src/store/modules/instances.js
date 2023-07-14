@@ -76,120 +76,55 @@ const mutations = {
     state.error = true;
   },
 
-  [mutationTypes.deleteInstancesStart](state) {
-    state.isLoading = true;
-    state.data = null;
-  },
-  [mutationTypes.deleteInstancesSuccess](state, payload) {
-    state.isLoading = false;
-    state.data = payload;
-  },
+  [mutationTypes.deleteInstancesStart]() {},
+  [mutationTypes.deleteInstancesSuccess]() {},
   [mutationTypes.deleteInstancesFailure](state) {
-    state.isLoading = false;
     state.error = true;
   },
 
-  [mutationTypes.addInstancesStart](state) {
-    state.isLoading = true;
-    state.data = null;
-  },
-  [mutationTypes.addInstancesSuccess](state, payload) {
-    state.isLoading = false;
-    state.data = payload;
-  },
+  [mutationTypes.addInstancesStart]() {},
+  [mutationTypes.addInstancesSuccess]() {},
   [mutationTypes.addInstancesFailure](state) {
-    state.isLoading = false;
     state.error = true;
   },
 
-  [mutationTypes.startUpInstancesStart](state) {
-    state.isLoading = true;
-    state.data = null;
-  },
-  [mutationTypes.startUpInstancesSuccess](state, payload) {
-    state.isLoading = false;
-    state.data = payload;
-  },
-  [mutationTypes.startUpInstancesFailure](state) {
-    state.isLoading = false;
-    state.error = true;
-  },
+  [mutationTypes.startUpInstancesStart]() {},
+  [mutationTypes.startUpInstancesSuccess]() {},
+  [mutationTypes.startUpInstancesFailure]() {},
 
-  [mutationTypes.modifyInstancesStart](state) {
-    state.isLoading = true;
-    state.data = null;
-  },
-  [mutationTypes.modifyInstancesSuccess](state, payload) {
-    state.isLoading = false;
-    state.data = payload;
-  },
+  [mutationTypes.modifyInstancesStart]() {},
+  [mutationTypes.modifyInstancesSuccess]() {},
   [mutationTypes.modifyInstancesFailure](state) {
-    state.isLoading = false;
     state.error = true;
   },
 
-  [mutationTypes.renameInstancesStart](state) {
-    state.isLoading = true;
-    state.data = null;
-  },
-  [mutationTypes.renameInstancesSuccess](state, payload) {
-    state.isLoading = false;
-    state.data = payload;
-  },
+  [mutationTypes.renameInstancesStart]() {},
+  [mutationTypes.renameInstancesSuccess]() {},
   [mutationTypes.renameInstancesFailure](state) {
-    state.isLoading = false;
     state.error = true;
   },
 
-  [mutationTypes.growInstancesStart](state) {
-    state.isLoading = true;
-    state.data = null;
-  },
-  [mutationTypes.growInstancesSuccess](state, payload) {
-    state.isLoading = false;
-    state.data = payload;
-  },
+  [mutationTypes.growInstancesStart]() {},
+  [mutationTypes.growInstancesSuccess]() {},
   [mutationTypes.growInstancesFailure](state) {
-    state.isLoading = false;
     state.error = true;
   },
 
-  [mutationTypes.migrateInstancesStart](state) {
-    state.isLoading = true;
-    state.data = null;
-  },
-  [mutationTypes.migrateInstancesSuccess](state, payload) {
-    state.isLoading = false;
-    state.data = payload;
-  },
+  [mutationTypes.migrateInstancesStart]() {},
+  [mutationTypes.migrateInstancesSuccess]() {},
   [mutationTypes.migrateInstancesFailure](state) {
-    state.isLoading = false;
     state.error = true;
   },
 
-  [mutationTypes.rebootInstancesStart](state) {
-    state.isLoading = true;
-    state.data = null;
-  },
-  [mutationTypes.rebootInstancesSuccess](state, payload) {
-    state.isLoading = false;
-    state.data = payload;
-  },
+  [mutationTypes.rebootInstancesStart]() {},
+  [mutationTypes.rebootInstancesSuccess]() {},
   [mutationTypes.rebootInstancesFailure](state) {
-    state.isLoading = false;
     state.error = true;
   },
 
-  [mutationTypes.shutDownInstancesStart](state) {
-    state.isLoading = true;
-    state.data = null;
-  },
-  [mutationTypes.shutDownInstancesSuccess](state, payload) {
-    state.isLoading = false;
-    state.data = payload;
-  },
+  [mutationTypes.shutDownInstancesStart]() {},
+  [mutationTypes.shutDownInstancesSuccess]() {},
   [mutationTypes.shutDownInstancesFailure](state) {
-    state.isLoading = false;
     state.error = true;
   }
 };
@@ -208,117 +143,117 @@ const actions = {
         });
     });
   },
-  [actionTypes.deleteInstances](context, { apiUrl }, instanceName) {
+  [actionTypes.deleteInstances](context, { apiUrl, instanceName }) {
     return new Promise(resolve => {
       context.commit(mutationTypes.deleteInstancesStart);
       instancesApi.deleteInstances(apiUrl, instanceName)
-        .then(responce => {
-          context.commit(mutationTypes.deleteInstancesSuccess, responce.data);
-          resolve(responce.data);
+        .then(() => {
+          context.commit(mutationTypes.deleteInstancesSuccess);
+          resolve();
         })
         .catch(() => {
           context.commit(mutationTypes.deleteInstancesFailure);
         });
     });
   },
-  [actionTypes.addInstances](context, { apiUrl }) {
+  [actionTypes.addInstances](context, { apiUrl, data }) {
     return new Promise(resolve => {
       context.commit(mutationTypes.addInstancesStart);
-      instancesApi.addInstances(apiUrl)
-        .then(responce => {
-          context.commit(mutationTypes.addInstancesSuccess, responce.data);
-          resolve(responce.data);
+      instancesApi.addInstances(apiUrl, data)
+        .then(() => {
+          context.commit(mutationTypes.addInstancesSuccess);
+          resolve();
         })
         .catch(() => {
           context.commit(mutationTypes.addInstancesFailure);
         });
     });
   },
-  [actionTypes.startUpInstances](context, { apiUrl }) {
+  [actionTypes.startUpInstances](context, { apiUrl, instanceName }) {
     return new Promise(resolve => {
       context.commit(mutationTypes.startUpInstancesStart);
-      instancesApi.startUpInstances(apiUrl)
-        .then(responce => {
-          context.commit(mutationTypes.startUpInstancesSuccess, responce.data);
-          resolve(responce.data);
+      instancesApi.startUpInstances(apiUrl, instanceName)
+        .then(() => {
+          context.commit(mutationTypes.startUpInstancesSuccess);
+          resolve();
         })
         .catch(() => {
           context.commit(mutationTypes.startUpInstancesFailure);
         });
     });
   },
-  [actionTypes.modifyInstances](context, { apiUrl }) {
+  [actionTypes.modifyInstances](context, { apiUrl, instanceName, data }) {
     return new Promise(resolve => {
       context.commit(mutationTypes.modifyInstancesStart);
-      instancesApi.modifyInstances(apiUrl)
-        .then(responce => {
-          context.commit(mutationTypes.modifyInstancesSuccess, responce.data);
-          resolve(responce.data);
+      instancesApi.modifyInstances(apiUrl, instanceName, data)
+        .then(() => {
+          context.commit(mutationTypes.modifyInstancesSuccess);
+          resolve();
         })
         .catch(() => {
           context.commit(mutationTypes.modifyInstancesFailure);
         });
     });
   },
-  [actionTypes.renameInstances](context, { apiUrl }) {
+  [actionTypes.renameInstances](context, { apiUrl, instanceName, data }) {
     return new Promise(resolve => {
       context.commit(mutationTypes.renameInstancesStart);
-      instancesApi.renameInstances(apiUrl)
-        .then(responce => {
-          context.commit(mutationTypes.renameInstancesSuccess, responce.data);
-          resolve(responce.data);
+      instancesApi.renameInstances(apiUrl, instanceName, data)
+        .then(() => {
+          context.commit(mutationTypes.renameInstancesSuccess);
+          resolve();
         })
         .catch(() => {
           context.commit(mutationTypes.renameInstancesFailure);
         });
     });
   },
-  [actionTypes.growInstances](context, { apiUrl }) {
+  [actionTypes.growInstances](context, { apiUrl, instanceName, data }) {
     return new Promise(resolve => {
       context.commit(mutationTypes.growInstancesStart);
-      instancesApi.growInstances(apiUrl)
-        .then(responce => {
-          context.commit(mutationTypes.growInstancesSuccess, responce.data);
-          resolve(responce.data);
+      instancesApi.growInstances(apiUrl, instanceName, data)
+        .then(() => {
+          context.commit(mutationTypes.growInstancesSuccess);
+          resolve();
         })
         .catch(() => {
           context.commit(mutationTypes.growInstancesFailure);
         });
     });
   },
-  [actionTypes.migrateInstances](context, { apiUrl }) {
+  [actionTypes.migrateInstances](context, { apiUrl, instanceName, data }) {
     return new Promise(resolve => {
       context.commit(mutationTypes.migrateInstancesStart);
-      instancesApi.migrateInstances(apiUrl)
-        .then(responce => {
-          context.commit(mutationTypes.migrateInstancesSuccess, responce.data);
-          resolve(responce.data);
+      instancesApi.migrateInstances(apiUrl, instanceName, data)
+        .then(() => {
+          context.commit(mutationTypes.migrateInstancesSuccess);
+          resolve();
         })
         .catch(() => {
           context.commit(mutationTypes.migrateInstancesFailure);
         });
     });
   },
-  [actionTypes.rebootInstances](context, { apiUrl }) {
+  [actionTypes.rebootInstances](context, { apiUrl, instanceName, data }) {
     return new Promise(resolve => {
       context.commit(mutationTypes.rebootInstancesStart);
-      instancesApi.rebootInstances(apiUrl)
-        .then(responce => {
-          context.commit(mutationTypes.rebootInstancesSuccess, responce.data);
-          resolve(responce.data);
+      instancesApi.rebootInstances(apiUrl, instanceName, data)
+        .then(() => {
+          context.commit(mutationTypes.rebootInstancesSuccess);
+          resolve();
         })
         .catch(() => {
           context.commit(mutationTypes.rebootInstancesFailure);
         });
     });
   },
-  [actionTypes.shutDownInstances](context, { apiUrl }) {
+  [actionTypes.shutDownInstances](context, { apiUrl, instanceName, data }) {
     return new Promise(resolve => {
       context.commit(mutationTypes.shutDownInstancesStart);
-      instancesApi.shutDownInstances(apiUrl)
-        .then(responce => {
-          context.commit(mutationTypes.shutDownInstancesSuccess, responce.data);
-          resolve(responce.data);
+      instancesApi.shutDownInstances(apiUrl, instanceName, data)
+        .then(() => {
+          context.commit(mutationTypes.shutDownInstancesSuccess);
+          resolve();
         })
         .catch(() => {
           context.commit(mutationTypes.shutDownInstancesFailure);

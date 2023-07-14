@@ -4,13 +4,11 @@
       id="modal-migrate-instances"
       ref="modal"
       :title="$t('pageInstances.migrateModal.title')"
-      :ok-title="$t('global.action.save')"
-      :cancel-title="$t('global.action.cancel')"
-      @ok="handleOk"
+      @hidden="resetForm"
     >
       <b-form
-        ref="form"
-        @submit.stop.prevent="migrateInstances"
+        id="form-add-instances"
+        @submit.prevent="handleSubmitMigrateInstances"
       >
         <b-row>
           <b-col>
@@ -18,10 +16,10 @@
               :label="$t('pageInstances.migrateModal.allowFailover')"
               label-for="allowfailover-input"
             >
-              <b-form-input
+              <b-form-select
                 id="allowfailover-input"
                 v-model="form.allow_failover"
-                type="text"
+                :options="allowList"
               />
             </b-form-group>
             <b-form-group
@@ -38,67 +36,127 @@
               :label="$t('pageInstances.migrateModal.mode')"
               label-for="mode-input"
             >
-              <b-form-input
+              <b-form-select
                 id="mode-input"
                 v-model="form.mode"
-                type="text"
+                :options="modeList"
               />
             </b-form-group>
             <b-form-group
               :label="$t('pageInstances.migrateModal.targetNode')"
-              label-for="target node-input"
+              label-for="targetnode-input"
             >
-              <b-form-input
-                id="target_node-input"
+              <b-form-select
+                id="targetnode-input"
                 v-model="form.target_node"
-                type="text"
+                :options="nodesList"
+                value-field="name"
+                text-field="name"
               />
             </b-form-group>
           </b-col>
         </b-row>
       </b-form>
+      <template #modal-footer="{ cancel }">
+        <b-button
+          variant="secondary"
+          size="sm"
+          @click="cancel()"
+        >
+          {{ $t('global.action.cancel') }}
+        </b-button>
+        <b-button
+          form="form-migrate-instances"
+          type="submit"
+          variant="primary"
+          size="sm"
+          @click="onOk"
+        >
+          {{ $t('global.action.save') }}
+        </b-button>
+      </template>
     </b-modal>
   </div>
 </template>
 
 <script>
-import axios from '@/api/axios';
+import { actionTypes as nodesActionTypes } from '@/store/modules/nodes';
+import { actionTypes as instancesActionTypes } from '@/store/modules/instances';
 
 export default {
   name: 'InstancesMirgateModal',
+  props: {
+    migrate: {
+      type: Object,
+      required: true
+    },
+    instanceName: {
+      type: String,
+      required: true
+    },
+    apiUrl: {
+      type: String,
+      required: true
+    },
+    nodeUrl: {
+      type: String,
+      required: true
+    }
+  },
   data() {
     return {
       form: {
-        allow_failover: '',
-        instance_name: '',
+        allow_failover: null,
         instance_uuid: '',
-        mode: '',
+        mode: null,
         target_node: ''
-      }
+      },
+      allowList: [{ text: this.$t('pageInstances.addModal.placeholderNodes'), value: null },
+        true,
+        false],
+      modeList: [{ text: this.$t('pageInstances.addModal.placeholderNodes'), value: null },
+        'live',
+        'non-live']
     };
   },
+  computed: {
+    nodesList() {
+      return this.$store.state.nodes.data;
+    }
+  },
+  watch: {
+    migrate() {
+      this.form.instance_uuid = this.migrate.uuid;
+      this.form.target_node = this.migrate.pnode;
+    }
+  },
+  mounted() {
+    this.$store.dispatch(nodesActionTypes.getNodes, { apiUrl: this.nodeUrl });
+  },
   methods: {
-    handleOk(bvModalEvent) {
+    closeModal() {
+      this.$nextTick(() => {
+        this.$refs.modal.hide();
+      });
+    },
+    resetForm() {
+      this.form.allow_failover = null;
+      this.form.mode = null;
+    },
+    handleSubmitMigrateInstances() {
+      this.$store.dispatch(
+        instancesActionTypes.migrateInstances,
+        { apiUrl: this.apiUrl, instanceName: this.instanceName, data: this.form }
+      )
+        .then(() => {
+          this.closeModal();
+        })
+        .catch(() => {});
+    },
+    onOk(bvModalEvent) {
       // Prevent modal from closing
       bvModalEvent.preventDefault();
-      // Trigger submit handler
-      this.migrateInstances();
-    },
-    migrateInstances() {
-      const dataInstances = this.form;
-      // eslint-disable-next-line
-        console.log(JSON.stringify(dataInstances));
-
-      axios.put('instance/name/migrate', dataInstances)
-        .then(response => {
-          // eslint-disable-next-line
-            console.log(response.data);
-          this.$bvModal.hide('modal-migrate-instances');
-        })
-        .catch(error => {
-          // eslint-disable-next-line
-            console.log(error);
-        });
+      this.handleSubmitMigrateInstances();
     }
   }
 };

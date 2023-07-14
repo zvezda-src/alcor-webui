@@ -4,13 +4,10 @@
       id="modal-rename-instances"
       ref="modal"
       :title="$t('pageInstances.renameModal.title')"
-      :ok-title="$t('global.action.save')"
-      :cancel-title="$t('global.action.cancel')"
-      @ok="handleOk"
     >
       <b-form
-        ref="form"
-        @submit.stop.prevent="renameInstances"
+        id="form-rename-instances"
+        @submit.prevent="handleSubmitModifyInstances"
       >
         <b-row>
           <b-col>
@@ -27,50 +24,79 @@
           </b-col>
         </b-row>
       </b-form>
+      <template #modal-footer="{ cancel }">
+        <b-button
+          variant="secondary"
+          size="sm"
+          @click="cancel()"
+        >
+          {{ $t('global.action.cancel') }}
+        </b-button>
+        <b-button
+          form="form-rename-instances"
+          type="submit"
+          variant="primary"
+          size="sm"
+          @click="onOk"
+        >
+          {{ $t('global.action.save') }}
+        </b-button>
+      </template>
     </b-modal>
   </div>
 </template>
 
 <script>
-import axios from '@/api/axios';
+import { actionTypes } from '@/store/modules/instances';
 
 export default {
   name: 'InstancesRenameModal',
+  props: {
+    instanceName: {
+      type: String,
+      required: true
+    },
+    apiUrl: {
+      type: String,
+      required: true
+    }
+  },
   data() {
     return {
       form: {
-        new_name: '',
-        instance_name: 'safsafsaf'
+        new_name: ''
       }
     };
   },
+  watch: {
+    instanceName() {
+      this.form.new_name = this.instanceName;
+    }
+  },
   methods: {
-    handleOk(bvModalEvent) {
+    closeModal() {
+      this.$nextTick(() => {
+        this.$refs.modal.hide();
+      });
+    },
+    handleSubmitRenameInstances() {
+      this.$store.dispatch(
+        actionTypes.renameInstances,
+        { apiUrl: this.apiUrl, instanceName: this.instanceName, data: this.form }
+      )
+        .then(() => {
+          this.closeModal();
+          setTimeout(() => {
+            this.$router.go(0);
+          }, 1000);
+        })
+        .catch(() => {});
+    },
+    onOk(bvModalEvent) {
       // Prevent modal from closing
       bvModalEvent.preventDefault();
-      // Trigger submit handler
-      this.modifyInstances();
-    },
-    modifyInstances() {
-      const dataInstances = this.form;
-      // eslint-disable-next-line
-        console.log(JSON.stringify(dataInstances));
-
-      axios.put('instance/name/rename', dataInstances)
-        .then(response => {
-          // eslint-disable-next-line
-            console.log(response.data);
-          this.$bvModal.hide('modal-rename-instances');
-        })
-        .catch(error => {
-          // eslint-disable-next-line
-            console.log(error);
-        });
+      this.handleSubmitRenameInstances();
     }
   }
 };
 </script>
-
-  <style>
-
-  </style>

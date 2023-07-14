@@ -4,13 +4,11 @@
       id="modal-grow-instances"
       ref="modal"
       :title="$t('pageInstances.growModal.title')"
-      :ok-title="$t('global.action.save')"
-      :cancel-title="$t('global.action.cancel')"
-      @ok="handleOk"
+      @hidden="resetForm"
     >
       <b-form
-        ref="form"
-        @submit.stop.prevent="growInstances"
+        id="form-grow-instances"
+        @submit.prevent="handleSubmitGrowInstances"
       >
         <b-row>
           <b-col>
@@ -27,45 +25,73 @@
           </b-col>
         </b-row>
       </b-form>
+      <template #modal-footer="{ cancel }">
+        <b-button
+          variant="secondary"
+          size="sm"
+          @click="cancel()"
+        >
+          {{ $t('global.action.cancel') }}
+        </b-button>
+        <b-button
+          form="form-grow-instances"
+          type="submit"
+          variant="primary"
+          size="sm"
+          @click="onOk"
+        >
+          {{ $t('global.action.save') }}
+        </b-button>
+      </template>
     </b-modal>
   </div>
 </template>
 
 <script>
-import axios from '@/api/axios';
+import { actionTypes } from '@/store/modules/instances';
 
 export default {
   name: 'InstancesGrowModal',
+  props: {
+    instanceName: {
+      type: String,
+      required: true
+    },
+    apiUrl: {
+      type: String,
+      required: true
+    }
+  },
   data() {
     return {
       form: {
-        instance_name: '',
         amount: ''
       }
     };
   },
   methods: {
-    handleOk(bvModalEvent) {
+    closeModal() {
+      this.$nextTick(() => {
+        this.$refs.modal.hide();
+      });
+    },
+    resetForm() {
+      this.form.amount = '';
+    },
+    handleSubmitGrowInstances() {
+      this.$store.dispatch(
+        actionTypes.growInstances,
+        { apiUrl: this.apiUrl, instanceName: this.instanceName, data: this.form }
+      )
+        .then(() => {
+          this.closeModal();
+        })
+        .catch(() => {});
+    },
+    onOk(bvModalEvent) {
       // Prevent modal from closing
       bvModalEvent.preventDefault();
-      // Trigger submit handler
-      this.modifyInstances();
-    },
-    modifyInstances() {
-      const dataInstances = this.form;
-      // eslint-disable-next-line
-          console.log(JSON.stringify(dataInstances));
-
-      axios.post('instance/alcor/disk/0/grow', dataInstances)
-        .then(response => {
-          // eslint-disable-next-line
-              console.log(response.data);
-          this.$bvModal.hide('modal-grow-instances');
-        })
-        .catch(error => {
-          // eslint-disable-next-line
-              console.log(error);
-        });
+      this.handleSubmitGrowInstances();
     }
   }
 };

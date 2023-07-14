@@ -4,19 +4,17 @@
       id="modal-reboot-instances"
       ref="modal"
       :title="$t('pageInstances.rebootModal.title')"
-      :ok-title="$t('global.action.save')"
-      :cancel-title="$t('global.action.cancel')"
-      @ok="handleOk"
+      @hidden="resetForm"
     >
       <b-form
-        ref="form"
-        @submit.stop.prevent="rebootInstances"
+        id="form-reboot-instances"
+        @submit.prevent="handleSubmitRebootInstances"
       >
         <b-row>
           <b-col>
             <b-form-group
               :label="$t('pageInstances.rebootModal.type')"
-              label-for="newname-input"
+              label-for="type-input"
             >
               <b-form-select
                 id="type-input"
@@ -27,20 +25,47 @@
           </b-col>
         </b-row>
       </b-form>
+      <template #modal-footer="{ cancel }">
+        <b-button
+          variant="secondary"
+          size="sm"
+          @click="cancel()"
+        >
+          {{ $t('global.action.cancel') }}
+        </b-button>
+        <b-button
+          form="form-reboot-instances"
+          type="submit"
+          variant="primary"
+          size="sm"
+          @click="onOk"
+        >
+          {{ $t('global.action.save') }}
+        </b-button>
+      </template>
     </b-modal>
   </div>
 </template>
 
 <script>
-import axios from '@/api/axios';
+import { actionTypes } from '@/store/modules/instances';
 
 export default {
   name: 'InstancesRebootModal',
+  props: {
+    instanceName: {
+      type: String,
+      required: true
+    },
+    apiUrl: {
+      type: String,
+      required: true
+    }
+  },
   data() {
     return {
       form: {
-        type: null,
-        instance_name: 'test2'
+        type: null
       },
       types: [
         { text: this.$t('pageInstances.rebootModal.placeholderType'), value: null },
@@ -50,27 +75,28 @@ export default {
     };
   },
   methods: {
-    handleOk(bvModalEvent) {
+    closeModal() {
+      this.$nextTick(() => {
+        this.$refs.modal.hide();
+      });
+    },
+    resetForm() {
+      this.form.type = null;
+    },
+    handleSubmitRebootInstances() {
+      this.$store.dispatch(
+        actionTypes.rebootInstances,
+        { apiUrl: this.apiUrl, instanceName: this.instanceName, data: this.form }
+      )
+        .then(() => {
+          this.closeModal();
+        })
+        .catch(() => {});
+    },
+    onOk(bvModalEvent) {
       // Prevent modal from closing
       bvModalEvent.preventDefault();
-      // Trigger submit handler
-      this.modifyInstances();
-    },
-    modifyInstances() {
-      const dataInstances = this.form;
-      // eslint-disable-next-line
-          console.log(JSON.stringify(dataInstances));
-
-      axios.post('instance/test2/reboot', dataInstances)
-        .then(response => {
-          // eslint-disable-next-line
-              console.log(response.data);
-          this.$bvModal.hide('modal-reboot-instances');
-        })
-        .catch(error => {
-          // eslint-disable-next-line
-              console.log(error);
-        });
+      this.handleSubmitRebootInstances();
     }
   }
 };
