@@ -4,8 +4,11 @@
     <page-section>
       <groups-buttons-panel />
       <groups-table :api-url="apiUrl" />
-      <groups-add-modal />
     </page-section>
+    <groups-add-modal :api-url="apiUrl" />
+    <groups-rename-modal />
+    <groups-modify-modal />
+    <groups-assigin-nodes-modal />
   </b-container>
 </template>
 
@@ -15,6 +18,9 @@ import PageSection from '@/components/Global/PageSection.vue';
 import GroupsTable from '@/views/Ganeti/Groups/GroupsTable.vue';
 import GroupsButtonsPanel from '@/views/Ganeti/Groups/GroupsButtonsPanel.vue';
 import GroupsAddModal from '@/views/Ganeti/Groups/GroupsAddModal.vue';
+import GroupsRenameModal from '@/views/Ganeti/Groups//GroupsRenameModal.vue';
+import GroupsModifyModal from '@/views/Ganeti/Groups/GroupsModifyModal.vue';
+import GroupsAssiginNodesModal from '@/views/Ganeti/Groups/GroupsAssiginNodesModal.vue';
 
 export default {
   name: 'GroupsApp',
@@ -23,7 +29,10 @@ export default {
     PageSection,
     GroupsTable,
     GroupsButtonsPanel,
-    GroupsAddModal
+    GroupsAddModal,
+    GroupsRenameModal,
+    GroupsModifyModal,
+    GroupsAssiginNodesModal
   },
   data() {
     return {

@@ -21,7 +21,7 @@
         </b-button>
       </template>
 
-      <template #cell(actions)>
+      <template #cell(actions)="row">
         <b-button
           variant="danger"
           size="sm"
@@ -30,10 +30,41 @@
         >
           {{ $t('global.action.delete') }}
         </b-button>
+        <b-button
+          v-b-modal.modal-rename-groups
+          variant="primary"
+          size="sm"
+          class="mr-2"
+        >
+          {{ $t('global.action.rename') }}
+        </b-button>
       </template>
 
       <template #row-details="{ item }">
         <b-container fluid>
+          <div>
+            <b-button-group>
+              <b-button
+                v-b-modal.modal-modify-groups
+                squared
+                size="sm"
+                class="mr-2 mt-2"
+                variant="warning"
+                @click="getModalInfo(item)"
+              >
+                {{ $t('global.action.modify') }}
+              </b-button>
+              <b-button
+                v-b-modal.modal-assigin-nodes-groups
+                variant="info"
+                size="sm"
+                class="mr-2 mt-2"
+                @click="getModalInfo(item)"
+              >
+                {{ $t('global.action.assginNodes') }}
+              </b-button>
+            </b-button-group>
+          </div>
           <b-row>
             <b-col
               class="mt-2"
@@ -222,7 +253,3 @@ export default {
 
 };
 </script>
-
-  <style scoped>
-
-  </style>

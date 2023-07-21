@@ -10,20 +10,22 @@
         id="form-reboot-instances"
         @submit.prevent="handleSubmitRebootInstances"
       >
-        <b-row>
-          <b-col>
-            <b-form-group
-              :label="$t('pageInstances.rebootModal.type')"
-              label-for="type-input"
-            >
-              <b-form-select
-                id="type-input"
-                v-model="form.type"
-                :options="types"
-              />
-            </b-form-group>
-          </b-col>
-        </b-row>
+        <b-container>
+          <b-row>
+            <b-col>
+              <b-form-group
+                :label="$t('pageInstances.rebootModal.type')"
+                label-for="type-input"
+              >
+                <b-form-select
+                  id="type-input"
+                  v-model="form.type"
+                  :options="types"
+                />
+              </b-form-group>
+            </b-col>
+          </b-row>
+        </b-container>
       </b-form>
       <template #modal-footer="{ cancel }">
         <b-button

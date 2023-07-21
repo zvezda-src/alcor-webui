@@ -4,125 +4,141 @@
       id="modal-evacuate-nodes"
       ref="modal"
       :title="$t('pageNodes.evacuateModal.title')"
-      :ok-title="$t('global.action.save')"
-      :cancel-title="$t('global.action.cancel')"
-      @ok="handleOk"
     >
       <b-form
-        ref="form"
-        @submit.stop.prevent="evacuateNodes"
+        id="form-evacuate-groups"
+        @submit.prevent="handleSubmitEvacuateNodes"
       >
-        <b-row>
-          <b-col sm="6">
-            <b-form-group
-              :label="$t('pageNodes.evacuateModal.iallocator')"
-              label-for="iallocator-input"
-            >
-              <b-form-input
-                id="iallocator-input"
-                v-model="form.iallocator"
-              />
-            </b-form-group>
-            <b-form-group
-              :label="$t('pageNodes.evacuateModal.ignoreSoftErrors')"
-              label-for="ignore_soft_errors-input"
-            >
-              <b-form-input
-                id="ignore_soft_errors-input"
-                v-model="form.ignore_soft_errors"
-              />
-            </b-form-group>
-            <b-form-group
-              :label="$t('pageNodes.evacuateModal.mode')"
-              label-for="mode-input"
-            >
-              <b-form-input
-                id="mode-input"
-                v-model="form.mode"
-              />
-            </b-form-group>
-            <b-form-group
-              :label="$t('pageNodes.evacuateModal.nodeUuid')"
-              label-for="node_uuid-input"
-            >
-              <b-form-input
-                id="node_uuid-input"
-                v-model="form.node_uuid"
-              />
-            </b-form-group>
-          </b-col>
-          <b-col sm="6">
-            <b-form-group
-              :label="$t('pageNodes.evacuateModal.remoteNode')"
-              label-for="remote_node-input"
-            >
-              <b-form-input
-                id="remote_node-input"
-                v-model="form.remote_node"
-              />
-            </b-form-group>
-            <b-form-group
-              :label="$t('pageNodes.evacuateModal.remoteNodeUuid')"
-              label-for="remote_node_uuid-input"
-            >
-              <b-form-input
-                id="remote_node_uuid-input"
-                v-model="form.remote_node_uuid"
-              />
-            </b-form-group>
-          </b-col>
-        </b-row>
+        <b-container>
+          <b-row>
+            <b-col sm="6">
+              <b-form-group
+                :label="$t('pageNodes.evacuateModal.iallocator')"
+                label-for="iallocator-input"
+              >
+                <b-form-input
+                  id="iallocator-input"
+                  v-model="form.iallocator"
+                />
+              </b-form-group>
+              <b-form-group
+                :label="$t('pageNodes.evacuateModal.ignoreSoftErrors')"
+                label-for="ignore-soft-errors-input"
+              >
+                <b-form-select
+                  id="ignore-soft-errors-input"
+                  v-model="form.ignore_soft_errors"
+                  :options="ignoreSoftList"
+                />
+              </b-form-group>
+              <b-form-group
+                :label="$t('pageNodes.evacuateModal.mode')"
+                label-for="mode-input"
+              >
+                <b-form-select
+                  id="mode-input"
+                  v-model="form.mode"
+                  :options="modeList"
+                />
+              </b-form-group>
+            </b-col>
+            <b-col sm="6">
+              <b-form-group
+                :label="$t('pageNodes.evacuateModal.nodeUuid')"
+                label-for="node_uuid-input"
+              >
+                <b-form-input
+                  id="node_uuid-input"
+                  v-model="form.node_uuid"
+                />
+              </b-form-group>
+              <b-form-group
+                :label="$t('pageNodes.evacuateModal.remoteNode')"
+                label-for="remote_node-input"
+              >
+                <b-form-input
+                  id="remote_node-input"
+                  v-model="form.remote_node"
+                />
+              </b-form-group>
+              <b-form-group
+                :label="$t('pageNodes.evacuateModal.remoteNodeUuid')"
+                label-for="remote_node_uuid-input"
+              >
+                <b-form-input
+                  id="remote_node_uuid-input"
+                  v-model="form.remote_node_uuid"
+                />
+              </b-form-group>
+            </b-col>
+          </b-row>
+        </b-container>
       </b-form>
+      <template #modal-footer="{ cancel }">
+        <b-button
+          variant="secondary"
+          size="sm"
+          @click="cancel()"
+        >
+          {{ $t('global.action.cancel') }}
+        </b-button>
+        <b-button
+          form="form-evacuate-groups"
+          type="submit"
+          variant="primary"
+          size="sm"
+          @click="onOk"
+        >
+          {{ $t('global.action.save') }}
+        </b-button>
+      </template>
     </b-modal>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
+import { actionTypes } from '@/store/modules/nodes';
 
 export default {
   name: 'NodesEvacuateModal',
   data() {
     return {
       form: {
-        node_name: 'cl43gnt1',
-        node: 'cl43gnt1',
         iallocator: '',
-        ignore_soft_errors: '',
-        mode: '',
+        ignore_soft_errors: null,
+        mode: null,
         node_uuid: '',
         remote_node: '',
         remote_node_uuid: ''
-      }
+      },
+      ignoreSoftList: [{ text: this.$t('pageNodes.evacuateModal.placeholderList') }, true, false],
+      modeList: [{ text: this.$t('pageNodes.evacuateModal.placeholderList') },
+        'secondary-only',
+        'primary-only',
+        'all']
     };
   },
   methods: {
-    handleOk(bvModalEvent) {
+    closeModal() {
+      this.$nextTick(() => {
+        this.$refs.modal.hide();
+      });
+    },
+    handleSubmitEvacuateNodes() {
+      this.$store.dispatch(
+        actionTypes.evacuateNodes,
+        { apiUrl: this.apiUrl, instanceName: this.nodeName, data: this.form }
+      )
+        .then(() => {
+          this.closeModal();
+        })
+        .catch(() => {});
+    },
+    onOk(bvModalEvent) {
       // Prevent modal from closing
       bvModalEvent.preventDefault();
-      // Trigger submit handler
-      this.evacuateNodes();
-    },
-    evacuateNodes() {
-      const dataInstances = this.form;
-      // eslint-disable-next-line
-          console.log(JSON.stringify(dataInstances));
-
-      axios.post('http://10.110.3.230:8008/v1/nodes/cl43gnt1/evacuate', dataInstances)
-        .then(response => {
-          // eslint-disable-next-line
-              console.log(response.data);
-          this.$bvModal.hide('modal-modify-instances');
-        })
-        .catch(error => {
-          // eslint-disable-next-line
-              console.log(error);
-        });
+      this.handleSubmitEvacuateNodes();
     }
   }
 };
 </script>
-
-    <style>
-
-    </style>

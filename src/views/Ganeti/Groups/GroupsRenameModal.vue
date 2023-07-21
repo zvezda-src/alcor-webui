@@ -1,37 +1,25 @@
 <template>
   <div>
     <b-modal
-      id="modal-shutdown-instances"
+      id="modal-rename-groups"
       ref="modal"
-      :title="$t('pageInstances.shutDownModal.title')"
-      @hidden="resetForm"
+      :title="$t('pageInstances.renameModal.title')"
     >
       <b-form
-        id="form-shutdown-instances"
-        @submit.prevent="handleSubmitShutDownInstances"
+        id="form-rename-instances"
+        @submit.prevent="handleSubmitModifyInstances"
       >
         <b-container>
           <b-row>
             <b-col>
               <b-form-group
-                :label="$t('pageInstances.shutDownModal.force')"
-                label-for="force-input"
-              >
-                <b-form-select
-                  id="force-input"
-                  v-model="form.force"
-                  :options="forceList"
-                  type="text"
-                />
-              </b-form-group>
-              <b-form-group
-                :label="$t('pageInstances.shutDownModal.timeOut')"
-                label-for="timeout-input"
+                :label="$t('pageInstances.renameModal.newName')"
+                label-for="newname-input"
               >
                 <b-form-input
-                  id="timeout-input"
-                  v-model="form.timeout"
-                  type="number"
+                  id="newname-input"
+                  v-model="form.new_name"
+                  type="text"
                 />
               </b-form-group>
             </b-col>
@@ -47,7 +35,7 @@
           {{ $t('global.action.cancel') }}
         </b-button>
         <b-button
-          form="form-shutdown-instances"
+          form="form-rename-instances"
           type="submit"
           variant="primary"
           size="sm"
@@ -64,7 +52,7 @@
 import { actionTypes } from '@/store/modules/instances';
 
 export default {
-  name: 'InstancesShutDownModal',
+  name: 'GroupsRenameModal',
   props: {
     instanceName: {
       type: String,
@@ -78,12 +66,14 @@ export default {
   data() {
     return {
       form: {
-        force: null,
-        timeout: ''
-      },
-      forceList: [{ text: this.$t('pageInstances.addModal.placeholderNodes'), value: null },
-        true, false]
+        new_name: ''
+      }
     };
+  },
+  watch: {
+    instanceName() {
+      this.form.new_name = this.instanceName;
+    }
   },
   methods: {
     closeModal() {
@@ -91,24 +81,23 @@ export default {
         this.$refs.modal.hide();
       });
     },
-    resetForm() {
-      this.form.force = null;
-      this.form.timeout = '';
-    },
-    handleSubmitShutDownInstances() {
+    handleSubmitRenameInstances() {
       this.$store.dispatch(
-        actionTypes.shutDownInstances,
+        actionTypes.renameInstances,
         { apiUrl: this.apiUrl, instanceName: this.instanceName, data: this.form }
       )
         .then(() => {
           this.closeModal();
+          setTimeout(() => {
+            this.$router.go(0);
+          }, 1000);
         })
         .catch(() => {});
     },
     onOk(bvModalEvent) {
       // Prevent modal from closing
       bvModalEvent.preventDefault();
-      this.handleSubmitShutDownInstances();
+      this.handleSubmitRenameInstances();
     }
   }
 };

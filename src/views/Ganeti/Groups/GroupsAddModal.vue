@@ -5,16 +5,10 @@
       ref="modal"
       size="md"
       :title="$t('pageGroups.modal.addTitle')"
-      :ok-title="$t('global.action.save')"
-      :cancel-title="$t('global.action.cancel')"
-      button-size="sm"
-      @show="resetModal"
-      @hidden="resetModal"
-      @ok="handleOk"
     >
       <b-form
-        ref="form"
-        @submit.stop.prevent="handleSubmit"
+        id="form-add-groups"
+        @submit.prevent="handleSubmitAddGroups"
       >
         <b-row>
           <b-col sm="12">
@@ -155,75 +149,67 @@
           </b-col>-->
         </b-row>
       </b-form>
+      <template #modal-footer="{ cancel }">
+        <b-button
+          variant="secondary"
+          size="sm"
+          @click="cancel()"
+        >
+          {{ $t('global.action.cancel') }}
+        </b-button>
+        <b-button
+          form="form-add-groups"
+          type="submit"
+          variant="primary"
+          size="sm"
+          @click="onOk"
+        >
+          {{ $t('global.action.save') }}
+        </b-button>
+      </template>
     </b-modal>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
+import { actionTypes } from '@/store/modules/groups';
 
 export default {
   name: 'GroupsAddModal',
+  props: {
+    apiUrl: {
+      type: String,
+      required: true
+    }
+  },
   data() {
     return {
       form: {
         group_name: ''
-        // alloc_policy: '',
-        // cpu_speed: '',
-        // exclusive_storage: '',
-        // oob_program: '',
-        // ovs: '',
-        // ovs_link: '',
-        // ovs_name: '',
-        // spindle_count: '',
-        // ssh_port: ''
       }
     };
   },
   methods: {
-    checkFormValidity() {
-      const valid = this.$refs.form.checkValidity();
-      return valid;
+    closeModal() {
+      this.$nextTick(() => {
+        this.$refs.modal.hide();
+      });
     },
-    resetModal() {
-      this.form.group_name = '';
+    handleSubmitAddGroups() {
+      this.$store.dispatch(actionTypes.addGroups, { apiUrl: this.apiUrl, data: this.form })
+        .then(() => {
+          this.closeModal();
+          setTimeout(() => {
+            this.$router.go(0);
+          }, 1000);
+        })
+        .catch(() => {});
     },
-    handleOk(bvModalEvent) {
+    onOk(bvModalEvent) {
       // Prevent modal from closing
       bvModalEvent.preventDefault();
-      // Trigger submit handler
-      this.handleSubmit();
-    },
-    handleSubmit() {
-      if (!this.checkFormValidity()) {
-        return;
-      }
-
-      // Hide the modal manually
-      this.$nextTick(() => {
-        const dataInstances = this.form;
-        // eslint-disable-next-line
-      console.log(JSON.stringify(dataInstances));
-
-        axios.post('http://10.110.3.230:8008/v1/groups', dataInstances)
-          .then(response => {
-          // eslint-disable-next-line
-          console.log(response.data);
-            this.$bvModal.hide('modal-add-groups');
-            // setTimeout(() => {
-            //   this.$router.go(0);
-            // }, 1000);
-          })
-          .catch(error => {
-          // eslint-disable-next-line
-          console.log(error);
-          });
-      });
+      this.handleSubmitAddGroups();
     }
   }
 };
 </script>
-
-<style>
-
-</style>

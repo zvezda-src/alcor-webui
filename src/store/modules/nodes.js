@@ -21,14 +21,19 @@ export const mutationTypes = {
 
   modifyNodesStart: '[nodes] Modify nodes start',
   modifyNodesSuccess: '[nodes] Modify nodes success',
-  modifyNodesFailure: '[nodes] Modify nodes failure'
+  modifyNodesFailure: '[nodes] Modify nodes failure',
+
+  migrateNodesStart: '[nodes] Migrate nodes start',
+  migrateNodesSuccess: '[nodes] Migrate nodes success',
+  migrateNodesFailure: '[nodes] Migrate nodes failure'
 };
 
 export const actionTypes = {
   getNodes: '[nodes] Get nodes',
   addNodes: '[nodes] Add nodes',
   evacuateNodes: '[nodes] Evacuate nodes',
-  modifyNodes: '[nodes] Modify nodes'
+  modifyNodes: '[nodes] Modify nodes',
+  migrateNodes: '[nodes] Migrate nodes'
 };
 
 const mutations = {
@@ -58,29 +63,17 @@ const mutations = {
     state.isLoading = false;
   },
 
-  [mutationTypes.evacuateNodesStart](state) {
-    state.isLoading = true;
-    state.data = null;
-  },
-  [mutationTypes.evacuateNodesSuccess](state, payload) {
-    state.isLoading = false;
-    state.data = payload;
-  },
-  [mutationTypes.evacuateNodesFailure](state) {
-    state.isLoading = false;
-  },
+  [mutationTypes.evacuateNodesStart]() {},
+  [mutationTypes.evacuateNodesSuccess]() {},
+  [mutationTypes.evacuateNodesFailure]() {},
 
-  [mutationTypes.modifyNodesStart](state) {
-    state.isLoading = true;
-    state.data = null;
-  },
-  [mutationTypes.modifyNodesSuccess](state, payload) {
-    state.isLoading = false;
-    state.data = payload;
-  },
-  [mutationTypes.modifyNodesFailure](state) {
-    state.isLoading = false;
-  }
+  [mutationTypes.modifyNodesStart]() {},
+  [mutationTypes.modifyNodesSuccess]() {},
+  [mutationTypes.modifyNodesFailure]() {},
+
+  [mutationTypes.migrateNodesStart]() {},
+  [mutationTypes.migrateNodesSuccess]() {},
+  [mutationTypes.migrateNodesFailure]() {}
 };
 
 const actions = {
@@ -97,42 +90,55 @@ const actions = {
         });
     });
   },
-  [actionTypes.addNodes](context, { apiUrl }) {
+  [actionTypes.addNodes](context, { apiUrl, data }) {
     return new Promise(resolve => {
       context.commit(mutationTypes.addNodesStart);
-      nodesApi.addNodes(apiUrl)
-        .then(responce => {
-          context.commit(mutationTypes.addNodesSuccess, responce.data);
-          resolve(responce.data);
+      nodesApi.addNodes(apiUrl, data)
+        .then(() => {
+          context.commit(mutationTypes.addNodesSuccess);
+          resolve();
         })
         .catch(() => {
           context.commit(mutationTypes.addNodesFailure);
         });
     });
   },
-  [actionTypes.evacuateNodes](context, { apiUrl }) {
+  [actionTypes.evacuateNodes](context, { apiUrl, nodeName }) {
     return new Promise(resolve => {
       context.commit(mutationTypes.evacuateNodesStart);
-      nodesApi.evacuateNodes(apiUrl)
-        .then(responce => {
-          context.commit(mutationTypes.evacuateNodesSuccess, responce.data);
-          resolve(responce.data);
+      nodesApi.evacuateNodes(apiUrl, nodeName)
+        .then(() => {
+          context.commit(mutationTypes.evacuateNodesSuccess);
+          resolve();
         })
         .catch(() => {
           context.commit(mutationTypes.evacuateNodesFailure);
         });
     });
   },
-  [actionTypes.modifyNodes](context, { apiUrl }) {
+  [actionTypes.modifyNodes](context, { apiUrl, nodeName, data }) {
     return new Promise(resolve => {
       context.commit(mutationTypes.modifyNodesStart);
-      nodesApi.modifyNodes(apiUrl)
-        .then(responce => {
-          context.commit(mutationTypes.modifyNodesSuccess, responce.data);
-          resolve(responce.data);
+      nodesApi.modifyNodes(apiUrl, nodeName, data)
+        .then(() => {
+          context.commit(mutationTypes.modifyNodesSuccess);
+          resolve();
         })
         .catch(() => {
           context.commit(mutationTypes.modifyNodesFailure);
+        });
+    });
+  },
+  [actionTypes.migrateNodes](context, { apiUrl, nodeName, data }) {
+    return new Promise(resolve => {
+      context.commit(mutationTypes.migrateNodesStart);
+      nodesApi.migrateNodes(apiUrl, nodeName, data)
+        .then(() => {
+          context.commit(mutationTypes.migrateNodesSuccess);
+          resolve();
+        })
+        .catch(() => {
+          context.commit(mutationTypes.migrateNodesFailure);
         });
     });
   }

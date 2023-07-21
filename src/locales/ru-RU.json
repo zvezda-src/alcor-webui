@@ -12,10 +12,17 @@
       "shutDown": "",
       "reboot": "",
       "migrate": "",
-      "evacuate": ""
+      "evacuate": "",
+      "assginNodes": "",
+      "yes": "Да",
+      "no": "Нет"
     },
     "table": {
       "actions": "Действия"
+    },
+    "modal": {
+      "deleteTitle": "",
+      "deleteConfirm": ""
     }
   },
   "pageLogin": {
@@ -256,6 +263,7 @@
       "title": "",
       "iallocator": "",
       "ignoreSoftErrors": "",
+      "placeholderList": "",
       "mode": "",
       "nodeUuid": "",
       "remoteNode": "",
@@ -274,6 +282,17 @@
       "spindleCount": "",
       "sshPort": "",
       "vmCapable": ""
+    },
+    "migrateModal": {
+      "title": "",
+      "allowRuntimeChanges": "",
+      "placeholderList": "",
+      "ignoreIpolicy": "",
+      "live": "",
+      "mode": "",
+      "nodeUuid": "",
+      "targetNode": "",
+      "targetNodeUuid": ""
     },
     "table": {
       "name": "",

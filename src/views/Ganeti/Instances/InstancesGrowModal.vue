@@ -10,20 +10,22 @@
         id="form-grow-instances"
         @submit.prevent="handleSubmitGrowInstances"
       >
-        <b-row>
-          <b-col>
-            <b-form-group
-              :label="$t('pageInstances.growModal.amount')"
-              label-for="amount-input"
-            >
-              <b-form-input
-                id="amount-input"
-                v-model="form.amount"
-                type="number"
-              />
-            </b-form-group>
-          </b-col>
-        </b-row>
+        <b-container>
+          <b-row>
+            <b-col>
+              <b-form-group
+                :label="$t('pageInstances.growModal.amount')"
+                label-for="amount-input"
+              >
+                <b-form-input
+                  id="amount-input"
+                  v-model="form.amount"
+                  type="number"
+                />
+              </b-form-group>
+            </b-col>
+          </b-row>
+        </b-container>
       </b-form>
       <template #modal-footer="{ cancel }">
         <b-button

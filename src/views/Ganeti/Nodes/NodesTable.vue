@@ -21,11 +21,13 @@
         </b-button>
       </template>
 
-      <template #cell(actions)>
+      <template #cell(actions)="row">
         <b-button
+          v-b-modal.modal-migrate-nodes
           variant="danger"
           size="sm"
           class="mr-2 mt-2"
+          @click="getModalInfo(row.item)"
         >
           {{ $t('global.action.migrate') }}
         </b-button>
@@ -34,21 +36,26 @@
           variant="success"
           size="sm"
           class="mr-2 mt-2"
+          @click="getModalInfo(row.item)"
         >
           {{ $t('global.action.modify') }}
-        </b-button>
-        <b-button
-          v-b-modal.modal-evacuate-nodes
-          variant="success"
-          size="sm"
-          class="mr-2 mt-2"
-        >
-          {{ $t('global.action.evacuate') }}
         </b-button>
       </template>
 
       <template #row-details="{ item }">
         <b-container fluid>
+          <div>
+            <b-button-group>
+              <b-button
+                variant="success"
+                size="sm"
+                class="mr-2 mt-2"
+                @click="evacuateGroups(item.name)"
+              >
+                {{ $t('global.action.evacuate') }}
+              </b-button>
+            </b-button-group>
+          </div>
           <b-row>
             <b-col
               class="mt-2"
@@ -87,7 +94,7 @@
                 <dt>{{ $t('pageNodes.table.mNode') }}:</dt>
                 <dd>{{ item.mnode }}</dd>
                 <dt>{{ $t('pageNodes.table.mTime') }}:</dt>
-                <dd>{{ item.mtime }}</dd>
+                <dd>{{ numberFix(item.mtime) }}</dd>
                 <dt>{{ $t('pageNodes.table.mTotal') }}:</dt>
                 <dd>{{ item.mtotal }}</dd>
                 <dt>{{ $t('pageNodes.table.cpuSpeed') }}:</dt>
@@ -115,6 +122,14 @@ export default {
   },
   props: {
     apiUrl: {
+      type: String,
+      required: true
+    },
+    onDataNodes: {
+      type: Function,
+      required: true
+    },
+    nodeUrl: {
       type: String,
       required: true
     }
@@ -167,7 +182,7 @@ export default {
         //   sptotal: 'null',
         //   mfree: '15777',
         //   pinst_cnt: '0'
-        // }
+        // },
         // {
         //   name: 'cl43gnt1',
         //   offline: 'false',
@@ -250,10 +265,19 @@ export default {
   methods: {
     toggleRowDetails(row) {
       row.toggleDetails();
+    },
+    getModalInfo(item) {
+      this.onDataNodes({ item });
+    },
+    evacuateGroups(name) {
+      this.$store.dispatch(actionTypes.evacuateNodes, { apiUrl: this.nodeUrl, nodeName: name })
+        .then(() => {})
+        .catch(() => {});
+    },
+    numberFix(number) {
+      const numberMin = number / 100000000;
+      return numberMin.toFixed(1);
     }
   }
 };
 </script>
-
-  <style scoped>
-  </style>

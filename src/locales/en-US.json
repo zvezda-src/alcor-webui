@@ -13,6 +13,7 @@
       "reboot": "Reboot",
       "migrate": "Migrate",
       "evacuate": "Evacuate",
+      "assginNodes": "Assigin nodes",
       "yes": "Yes",
       "no": "No"
     },
@@ -262,6 +263,7 @@
       "title": "Evacuate nodes",
       "iallocator": "iallocator:",
       "ignoreSoftErrors": "ignore soft errors:",
+      "placeholderList": "Select one",
       "mode": "mode:",
       "nodeUuid": "node uuid:",
       "remoteNode": "remote node:",
@@ -280,6 +282,17 @@
       "spindleCount": "spindle count:",
       "sshPort": "ssh port:",
       "vmCapable": "vm capable:"
+    },
+    "migrateModal": {
+      "title": "Migrate nodes",
+      "allowRuntimeChanges": "allow runtime changes:",
+      "placeholderList": "Select one",
+      "ignoreIpolicy": "ignore ipolicy:",
+      "live": "live:",
+      "mode": "mode:",
+      "nodeUuid": "node uuid:",
+      "targetNode": "target node:",
+      "targetNodeUuid": "target node uuid:"
     },
     "table": {
       "name": "Name",

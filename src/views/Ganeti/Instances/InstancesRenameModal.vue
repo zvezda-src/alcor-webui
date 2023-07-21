@@ -9,20 +9,22 @@
         id="form-rename-instances"
         @submit.prevent="handleSubmitModifyInstances"
       >
-        <b-row>
-          <b-col>
-            <b-form-group
-              :label="$t('pageInstances.renameModal.newName')"
-              label-for="newname-input"
-            >
-              <b-form-input
-                id="newname-input"
-                v-model="form.new_name"
-                type="text"
-              />
-            </b-form-group>
-          </b-col>
-        </b-row>
+        <b-container>
+          <b-row>
+            <b-col>
+              <b-form-group
+                :label="$t('pageInstances.renameModal.newName')"
+                label-for="newname-input"
+              >
+                <b-form-input
+                  id="newname-input"
+                  v-model="form.new_name"
+                  type="text"
+                />
+              </b-form-group>
+            </b-col>
+          </b-row>
+        </b-container>
       </b-form>
       <template #modal-footer="{ cancel }">
         <b-button

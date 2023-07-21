@@ -3,11 +3,27 @@
     <page-title />
     <page-section>
       <nodes-buttons-panel />
-      <nodes-table :api-url="apiUrl" />
+      <nodes-table
+        :api-url="apiUrl"
+        :node-url="nodeUrl"
+        :on-data-nodes="onDataNodes"
+      />
     </page-section>
     <nodes-add-modal />
-    <nodes-modify-modal />
-    <nodes-evacuate-modal />
+    <nodes-modify-modal
+      :api-url="apiUrl"
+      :node-name="nodeName"
+      :modify="nodeData"
+    />
+    <nodes-evacuate-modal
+      :api-url="apiUrl"
+      :node-name="nodeName"
+    />
+    <nodes-migrate-modal
+      :api-url="apiUrl"
+      :node-name="nodeName"
+      :migrate="nodeData"
+    />
   </b-container>
 </template>
 
@@ -19,6 +35,7 @@ import NodesButtonsPanel from '@/views/Ganeti/Nodes/NodesButtonsPanel.vue';
 import NodesAddModal from '@/views/Ganeti/Nodes/NodesAddModal.vue';
 import NodesModifyModal from '@/views/Ganeti/Nodes/NodesModifyModal.vue';
 import NodesEvacuateModal from '@/views/Ganeti/Nodes/NodesEvacuateModal.vue';
+import NodesMigrateModal from '@/views/Ganeti/Nodes/NodesMigrateModal.vue';
 
 export default {
   name: 'NodesApp',
@@ -29,16 +46,23 @@ export default {
     NodesButtonsPanel,
     NodesAddModal,
     NodesModifyModal,
-    NodesEvacuateModal
+    NodesEvacuateModal,
+    NodesMigrateModal
   },
   data() {
     return {
-      apiUrl: '/nodes'
+      apiUrl: '/nodes',
+      nodeUrl: '/noda',
+      nodeName: '',
+      nodeData: {}
     };
+  },
+  methods: {
+    onDataNodes(data) {
+      this.nodeData = data.item;
+
+      this.nodeName = data.item.name;
+    }
   }
 };
 </script>
-
-<style scoped>
-
-</style>
